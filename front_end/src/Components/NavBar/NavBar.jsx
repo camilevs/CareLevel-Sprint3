@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import { Flame, User, LogOut, Menu } from 'lucide-react';
+import { Flame, User, LogOut, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 
 import { useUser } from '../UserContext/UserContext';
@@ -10,11 +10,9 @@ import Logo from '../Logo/Logo';
 
 const NAV_LINKS = [
   { label: 'Início',      to: '/home' },
-  { label: 'Missões',     to: '/missoes' },
   { label: 'CareMood',    to: '/caremood' },
-  { label: 'Ranking',     to: '/ranking' },
+  { label: 'Jornada',     to: '/jornada' },
   { label: 'Recompensas', to: '/recompensas' },
-  { label: 'Conquistas',  to: '/conquistas' },
   { label: 'CarePoints',  to: '/carepoints' },
 ];
 
@@ -34,22 +32,19 @@ export default function Navbar() {
   return (
     <header className={styles.navbar}>
       <div className={styles.inner}>
-        
-        {/* Logo */}
+
         <NavLink to="/" className={styles.logoArea}>
-          <Logo size={32} />
+          <Logo size={30} />
         </NavLink>
 
-        {/* BOTÃO BURGER (mobile) */}
         <button
           className={styles.burger}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Abrir menu"
         >
-          <Menu size={24} />
+          {menuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
 
-        {/* MENU */}
         <nav className={`${styles.nav} ${menuOpen ? styles.navOpen : ''}`}>
           {NAV_LINKS.map(({ label, to }) => (
             <NavLink
@@ -65,11 +60,10 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* AÇÕES */}
         <div className={styles.actions}>
-          
+
           <div className={styles.badge} title="Sequência de dias">
-            <Flame size={20} color="#ff6b35" fill="#ff6b35" />
+            <Flame size={16} color="#F97316" fill="#F97316" />
             <span className={styles.badgeText}>{user.streak}</span>
           </div>
 
@@ -78,7 +72,6 @@ export default function Navbar() {
             className={({ isActive }) =>
               [styles.badge, styles.badgeLink, isActive ? styles.badgeActive : ''].join(' ')
             }
-            style={{ textDecoration: 'none', color: 'inherit' }}
             title="CarePoints"
           >
             <img
@@ -99,7 +92,7 @@ export default function Navbar() {
             title="Meu perfil"
             aria-label="Ir para o perfil"
           >
-            <User size={20} color="var(--text-dark)" />
+            <User size={18} />
           </NavLink>
 
           <button
@@ -109,7 +102,7 @@ export default function Navbar() {
             title="Sair"
             aria-label="Fazer logout"
           >
-            <LogOut size={18} color="var(--green-primary)" />
+            <LogOut size={16} />
             <span>Sair</span>
           </button>
         </div>

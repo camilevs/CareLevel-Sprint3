@@ -1,144 +1,31 @@
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* PerfilBeneficiario.module.css — dark mode */
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background-color: #e8f5f2;
-  min-height: 100vh;
-  color: #333;
-}
-
-/* ── NAV ── */
-.navbar {
-  display: flex;
-  align-items: center;
-  padding: 0 32px;
-  height: 64px;
-  background: #fff;
-  border-bottom: 1px solid #dceee9;
-  gap: 32px;
-}
-
-.navbar__logo {
-  width: 36px;
-  height: 36px;
-  background: #3aaa8c;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 8px;
-  flex-shrink: 0;
-}
-
-.navbar__logo svg {
-  width: 22px;
-  height: 22px;
-  fill: none;
-  stroke: #fff;
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.navbar__links {
-  display: flex;
-  gap: 28px;
-  flex: 1;
-}
-
-.navbar__links a {
-  text-decoration: none;
-  color: #444;
-  font-size: 14px;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.navbar__links a:hover { color: #3aaa8c; }
-
-.navbar__right {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-left: auto;
-}
-
-.navbar__stat {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 15px;
-  font-weight: 600;
-  color: #333;
-}
-
-.navbar__stat .icon { font-size: 18px; }
-
-.navbar__stat--points {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.navbar__stat--points .medal {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: #3aaa8c;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.navbar__stat--points .medal svg {
-  width: 14px;
-  height: 14px;
-  fill: #fff;
-}
-
-.navbar__avatar {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: #ddd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #ccc;
-}
-
-.navbar__avatar svg {
-  width: 20px;
-  height: 20px;
-  fill: #888;
-}
-
-/* ── MAIN ── */
 .main {
-  padding: 40px 32px;
+  padding: 32px 24px;
   display: flex;
   justify-content: center;
+}
+
+@media (max-width: 700px) {
+  .main { padding: 20px 12px; }
 }
 
 .profile-card {
   display: flex;
   width: 100%;
   max-width: 900px;
-  background: #4db896;
-  border-radius: 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  box-shadow: var(--shadow-lg);
 }
 
 /* ── LEFT PANEL ── */
 .profile-card__left {
   width: 260px;
   min-width: 220px;
-  background: #4db896;
+  background: var(--accent);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -152,7 +39,8 @@ body {
   height: 140px;
   border-radius: 50%;
   overflow: hidden;
-  border: 4px solid rgba(255,255,255,0.3);
+  border: 4px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.3);
 }
 
 .profile-card__avatar img {
@@ -169,18 +57,19 @@ body {
 }
 
 .profile-card__role {
-  background: #3aaa8c;
+  background: rgba(255, 255, 255, 0.2);
   color: #fff;
   font-size: 13px;
   font-weight: 700;
   padding: 6px 20px;
   border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 /* ── RIGHT PANEL ── */
 .profile-card__right {
   flex: 1;
-  background: #e8f5f2;
+  background: var(--bg-secondary);
   padding: 32px 36px;
   display: flex;
   flex-direction: column;
@@ -188,16 +77,15 @@ body {
 }
 
 /* ── FORM FIELD ── */
-.field {
-  margin-bottom: 14px;
-}
+.field { margin-bottom: 14px; }
 
 .field__label {
   display: inline-block;
-  background: #4db896;
-  color: #fff;
+  background: var(--accent-subtle);
+  color: var(--accent);
+  border: 1px solid rgba(124, 92, 255, 0.3);
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
   padding: 4px 14px;
   border-radius: 20px;
   margin-bottom: 6px;
@@ -205,70 +93,53 @@ body {
 
 .field__input {
   width: 100%;
-  background: #f0f7f5;
-  border: none;
-  border-radius: 24px;
-  padding: 12px 20px;
+  background: var(--bg-tertiary);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 12px 18px;
   font-size: 14px;
-  color: #444;
+  color: var(--text-primary);
   outline: none;
   font-family: inherit;
   cursor: default;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .field__input:focus {
-  box-shadow: 0 0 0 2px #4db896;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-subtle);
   cursor: text;
 }
 
-/* ── PASSWORD ROW ── */
-.field--password .field__inputs-row {
-  display: flex;
-  gap: 12px;
-}
+.field__input::placeholder { color: var(--text-muted); }
 
-.field--password .field__input {
-  flex: 1;
-}
+/* ── PASSWORD ROW ── */
+.field--password .field__inputs-row { display: flex; gap: 12px; }
+.field--password .field__input { flex: 1; }
 
 /* ── SAVE BUTTON ── */
 .btn-save {
   align-self: center;
-  margin-top: 8px;
-  background: #3aaa8c;
+  margin-top: 10px;
+  background: var(--accent);
   color: #fff;
   border: none;
-  border-radius: 24px;
+  border-radius: var(--radius-md);
   padding: 12px 36px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.18s;
+  transition: background 0.2s, transform 0.15s;
+  box-shadow: 0 4px 14px var(--accent-glow);
   font-family: inherit;
 }
 
-.btn-save:hover { background: #2d9279; }
+.btn-save:hover { background: var(--accent-hover); transform: translateY(-1px); }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 700px) {
-  .navbar { padding: 0 16px; gap: 16px; }
-  .navbar__links { display: none; }
-  .main { padding: 20px 12px; }
-
-  .profile-card {
-    flex-direction: column;
-  }
-
-  .profile-card__left {
-    width: 100%;
-    padding: 32px 24px 24px;
-  }
-
-  .profile-card__right {
-    padding: 24px 20px;
-  }
-
-  .field--password .field__inputs-row {
-    flex-direction: column;
-  }
+  .profile-card { flex-direction: column; }
+  .profile-card__left { width: 100%; padding: 32px 24px 24px; }
+  .profile-card__right { padding: 24px 20px; }
+  .field--password .field__inputs-row { flex-direction: column; }
 }

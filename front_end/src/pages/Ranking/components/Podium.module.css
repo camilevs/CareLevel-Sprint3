@@ -26,21 +26,21 @@
   height: 100%;
   border-radius: 999px;
   object-fit: cover;
-  border: 2.5px solid var(--cor-primaria);
+  border: 2.5px solid var(--accent);
 }
 
 .avatarPlaceholder {
   width: 100%;
   height: 100%;
   border-radius: 999px;
-  background: #e8f5ef;
-  border: 2.5px solid var(--cor-primaria);
+  background: var(--accent-subtle);
+  border: 2.5px solid var(--accent);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 900;
   font-size: 1.125rem;
-  color: var(--cor-primaria-escura);
+  color: var(--accent);
 }
 
 .medalha {
@@ -52,41 +52,32 @@
 }
 
 .nome {
-  font-size: 0.6875rem;
+  font-size: 0.7rem;
   font-weight: 700;
   color: #fff;
-  background: var(--cor-primaria);
+  background: var(--accent);
   padding: 0.2rem 0.75rem;
   border-radius: 999px;
   white-space: nowrap;
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
+  box-shadow: 0 2px 8px var(--accent-glow);
 }
 
 .valor {
-  font-size: 0.6875rem;
+  font-size: 0.7rem;
   font-weight: 700;
-  color: #fff;
-  background: var(--cor-primaria);
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
   padding: 0.2rem 0.75rem;
   border-radius: 10px;
   white-space: nowrap;
 }
 
 @media (max-width: 400px) {
-  .avatarWrap {
-    width: 3rem;
-    height: 3rem;
-  }
-
-  .avatarPlaceholder {
-    font-size: 0.95rem;
-  }
-
-  .nome,
-  .valor {
-    font-size: 0.6rem;
-    padding: 0.18rem 0.5rem;
-  }
+  .avatarWrap { width: 3rem; height: 3rem; }
+  .avatarPlaceholder { font-size: 0.95rem; }
+  .nome, .valor { font-size: 0.62rem; padding: 0.18rem 0.5rem; }
 }

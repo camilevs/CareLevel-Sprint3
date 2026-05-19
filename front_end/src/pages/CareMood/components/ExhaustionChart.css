@@ -1,9 +1,10 @@
 /* ============================================================
-   ExhaustionChart — mobile-first
+   ExhaustionChart — dark mode
    ============================================================ */
 
 .exaust-card {
-  background: var(--c-900);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -50,9 +51,9 @@
   }
 }
 
-.trend-melhorando { background: #55F400; color: #0C3F2F; }
-.trend-piorando   { background: #FE0000; color: #fff;    }
-.trend-estável    { background: #F5C800; color: #333;    }
+.trend-melhorando { background: rgba(34, 197, 94, 0.15);  color: #4ade80; border: 1px solid rgba(34,197,94,0.3); }
+.trend-piorando   { background: rgba(239, 68, 68, 0.15);  color: #fca5a5; border: 1px solid rgba(239,68,68,0.3); }
+.trend-estável    { background: rgba(245, 200, 0, 0.12);  color: #fde047; border: 1px solid rgba(245,200,0,0.3); }
 
 /* ── Barras de exaustão ── */
 .bars {
@@ -84,7 +85,7 @@
 .bar-label {
   font-size: 12px;
   font-weight: 700;
-  color: #fff;
+  color: var(--text-secondary);
   width: 44px;
   flex-shrink: 0;
 }
@@ -98,7 +99,7 @@
 
 .bar-track {
   flex: 1;
-  background: var(--c-800);
+  background: var(--bg-elevated);
   border-radius: var(--radius-xs);
   height: 36px;
   overflow: hidden;
@@ -111,7 +112,7 @@
 }
 
 .bar-fill {
-  background: var(--c-400);
+  background: var(--accent);
   height: 100%;
   border-radius: var(--radius-xs);
   transition: width 0.6s ease;
@@ -120,7 +121,7 @@
 .bar-pct {
   font-size: 12px;
   font-weight: 600;
-  color: rgba(255,255,255,0.7);
+  color: var(--text-muted);
   width: 36px;
   text-align: right;
   flex-shrink: 0;
@@ -133,21 +134,18 @@
   }
 }
 
-/* Eixo alinhado dinamicamente com os tamanhos das colunas */
 .bar-axis {
   display: flex;
   justify-content: space-between;
-  /* mobile: padding-left = bar-label(44) + gap(10) = 54px; right = bar-pct(36) + gap(10) = 46px */
   padding-left: 54px;
   padding-right: 46px;
   font-size: 11px;
   font-weight: 600;
-  color: rgba(255,255,255,0.5);
+  color: var(--text-muted);
 }
 
 @media (min-width: 640px) {
   .bar-axis {
-    /* desktop: bar-label(52) + gap(14) = 66px; bar-pct(40) + gap(14) = 54px */
     padding-left: 66px;
     padding-right: 54px;
     font-size: 12px;
@@ -161,7 +159,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  color: rgba(255,255,255,0.5);
+  color: var(--text-muted);
   font-size: 14px;
   text-align: center;
 }

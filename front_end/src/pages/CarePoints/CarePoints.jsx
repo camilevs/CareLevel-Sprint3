@@ -30,7 +30,7 @@ function Bar({ b, maxVal }) {
         className={styles.bar}
         style={{
           height: `${heightPx}px`,
-          background: b.destaque ? "#c8f0e0" : "#5bbf99",
+          background: b.destaque ? "var(--accent-hover)" : "var(--accent)",
         }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={() => setTooltip(null)}
@@ -60,20 +60,38 @@ function Bar({ b, maxVal }) {
 }
 
 function HistoricoRow({ row }) {
+  const isDebito = row.tipo === "debito";
+  const isCredito = row.tipo === "credito";
+
+  const rowClass = isCredito
+    ? `${styles.historicoRow} ${styles.historicoRowCredito}`
+    : isDebito
+    ? `${styles.historicoRow} ${styles.historicoRowDebito}`
+    : `${styles.historicoRow} ${styles.historicoRowNeutro}`;
+
+  const iconClass = isCredito
+    ? `${styles.historicoIcon} ${styles.historicoIconCredito}`
+    : isDebito
+    ? `${styles.historicoIcon} ${styles.historicoIconDebito}`
+    : `${styles.historicoIcon} ${styles.historicoIconNeutro}`;
+
+  const pontosClass = isCredito
+    ? `${styles.historicoPontos} ${styles.historicoPontosCredito}`
+    : isDebito
+    ? `${styles.historicoPontos} ${styles.historicoPontosDebito}`
+    : `${styles.historicoPontos} ${styles.historicoPontosNeutro}`;
+
   return (
-    <div
-      className={styles.historicoRow}
-      style={{ background: row.tipo === "debito" ? "#3d9a72" : "#5bbf99" }}
-    >
+    <div className={rowClass}>
       <div className={styles.historicoDate}>
-        <div className={styles.historicoIcon}>
-          {row.tipo === "debito" ? "↓" : "↑"}
+        <div className={iconClass}>
+          {isDebito ? "↓" : "↑"}
         </div>
         <span className={styles.historicoDateText}>{row.data}</span>
       </div>
       <span className={styles.historicoAtividade}>{row.atividade}</span>
       <div className={styles.historicoPontosWrapper}>
-        <span className={styles.historicoPontos}>{row.pontos}</span>
+        <span className={pontosClass}>{row.pontos}</span>
       </div>
     </div>
   );

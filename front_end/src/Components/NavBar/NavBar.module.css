@@ -1,12 +1,12 @@
 .navbar {
-  background: var(--fundo);
-  border-bottom: 1px solid #e0ede7;
+  background: rgba(15, 17, 21, 0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(42, 47, 58, 0.8);
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   z-index: 100;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
 .inner {
@@ -19,45 +19,39 @@
   position: relative;
 }
 
-.logoArea {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-}
+.logoArea { flex-shrink: 0; display: flex; align-items: center; }
 
 .nav {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
   min-width: 0;
   transition: all 0.3s ease;
 }
 
 .navLink {
   font-family: var(--font-body);
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  color: var(--text-medium);
-  padding: 6px 10px;
+  color: var(--text-secondary);
+  padding: 6px 11px;
   border-radius: var(--radius-sm);
   transition: color 0.2s, background 0.2s;
   white-space: nowrap;
 }
-
 .navLink:hover {
-  color: var(--green-primary);
-  background: #e8f5ef;
+  color: var(--text-primary);
+  background: var(--bg-elevated);
 }
-
 .navLinkActive {
-  color: var(--green-primary) !important;
-  background: #e0f2ea !important;
+  color: var(--accent) !important;
+  background: var(--accent-subtle) !important;
 }
 
 .actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   flex-shrink: 0;
   margin-left: auto;
 }
@@ -66,35 +60,27 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  background: #f2f8f4;
+  background: var(--bg-secondary);
   border-radius: 20px;
   padding: 5px 12px;
-  border: 1px solid #d8ede3;
+  border: 1px solid var(--border);
+  transition: border-color 0.2s;
 }
-
+.badge:hover { border-color: var(--accent); }
 .badgeText {
   font-family: var(--font-display);
-  font-size: 0.88rem;
-  font-weight: 800;
-  color: var(--text-dark);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-primary);
 }
-
+.badgeLink { text-decoration: none; color: inherit; }
+.badgeActive { border-color: var(--accent) !important; }
 .pointsIconImage {
   width: 18px;
   height: 18px;
   object-fit: contain;
   display: block;
   flex-shrink: 0;
-  transition: width 0.2s, height 0.2s;
-}
-
-.badgeLink:hover {
-  border: 2px solid var(--green-primary);
-  transition: border-color 0.2s, border-width 0.2s;
-}
-
-.badgeActive {
-  border: 2px solid var(--green-primary) !important;
 }
 
 .avatarBtn {
@@ -104,18 +90,19 @@
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  border: 2px solid #d0e8da;
+  border: 1.5px solid var(--border);
   transition: border-color 0.2s, background 0.2s;
+  color: var(--text-secondary);
 }
-
 .avatarBtn:hover {
-  border-color: var(--green-primary);
-  background: #e8f5ef;
+  border-color: var(--accent);
+  background: var(--accent-subtle);
+  color: var(--accent);
 }
-
 .avatarBtnActive {
-  border-color: var(--green-primary) !important;
-  background: #e8f5ef !important;
+  border-color: var(--accent) !important;
+  background: var(--accent-subtle) !important;
+  color: var(--accent) !important;
 }
 
 .logoutBtn {
@@ -125,18 +112,19 @@
   min-height: 34px;
   padding: 0 12px;
   border-radius: 999px;
-  border: 1px solid #d8ede3;
-  background: #f2f8f4;
-  color: var(--green-primary);
-  font-size: 0.88rem;
-  font-weight: 700;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
   transition: all 0.2s;
+  font-family: var(--font-body);
 }
-
 .logoutBtn:hover {
-  background: #ffeaea;
-  border-color: #f2b8b8;
-  transform: translateY(-1px);
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.35);
+  color: #fca5a5;
 }
 
 .burger {
@@ -146,147 +134,39 @@
   cursor: pointer;
   z-index: 102;
   flex-shrink: 0;
-  color: #2e7a5e;
+  color: var(--text-secondary);
 }
 
 @media (max-width: 966px) {
-  .burger {
-    display: block;
-    margin-left: auto;
-  }
-
-  .actions {
-    margin-left: 0;
-  }
-
+  .burger { display: block; margin-left: auto; }
+  .actions { margin-left: 0; }
   .nav {
     position: absolute;
-    top: 64px;
-    left: 0;
+    top: 64px; left: 0;
     width: 100%;
     flex: unset;
-    background: var(--fundo);
+    background: rgba(15, 17, 21, 0.97);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     flex-direction: column;
     align-items: flex-start;
     padding: 16px 24px;
-    gap: 12px;
-    transform: translateY(-20px);
+    gap: 8px;
+    transform: translateY(-12px);
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s ease;
-    box-shadow: var(--shadow-md);
+    border-bottom: 1px solid var(--border);
     z-index: 101;
   }
-
-  .navOpen {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: all;
-  }
-
-  .navLink {
-    width: 100%;
-    padding: 10px 0;
-  }
-
-  .pointsIconImage {
-    width: 16px;
-    height: 16px;
-  }
-
-  .badgeText {
-    font-size: 0.85rem;
-  }
+  .navOpen { transform: translateY(0); opacity: 1; pointer-events: all; }
+  .navLink { width: 100%; padding: 10px 12px; }
 }
 
 @media (max-width: 500px) {
-  .inner {
-    padding: 0 16px;
-    gap: 8px;
-  }
-
-  .actions {
-    gap: 6px;
-  }
-
-  .badge {
-    padding: 4px 8px;
-  }
-
-  .pointsIconImage {
-    width: 15px;
-    height: 15px;
-  }
-
-  .badgeText {
-    font-size: 0.82rem;
-  }
-
-  .logoutBtn {
-    padding: 0 8px;
-    min-height: 32px;
-  }
-
-  .logoutBtn span {
-    display: none;
-  }
-}
-
-@media (max-width: 360px) {
-  .inner {
-    padding: 0 10px;
-    gap: 6px;
-  }
-
-  .actions {
-    gap: 4px;
-  }
-
-  .badge {
-    padding: 3px 7px;
-    gap: 3px;
-  }
-
-  .pointsIconImage {
-    width: 13px;
-    height: 13px;
-  }
-
-  .badgeText {
-    font-size: 0.78rem;
-  }
-}
-
-@media (max-width: 320px) {
-  .inner {
-    padding: 0 8px;
-    gap: 4px;
-  }
-
-  .actions {
-    gap: 3px;
-  }
-
-  .badge {
-    padding: 4px 10px;
-    gap: 0;
-  }
-
-  .pointsIconImage {
-    display: none;
-  }
-
-  .badgeText {
-    font-size: 0.75rem;
-  }
-
-  .avatarBtn {
-    width: 32px;
-    height: 32px;
-  }
-
-  .logoutBtn {
-    padding: 0 7px;
-    min-height: 30px;
-  }
+  .inner { padding: 0 16px; gap: 6px; }
+  .actions { gap: 5px; }
+  .badge { padding: 4px 8px; }
+  .badgeText { font-size: 0.78rem; }
+  .logoutBtn span { display: none; }
 }

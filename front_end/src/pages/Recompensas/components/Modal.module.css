@@ -1,13 +1,14 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.65);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
   padding: 16px;
   box-sizing: border-box;
+  backdrop-filter: blur(4px);
   animation: fadeIn 0.15s ease;
 }
 
@@ -18,16 +19,17 @@
 
 .caixa {
   width: 100%;
-  max-width: 360px;
-  border-radius: 20px;
-  padding: 24px 20px 20px;
+  max-width: 380px;
+  border-radius: var(--radius-xl);
+  padding: 28px 24px 24px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 14px;
   text-align: center;
-  animation: slideUp 0.2s ease;
+  animation: slideUp 0.22s ease;
+  border: 1px solid var(--border);
 }
 
 @keyframes slideUp {
@@ -35,20 +37,21 @@
   to   { transform: translateY(0);    opacity: 1; }
 }
 
+/* States */
 .confirmacao {
-  background: var(--cor-primaria);
-  color: #fff;
+  background: var(--accent);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .errosaldo,
 .erroprocessamento {
-  background: #fde8e8;
-  color: #1a1a1a;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
 }
 
 .sucesso {
-  background: #fff;
-  color: #1a1a1a;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
 }
 
 .tituloConfirmacao {
@@ -69,7 +72,7 @@
 .miniaturaImg {
   width: 90px;
   height: 90px;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   object-fit: cover;
   flex-shrink: 0;
 }
@@ -93,12 +96,10 @@
   border-collapse: collapse;
   width: 100%;
   font-size: 12px;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.9);
 }
 
-.tabela td {
-  padding: 1px 0;
-}
+.tabela td { padding: 1px 0; }
 
 .tabela td:last-child {
   text-align: right;
@@ -106,21 +107,23 @@
 }
 
 .valorPositivo { color: #fff; }
-.valorNegativo { color: #ffcccc; }
+.valorNegativo { color: rgba(255, 180, 180, 0.9); }
 
 .pergunta {
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.8);
   line-height: 1.4;
   margin-top: 4px;
 }
 
+/* Error icon */
 .iconeErro {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: #c0392b;
-  color: #fff;
+  background: rgba(239, 68, 68, 0.15);
+  border: 2px solid rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
   font-size: 26px;
   font-weight: 900;
   display: flex;
@@ -132,45 +135,49 @@
 .tituloErro {
   font-size: 14px;
   font-weight: 900;
-  color: #1a1a1a;
+  color: var(--text-primary);
   letter-spacing: 0.03em;
   line-height: 1.4;
 }
 
 .mensagemErro {
   font-size: 12px;
-  color: #555;
+  color: var(--text-secondary);
   line-height: 1.5;
 }
 
+/* Success icon */
 .iconeSucesso {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: var(--cor-primaria-escura);
-  color: #fff;
+  background: var(--accent-subtle);
+  border: 2px solid var(--accent);
+  color: var(--accent);
   font-size: 26px;
   font-weight: 900;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  box-shadow: 0 0 20px var(--accent-glow);
 }
 
 .tituloSucesso {
   font-size: 14px;
   font-weight: 900;
-  color: #1a1a1a;
+  color: var(--text-primary);
   letter-spacing: 0.03em;
   line-height: 1.4;
 }
 
 .mensagemSucesso {
   font-size: 12px;
-  color: #555;
+  color: var(--text-secondary);
   line-height: 1.5;
 }
 
+/* Buttons */
 .botoes {
   display: flex;
   gap: 10px;
@@ -181,7 +188,7 @@
 .botoes button {
   flex: 1;
   padding: 11px 8px;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   border: none;
   cursor: pointer;
   font-family: inherit;
@@ -189,42 +196,31 @@
   font-weight: 700;
   letter-spacing: 0.05em;
   line-height: 1.3;
-  transition: filter 0.18s;
+  transition: filter 0.18s, transform 0.15s;
 }
 
 .botoes button:hover {
   filter: brightness(1.1);
+  transform: translateY(-1px);
 }
 
 .btnCancelar {
-  background: var(--cor-primaria-escura) !important;
-  color: #fff !important;
+  background: var(--bg-elevated) !important;
+  color: var(--text-secondary) !important;
+  border: 1px solid var(--border) !important;
 }
 
-.btnConfirmar {
-  background: var(--cor-primaria-escura) !important;
-  color: #fff !important;
-}
-
-.btnAcao {
-  background: var(--cor-primaria-escura) !important;
-  color: #fff !important;
-}
-
-.btnAcaoSucesso {
-  background: var(--cor-primaria-escura) !important;
-  color: #fff !important;
-}
+.btnConfirmar  { background: rgba(255,255,255,0.15) !important; color: #fff !important; border: 1px solid rgba(255,255,255,0.25) !important; }
+.btnAcao       { background: var(--accent) !important; color: #fff !important; }
+.btnAcaoSucesso{ background: var(--accent) !important; color: #fff !important; }
 
 @media (max-width: 400px) {
-  .overlay {
-    padding: 12px;
-  }
+  .overlay { padding: 12px; }
 
   .caixa {
     padding: 20px 16px 16px;
     gap: 12px;
-    border-radius: 16px;
+    border-radius: var(--radius-lg);
   }
 
   .confirmacaoCorpo {
@@ -235,31 +231,16 @@
   .miniaturaImg {
     width: 100%;
     height: 130px;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
   }
 
-  .detalhes {
-    text-align: center;
-    width: 100%;
-  }
+  .detalhes { text-align: center; width: 100%; }
 
-  .tabela td:last-child {
-    text-align: right;
-  }
+  .tabela td:last-child { text-align: right; }
 
   .iconeErro,
-  .iconeSucesso {
-    width: 52px;
-    height: 52px;
-    font-size: 22px;
-  }
+  .iconeSucesso { width: 52px; height: 52px; font-size: 22px; }
 
-  .botoes {
-    gap: 8px;
-  }
-
-  .botoes button {
-    padding: 10px 6px;
-    font-size: 10px;
-  }
+  .botoes { gap: 8px; }
+  .botoes button { padding: 10px 6px; font-size: 10px; }
 }

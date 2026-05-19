@@ -1,6 +1,4 @@
-/* =====================================================
-   AlterarDestaqueModal.module.css
-   ===================================================== */
+/* AlterarDestaqueModal.module.css — dark mode */
 
 .backdrop {
   position: fixed;
@@ -9,30 +7,29 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.6);
   padding: 16px;
   box-sizing: border-box;
+  backdrop-filter: blur(4px);
 }
 
 .card {
-  background: #8dd4b8;
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-  padding: 20px 16px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  padding: 24px 20px;
   width: 100%;
-  max-width: 460px;
+  max-width: 480px;
   box-sizing: border-box;
 }
 
 @media (min-width: 500px) {
-  .card {
-    padding: 24px;
-    border-radius: 24px;
-  }
+  .card { padding: 28px 24px; }
 }
 
 .titulo {
-  color: white;
+  color: var(--text-primary);
   font-weight: 700;
   font-size: 16px;
   margin: 0 0 16px 0;
@@ -41,15 +38,17 @@
 .opcoesList {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 .grupoLabel {
-  color: #3d9a72;
+  color: var(--text-muted);
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 6px;
   padding-left: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .itemsRow {
@@ -63,26 +62,26 @@
   align-items: center;
   gap: 6px;
   padding: 8px 14px;
-  border-radius: 9999px;
+  border-radius: 999px;
   font-size: 12px;
   font-weight: 600;
-  border: none;
+  border: 1px solid var(--border);
   cursor: pointer;
-  background: #5bbf99;
-  color: white;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
   font-family: inherit;
-  transition: background 0.15s;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
 }
 
 @media (min-width: 500px) {
-  .itemBtn {
-    padding: 8px 16px;
-  }
+  .itemBtn { padding: 8px 16px; }
 }
 
 .itemBtnAtivo {
-  background: #3d9a72;
-  box-shadow: 0 0 0 2px white;
+  background: var(--accent-subtle);
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-glow);
 }
 
 .itemDot {
@@ -90,11 +89,11 @@
   height: 8px;
   border-radius: 50%;
   flex-shrink: 0;
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--border);
 }
 
 .itemDotAtivo {
-  background: #c8f0e0;
+  background: var(--accent);
 }
 
 .actions {
@@ -105,51 +104,40 @@
 }
 
 @media (max-width: 400px) {
-  .actions {
-    flex-direction: column-reverse;
-    margin-top: 16px;
-  }
+  .actions { flex-direction: column-reverse; margin-top: 16px; }
 }
 
 .btnCancelar {
-  padding: 8px 20px;
-  border-radius: 12px;
+  padding: 9px 20px;
+  border-radius: var(--radius-sm);
   font-size: 12px;
   font-weight: 600;
-  border: none;
+  border: 1px solid var(--border);
   cursor: pointer;
-  background: #5bbf99;
-  color: white;
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
   font-family: inherit;
-  transition: filter 0.15s;
+  transition: background 0.2s, border-color 0.2s;
 }
 
-.btnCancelar:hover {
-  filter: brightness(0.95);
-}
+.btnCancelar:hover { background: var(--bg-tertiary); }
 
 .btnSalvar {
-  padding: 8px 20px;
-  border-radius: 12px;
+  padding: 9px 20px;
+  border-radius: var(--radius-sm);
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   border: none;
   cursor: pointer;
-  background: #2e7a5e;
-  color: #c8f0e0;
+  background: var(--accent);
+  color: #fff;
   font-family: inherit;
-  transition: filter 0.15s;
+  transition: background 0.2s, transform 0.15s;
+  box-shadow: 0 4px 12px var(--accent-glow);
 }
 
-.btnSalvar:hover {
-  filter: brightness(1.1);
-}
+.btnSalvar:hover { background: var(--accent-hover); transform: translateY(-1px); }
 
 @media (max-width: 400px) {
-  .btnCancelar,
-  .btnSalvar {
-    width: 100%;
-    padding: 10px 20px;
-    text-align: center;
-  }
+  .btnCancelar, .btnSalvar { width: 100%; padding: 10px 20px; text-align: center; }
 }

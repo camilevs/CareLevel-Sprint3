@@ -1,3 +1,5 @@
+/* Ranking.module.css — dark mode */
+
 /* ===== TELA DESATIVADO ===== */
 .telaDesativado {
   display: flex;
@@ -8,39 +10,45 @@
   gap: 1.25rem;
   padding: 2rem 1rem;
   text-align: center;
+  background: var(--bg-primary);
 }
 
 .textoDesativado {
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   font-weight: 400;
-  color: #5a8470;
+  color: var(--text-secondary);
   text-align: center;
   line-height: 1.6;
+  max-width: 360px;
 }
 
 .btnAtivar {
-  background: var(--cor-primaria-escura);
+  background: var(--accent);
   color: #fff;
   font-family: inherit;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.04em;
-  padding: 0.75rem 2rem;
+  padding: 0.8rem 2.5rem;
   border-radius: 999px;
   border: none;
   cursor: pointer;
-  transition: filter 0.2s;
+  transition: background 0.2s, transform 0.15s;
+  box-shadow: 0 4px 16px var(--accent-glow);
   width: 100%;
   max-width: 280px;
 }
 
-.btnAtivar:hover { filter: brightness(1.1); }
+.btnAtivar:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
 
 /* ===== MAIN ===== */
 .main {
   width: 100%;
   max-width: 1200px;
-  margin: 1.25rem auto;
+  margin: 1.5rem auto;
   padding: 0 16px;
   box-sizing: border-box;
   display: flex;
@@ -58,23 +66,23 @@
 
 /* ===== FILTROS / TABS ===== */
 .filtros {
-  background: #fff;
-  border-radius: 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   padding: 4px;
   display: flex;
   gap: 4px;
-  box-shadow: 0 4px 14px rgba(42, 120, 90, 0.10);
 }
 
 .filtroBtn {
   flex: 1;
   min-width: 0;
-  padding: 0.5rem 0.25rem;
-  border-radius: 14px;
+  padding: 0.55rem 0.35rem;
+  border-radius: var(--radius-sm);
   font-family: inherit;
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  color: #2d5240;
+  color: var(--text-secondary);
   cursor: pointer;
   text-align: center;
   line-height: 1.3;
@@ -84,21 +92,22 @@
 }
 
 .filtroBtn:hover {
-  background: #e8f5ef;
+  background: var(--bg-elevated);
+  color: var(--text-primary);
 }
 
 .filtroBtn.ativo {
-  background: var(--cor-primaria);
+  background: var(--accent);
   color: #fff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 8px var(--accent-glow);
 }
 
 /* ===== GRÁFICO ===== */
 .graficoCard {
-  background: #fff;
-  border-radius: 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   padding: 1.25rem 1.25rem 0.75rem;
-  box-shadow: 0 4px 14px rgba(42, 120, 90, 0.10);
 }
 
 .graficoBarras {
@@ -111,20 +120,21 @@
 
 .barra {
   width: 2.5rem;
-  background: var(--cor-primaria);
+  background: var(--accent);
   border-radius: 6px 6px 0 0;
+  opacity: 0.75;
 }
 
 .barra1 { height: 58%; }
-.barra2 { height: 100%; }
+.barra2 { height: 100%; opacity: 1; }
 .barra3 { height: 72%; }
 
 /* ===== PÓDIO ===== */
 .podioCard {
-  background: #fff;
-  border-radius: 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   padding: 1.25rem 1rem;
-  box-shadow: 0 4px 14px rgba(42, 120, 90, 0.10);
 }
 
 /* ===== COLUNA DIREITA ===== */
@@ -136,62 +146,51 @@
 }
 
 .rankingCard {
-  background: var(--cor-primaria);
-  border-radius: 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   padding: 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  box-shadow: 0 8px 24px rgba(42, 120, 90, 0.14);
 }
 
 /* ===== BOTÃO DESATIVAR ===== */
 .btnDesativar {
   align-self: center;
-  background: var(--cor-primaria-escura);
-  color: #fff;
+  background: transparent;
+  color: var(--text-muted);
   font-family: inherit;
-  font-size: 0.875rem;
-  font-weight: 700;
+  font-size: 0.85rem;
+  font-weight: 600;
   letter-spacing: 0.04em;
-  padding: 0.75rem 2rem;
+  padding: 0.65rem 2rem;
   border-radius: 999px;
-  border: none;
+  border: 1px solid var(--border);
   cursor: pointer;
-  transition: filter 0.2s;
-  box-shadow: 0 4px 14px rgba(42, 120, 90, 0.10);
+  transition: border-color 0.2s, color 0.2s;
   width: 100%;
-  max-width: 280px;
+  max-width: 240px;
 }
 
-.btnDesativar:hover { filter: brightness(1.12); }
+.btnDesativar:hover {
+  border-color: var(--red);
+  color: #fca5a5;
+}
 
 .carregando {
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--text-muted);
   text-align: center;
   padding: 1rem;
   font-size: 0.875rem;
 }
 
-/* ===== RESPONSIVO ===== */
+/* ===== RESPONSIVE ===== */
 @media (min-width: 500px) {
-  .main {
-    padding: 0 20px;
-  }
-
-  .filtroBtn {
-    font-size: 0.75rem;
-    padding: 0.5rem 0.5rem;
-  }
-
-  .graficoBarras {
-    gap: 1.25rem;
-    height: 110px;
-  }
-
-  .barra {
-    width: 2.8rem;
-  }
+  .main { padding: 0 20px; }
+  .filtroBtn { font-size: 0.78rem; padding: 0.5rem 0.5rem; }
+  .graficoBarras { gap: 1.25rem; height: 110px; }
+  .barra { width: 2.8rem; }
 }
 
 @media (min-width: 768px) {
@@ -200,65 +199,37 @@
     align-items: flex-start;
     gap: 1.5rem;
     padding: 0 28px;
-    margin: 1.5rem auto;
+    margin: 1.75rem auto;
   }
-
-  .colunaEsquerda {
-    width: 37%;
-    flex-shrink: 0;
-  }
-
-  .colunaDireita {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .graficoBarras {
-    height: 120px;
-  }
-
-  .graficoCard {
-    padding: 1.5rem 1.5rem 1rem;
-  }
+  .colunaEsquerda { width: 37%; flex-shrink: 0; }
+  .colunaDireita  { flex: 1; min-width: 0; }
+  .graficoBarras  { height: 120px; }
+  .graficoCard    { padding: 1.5rem 1.5rem 1rem; }
 }
 
-@media (min-width: 900px) {
-  .main {
-    gap: 2rem;
-    margin: 2rem auto;
-  }
-}
-
-@media (min-width: 1200px) {
-  .main {
-    padding: 0 40px;
-  }
-}
-
-@media (max-width: 360px) {
-  .filtroBtn {
-    font-size: 0.62rem;
-    padding: 0.45rem 0.2rem;
-  }
-}
+@media (min-width: 900px)  { .main { gap: 2rem; margin: 2rem auto; } }
+@media (min-width: 1200px) { .main { padding: 0 40px; } }
+@media (max-width: 360px)  { .filtroBtn { font-size: 0.62rem; padding: 0.45rem 0.2rem; } }
 
 /* ===== MODAL ===== */
 .modalOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 100;
   padding: 16px;
   box-sizing: border-box;
+  backdrop-filter: blur(4px);
 }
 
 .modal {
-  background: #fff;
-  border-radius: 20px;
-  padding: 1.75rem 1.5rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 2rem 1.5rem;
   width: 100%;
   max-width: 400px;
   box-sizing: border-box;
@@ -266,31 +237,37 @@
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  box-shadow: var(--shadow-lg);
+  animation: modalIn 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.88); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
 .modalTitulo {
   align-self: flex-start;
-  font-size: 0.8rem;
-  color: #aaa;
-  font-weight: 500;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 600;
   margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
-.modalIcone {
-  margin: 0.5rem 0;
-}
+.modalIcone { margin: 0.5rem 0; }
 
 .modalPergunta {
   font-size: 1rem;
   font-weight: 700;
-  color: #1a3328;
+  color: var(--text-primary);
   text-align: center;
 }
 
 .modalDescricao {
   font-size: 0.82rem;
-  color: #7a9e8e;
+  color: var(--text-secondary);
   text-align: center;
   line-height: 1.5;
 }
@@ -311,44 +288,28 @@
   font-family: inherit;
   font-size: 0.85rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   cursor: pointer;
-  transition: filter 0.2s;
+  transition: background 0.2s, transform 0.15s;
 }
 
 .btnCancelar {
-  background: var(--cor-primaria);
-  color: #fff;
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
 }
 
 .btnConfirmar {
-  background: var(--cor-primaria-escura);
+  background: var(--accent);
   color: #fff;
+  box-shadow: 0 4px 12px var(--accent-glow);
 }
 
-.btnCancelar:hover,
-.btnConfirmar:hover {
-  filter: brightness(1.1);
-}
+.btnCancelar:hover  { background: var(--bg-tertiary); }
+.btnConfirmar:hover { background: var(--accent-hover); transform: translateY(-1px); }
 
 @media (max-width: 360px) {
-  .modal {
-    padding: 1.5rem 1.25rem;
-    border-radius: 16px;
-  }
-
-  .modalIcone svg {
-    width: 50px;
-    height: 50px;
-  }
-
-  .modalPergunta {
-    font-size: 0.9rem;
-  }
-
-  .btnCancelar,
-  .btnConfirmar {
-    font-size: 0.78rem;
-    padding: 0.7rem;
-  }
+  .modal { padding: 1.5rem 1.25rem; }
+  .modalPergunta { font-size: 0.9rem; }
+  .btnCancelar, .btnConfirmar { font-size: 0.78rem; padding: 0.7rem; }
 }

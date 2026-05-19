@@ -4,17 +4,19 @@
   align-items: center;
   padding: 40px 24px 60px;
   min-height: calc(100vh - 80px);
+  background: var(--bg-primary);
 }
 
 /* ─── TABS ─────────────────────────────── */
 .tabs {
   display: flex;
-  background: var(--c-300);       /* #67b99f */
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
   border-radius: 25px;
   padding: 4px;
   gap: 2px;
   margin-bottom: 28px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  box-shadow: var(--shadow-sm);
 }
 
 .tab-btn {
@@ -25,29 +27,32 @@
   font-family: var(--font);
   font-size: 16px;
   font-weight: 600;
-  color: var(--c-900);
+  color: var(--text-secondary);
   cursor: pointer;
   transition: background 0.18s, color 0.18s;
   white-space: nowrap;
 }
 
 .tab-btn.active {
-  background: var(--c-700);       /* #146b50 */
+  background: var(--accent);
   color: #fff;
+  box-shadow: 0 2px 8px var(--accent-glow);
 }
 
 .tab-btn:not(.active):hover {
-  background: rgba(255,255,255,0.25);
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
 }
 
 /* ─── MISSIONS CARD ─────────────────────── */
 .missions-card {
-  background: var(--c-400);       /* #49ac8d */
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
   border-radius: 28px;
   padding: 24px 24px 28px;
   width: 100%;
   max-width: 520px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  box-shadow: var(--shadow-md);
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -64,12 +69,13 @@
 .tempo-label {
   font-size: 15px;
   font-weight: 600;
-  color: var(--c-900);
+  color: var(--text-secondary);
 }
 
 .tempo-value {
-  background: var(--c-300);       /* #67b99f */
-  color: var(--c-900);
+  background: var(--accent-subtle);
+  color: var(--accent);
+  border: 1px solid rgba(124, 92, 255, 0.25);
   border-radius: 20px;
   padding: 3px 14px;
   font-size: 14px;
@@ -85,22 +91,26 @@
 
 /* ─── MISSION ITEM ──────────────────────── */
 .mission-item {
-  background: var(--c-500);       /* #1c9770 */
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
   border-radius: 20px;
   padding: 14px 16px;
   display: flex;
   align-items: center;
   gap: 14px;
-  transition: background 0.15s;
+  transition: background 0.15s, border-color 0.15s;
+  cursor: pointer;
+  user-select: none;
 }
 
 .mission-item:hover {
-  background: var(--c-600);
+  background: var(--bg-elevated);
+  border-color: rgba(124, 92, 255, 0.3);
 }
 
 /* number badge */
 .mission-num {
-  background: var(--c-700);       /* #146b50 */
+  background: var(--accent);
   color: #fff;
   font-size: 16px;
   font-weight: 700;
@@ -124,7 +134,7 @@
 .mission-title {
   font-size: 15px;
   font-weight: 600;
-  color: #fff;
+  color: var(--text-primary);
 }
 
 .mission-points {
@@ -133,13 +143,13 @@
   gap: 5px;
   font-size: 13px;
   font-weight: 500;
-  color: rgba(255,255,255,0.85);
+  color: var(--text-secondary);
 }
 
 .clock-icon {
   width: 14px;
   height: 14px;
-  color: rgba(255,255,255,0.85);
+  color: var(--text-muted);
   flex-shrink: 0;
 }
 
@@ -163,7 +173,7 @@
 .cp-label {
   font-size: 12px;
   font-weight: 700;
-  color: #fff;
+  color: var(--text-primary);
   position: relative;
   z-index: 1;
 }

@@ -9,13 +9,15 @@ import AdminHome from './pages/HomePage/AdminHome.jsx';
 import Unauthorized from './pages/HomePage/Unauthorized.jsx';
 import PerfilBeneficiario from './pages/HomePage/PerfilBeneficiario.jsx';
 import CareMoodPage from './pages/CareMood/CareMoodPage.jsx';
-import MissoesPage from './pages/Missoes/MissoesPage.jsx';
-import RankingPage from './pages/Ranking/RankingPage.jsx';
+import JornadaPage from './pages/Jornada/JornadaPage.jsx';
 import RecompensasPage from './pages/Recompensas/RecompensasPage.jsx';
 import CarePoints from './pages/CarePoints/CarePoints.jsx';
 import CarePointsHistorico from './pages/CarePoints/CarePointsHistorico.jsx';
+
+/* Legacy pages – still accessible via direct URL */
+import MissoesPage from './pages/Missoes/MissoesPage.jsx';
+import RankingPage from './pages/Ranking/RankingPage.jsx';
 import Conquistas from './pages/Conquistas/Conquistas.jsx';
-import ProfileCard from './Components/ProfileCard/ProfileCard.jsx';
 
 export default function App() {
   return (
@@ -28,84 +30,49 @@ export default function App() {
 
           <Route
             path="/admin/home"
-            element={
-              <RoleGuard role="admin">
-                <AdminHome />
-              </RoleGuard>
-            }
+            element={<RoleGuard role="admin"><AdminHome /></RoleGuard>}
           />
-
           <Route
             path="/home"
-            element={
-              <RoleGuard role="user">
-                <HomePage />
-              </RoleGuard>
-            }
+            element={<RoleGuard role="user"><HomePage /></RoleGuard>}
           />
           <Route
             path="/perfil"
-            element={
-              <RoleGuard role="user">
-                <PerfilBeneficiario />
-              </RoleGuard>
-            }
+            element={<RoleGuard role="user"><PerfilBeneficiario /></RoleGuard>}
           />
           <Route
             path="/caremood"
-            element={
-              <RoleGuard role="user">
-                <CareMoodPage />
-              </RoleGuard>
-            }
+            element={<RoleGuard role="user"><CareMoodPage /></RoleGuard>}
           />
           <Route
-            path="/missoes"
-            element={
-              <RoleGuard role="user">
-                <MissoesPage />
-              </RoleGuard>
-            }
-          />
-          <Route
-            path="/ranking"
-            element={
-              <RoleGuard role="user">
-                <RankingPage />
-              </RoleGuard>
-            }
+            path="/jornada"
+            element={<RoleGuard role="user"><JornadaPage /></RoleGuard>}
           />
           <Route
             path="/recompensas"
-            element={
-              <RoleGuard role="user">
-                <RecompensasPage />
-              </RoleGuard>
-            }
+            element={<RoleGuard role="user"><RecompensasPage /></RoleGuard>}
           />
           <Route
             path="/carepoints"
-            element={
-              <RoleGuard role="user">
-                <CarePoints />
-              </RoleGuard>
-            }
+            element={<RoleGuard role="user"><CarePoints /></RoleGuard>}
           />
           <Route
             path="/carepoints/historico"
-            element={
-              <RoleGuard role="user">
-                <CarePointsHistorico />
-              </RoleGuard>
-            }
+            element={<RoleGuard role="user"><CarePointsHistorico /></RoleGuard>}
+          />
+
+          {/* Legacy routes preserved */}
+          <Route
+            path="/missoes"
+            element={<RoleGuard role="user"><MissoesPage /></RoleGuard>}
+          />
+          <Route
+            path="/ranking"
+            element={<RoleGuard role="user"><RankingPage /></RoleGuard>}
           />
           <Route
             path="/conquistas"
-            element={
-              <RoleGuard role="user">
-                <Conquistas />
-              </RoleGuard>
-            }
+            element={<RoleGuard role="user"><Conquistas /></RoleGuard>}
           />
 
           <Route path="*" element={<Navigate to="/login" replace />} />

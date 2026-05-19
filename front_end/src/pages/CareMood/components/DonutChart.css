@@ -1,29 +1,15 @@
-/* ============================================================
-   DonutChart — mobile-first
-   ============================================================ */
+/* DonutChart — dark mode */
 
 .donut-card {
-  background: #fff;
+  background: var(--bg-secondary);
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-@media (min-width: 640px) {
-  .donut-card {
-    padding: 28px;
-    gap: 20px;
-    min-height: 380px;
-  }
-}
-
-@media (min-width: 900px) {
-  .donut-card {
-    padding: 32px;
-    min-height: 413px;
-  }
-}
+@media (min-width: 640px) { .donut-card { padding: 28px; gap: 20px; min-height: 380px; } }
+@media (min-width: 900px)  { .donut-card { padding: 32px; min-height: 413px; } }
 
 .donut-area {
   display: flex;
@@ -63,21 +49,19 @@
 .donut-legend-name {
   font-size: 13px;
   font-weight: 600;
-  color: #131313;
+  color: var(--text-primary);
   flex: 1;
 }
 
 .donut-legend-pct {
   font-size: 13px;
   font-weight: 700;
-  color: #555;
+  color: var(--text-secondary);
 }
 
 @media (min-width: 640px) {
   .donut-legend-name,
-  .donut-legend-pct {
-    font-size: 14px;
-  }
+  .donut-legend-pct { font-size: 14px; }
 }
 
 .donut-empty {
@@ -87,14 +71,10 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  color: var(--c-700);
+  color: var(--text-muted);
   font-size: 14px;
   text-align: center;
   opacity: 0.7;
 }
 
-@media (min-width: 640px) {
-  .donut-empty {
-    font-size: 15px;
-  }
-}
+@media (min-width: 640px) { .donut-empty { font-size: 15px; } }

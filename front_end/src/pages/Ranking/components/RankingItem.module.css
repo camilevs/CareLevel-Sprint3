@@ -3,19 +3,21 @@
   align-items: center;
   justify-content: space-between;
   padding: 0.75rem 1rem;
-  background: rgba(255, 255, 255, 0.18);
-  border-radius: 14px;
-  transition: background 0.18s;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: border-color 0.2s, background 0.2s;
   cursor: default;
 }
 
 .item:hover {
-  background: rgba(255, 255, 255, 0.28);
+  background: var(--bg-elevated);
+  border-color: rgba(124, 92, 255, 0.3);
 }
 
 .item::after {
   content: '›';
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--text-muted);
   font-size: 1.125rem;
   margin-left: 8px;
   line-height: 1;
@@ -23,19 +25,20 @@
 }
 
 .voce {
-  background: var(--cor-primaria-escura);
+  background: var(--accent-subtle);
+  border-color: var(--accent);
   margin-top: 0.75rem;
 }
 
 .voce:hover {
-  background: var(--cor-primaria-escura);
+  background: var(--accent-subtle);
   filter: brightness(1.05);
 }
 
 .pos {
   font-size: 0.875rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--text-muted);
   width: 1.6rem;
   flex-shrink: 0;
 }
@@ -44,7 +47,7 @@
   flex: 1;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--text-primary);
   padding-left: 0.75rem;
   min-width: 0;
   overflow: hidden;
@@ -55,8 +58,9 @@
 .valor {
   font-size: 0.75rem;
   font-weight: 700;
-  background: rgba(255, 255, 255, 0.22);
-  color: #fff;
+  background: var(--accent-subtle);
+  color: var(--accent);
+  border: 1px solid rgba(124, 92, 255, 0.3);
   padding: 0.25rem 1rem;
   border-radius: 999px;
   white-space: nowrap;
@@ -64,21 +68,8 @@
 }
 
 @media (max-width: 400px) {
-  .item {
-    padding: 0.65rem 0.75rem;
-  }
-
-  .pos {
-    font-size: 0.8rem;
-  }
-
-  .nome {
-    font-size: 0.8rem;
-    padding-left: 0.5rem;
-  }
-
-  .valor {
-    font-size: 0.7rem;
-    padding: 0.2rem 0.65rem;
-  }
+  .item   { padding: 0.65rem 0.75rem; }
+  .pos    { font-size: 0.8rem; }
+  .nome   { font-size: 0.8rem; padding-left: 0.5rem; }
+  .valor  { font-size: 0.7rem; padding: 0.2rem 0.65rem; }
 }

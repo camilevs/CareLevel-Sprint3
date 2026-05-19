@@ -1,9 +1,5 @@
 /* ═══════════════════════════════════════
-   QUIZ — CareMood
-   Paleta: tokens do projeto
-   --c-400 #49AC8D  --c-500 #1C9770
-   --c-600 #198966  --c-700 #146B50
-   --c-800 #0F533E  --c-900 #0C3F2F
+   QUIZ — CareMood — dark mode
 ═══════════════════════════════════════ */
 
 .quiz-container {
@@ -12,14 +8,15 @@
   align-items: center;
   justify-content: center;
   padding: 40px 16px;
-  background: var(--bg-page);
+  background: var(--bg-primary);
 }
 
 /* ── Card externo ── */
 .quiz-card {
-  background: var(--c-400);        /* #49AC8D — verde médio */
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
   border-radius: 28px;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  box-shadow: var(--shadow-lg);
   width: 100%;
   max-width: 460px;
   overflow: hidden;
@@ -28,9 +25,9 @@
   padding-bottom: 28px;
 }
 
-/* ── Barra de título escura ── */
+/* ── Barra de título ── */
 .quiz-title-bar {
-  background: var(--c-800);        /* #0F533E */
+  background: var(--accent);
   color: #fff;
   font-family: var(--font);
   font-size: 20px;
@@ -44,12 +41,12 @@
 /* ── Barra de progresso ── */
 .quiz-progress-track {
   height: 4px;
-  background: rgba(255, 255, 255, 0.25);
+  background: var(--bg-elevated);
 }
 
 .quiz-progress-fill {
   height: 100%;
-  background: #fff;
+  background: var(--accent-hover);
   border-radius: 0 2px 2px 0;
   transition: width 0.3s ease;
 }
@@ -59,14 +56,15 @@
   text-align: right;
   font-size: 12px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-muted);
   padding: 6px 20px 0;
 }
 
-/* ── Corpo (área interna clara) ── */
+/* ── Corpo ── */
 .quiz-body {
   margin: 16px 20px 0;
-  background: var(--c-300);        /* #67B99F — verde claro */
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
   border-radius: 20px;
   padding: 24px 20px 20px;
 }
@@ -85,14 +83,14 @@
   font-family: var(--font);
   font-size: 15px;
   font-weight: 600;
-  color: var(--c-900);
+  color: var(--text-primary);
   line-height: 1.6;
   text-align: center;
 }
 
 /* ── Botão INICIAR / Voltar ── */
 .quiz-btn-iniciar {
-  background: var(--c-700);        /* #146B50 */
+  background: var(--accent);
   color: #fff;
   border: none;
   border-radius: 20px;
@@ -102,11 +100,11 @@
   font-weight: 700;
   letter-spacing: 1px;
   cursor: pointer;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 14px var(--accent-glow);
   transition: background 0.15s, transform 0.1s;
 }
 
-.quiz-btn-iniciar:hover  { background: var(--c-800); }
+.quiz-btn-iniciar:hover  { background: var(--accent-hover); }
 .quiz-btn-iniciar:active { transform: scale(0.97); }
 
 /* ── Box da pergunta ── */
@@ -119,8 +117,9 @@
 
 /* ── Badge "Pergunta N" ── */
 .badge {
-  background: var(--c-600);        /* #198966 */
-  color: #fff;
+  background: var(--accent-subtle);
+  color: var(--accent);
+  border: 1px solid rgba(124, 92, 255, 0.3);
   font-family: var(--font);
   font-size: 14px;
   font-weight: 700;
@@ -134,7 +133,7 @@
   font-family: var(--font);
   font-size: 16px;
   font-weight: 600;
-  color: var(--c-900);
+  color: var(--text-primary);
   text-align: center;
   line-height: 1.5;
   margin: 0;
@@ -151,9 +150,9 @@
 
 /* ── Botão de opção ── */
 .opcao-btn {
-  background: var(--c-500);        /* #1C9770 */
-  color: #fff;
-  border: none;
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
   border-radius: 20px;
   padding: 7px 14px;
   font-family: var(--font);
@@ -161,17 +160,20 @@
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  transition: background 0.15s, transform 0.1s;
+  transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.1s;
 }
 
 .opcao-btn:hover {
-  background: var(--c-600);
+  background: var(--accent-subtle);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .opcao-btn:active,
 .opcao-btn.opcao-selecionada {
-  background: var(--c-800);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
   transform: scale(0.96);
 }
 
@@ -185,20 +187,21 @@
 
 .quiz-btn-voltar {
   background: transparent;
-  color: var(--c-900);
-  border: 2px solid var(--c-700);
+  color: var(--text-secondary);
+  border: 1.5px solid var(--border);
   border-radius: 20px;
   padding: 10px 40px;
   font-family: var(--font);
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.15s, color 0.15s;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
 
 .quiz-btn-voltar:hover {
-  background: var(--c-700);
-  color: #fff;
+  background: var(--bg-elevated);
+  border-color: var(--accent);
+  color: var(--text-primary);
 }
 
 /* ── Responsividade ── */

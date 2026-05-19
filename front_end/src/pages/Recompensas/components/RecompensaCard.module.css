@@ -1,23 +1,24 @@
 .card {
-  background: #fff;
-  border-radius: var(--raio-card);
-  box-shadow: var(--sombra);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform 0.18s, box-shadow 0.18s;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
 }
 
 .card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  border-color: rgba(124, 92, 255, 0.3);
 }
 
 .imagemWrap {
   width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  background: #e8f5ef;
+  background: var(--bg-tertiary);
 }
 
 .imagem {
@@ -25,10 +26,13 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.3s;
 }
 
+.card:hover .imagem { transform: scale(1.04); }
+
 .rodape {
-  background: var(--cor-primaria);
+  background: var(--accent);
   padding: 12px 14px 14px;
   display: flex;
   flex-direction: column;
@@ -61,38 +65,35 @@
 }
 
 .btnResgatar {
-  background: var(--cor-primaria-escura);
+  background: rgba(255, 255, 255, 0.15);
   color: #fff;
   font-family: inherit;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.06em;
   padding: 10px;
-  border-radius: 10px;
-  border: none;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   cursor: pointer;
-  transition: filter 0.18s;
+  transition: background 0.18s, transform 0.15s;
   width: 100%;
   margin-top: auto;
 }
 
 .btnResgatar:hover {
-  filter: brightness(1.12);
+  background: rgba(255, 255, 255, 0.28);
+  transform: translateY(-1px);
 }
 
 @media (min-width: 900px) {
-  .imagemWrap {
-    aspect-ratio: 4 / 3;
-  }
+  .imagemWrap { aspect-ratio: 4 / 3; }
 
   .rodape {
     padding: 14px 16px 16px;
     gap: 10px;
   }
 
-  .nome {
-    font-size: 14px;
-  }
+  .nome { font-size: 14px; }
 
   .btnResgatar {
     font-size: 13px;

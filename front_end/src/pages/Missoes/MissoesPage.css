@@ -4,17 +4,19 @@
   align-items: center;
   padding: 24px 16px 48px;
   min-height: calc(100vh - 64px);
+  background: var(--bg-primary);
 }
 
 /* ─── TABS ─────────────────────────────── */
 .tabs {
   display: flex;
-  background: var(--c-300);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
   border-radius: 25px;
   padding: 4px;
   gap: 2px;
   margin-bottom: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  box-shadow: var(--shadow-sm);
   width: 100%;
   max-width: 520px;
 }
@@ -28,29 +30,32 @@
   font-family: var(--font);
   font-size: 14px;
   font-weight: 600;
-  color: var(--c-900);
+  color: var(--text-secondary);
   cursor: pointer;
   transition: background 0.18s, color 0.18s;
   white-space: nowrap;
 }
 
 .tab-btn.active {
-  background: var(--c-700);
+  background: var(--accent);
   color: #fff;
+  box-shadow: 0 2px 8px var(--accent-glow);
 }
 
 .tab-btn:not(.active):hover {
-  background: rgba(255,255,255,0.25);
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
 }
 
 /* ─── MISSIONS CARD ─────────────────────── */
 .missions-card {
-  background: var(--c-400);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
   border-radius: 22px;
   padding: 18px 18px 22px;
   width: 100%;
   max-width: 520px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  box-shadow: var(--shadow-md);
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -67,12 +72,13 @@
 .tempo-label {
   font-size: 14px;
   font-weight: 600;
-  color: var(--c-900);
+  color: var(--text-secondary);
 }
 
 .tempo-value {
-  background: var(--c-300);
-  color: var(--c-900);
+  background: var(--accent-subtle);
+  color: var(--accent);
+  border: 1px solid rgba(124, 92, 255, 0.25);
   border-radius: 20px;
   padding: 3px 12px;
   font-size: 13px;
@@ -88,22 +94,26 @@
 
 /* ─── MISSION ITEM ──────────────────────── */
 .mission-item {
-  background: var(--c-500);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
   border-radius: 18px;
   padding: 12px 14px;
   display: flex;
   align-items: center;
   gap: 12px;
-  transition: background 0.15s;
+  transition: background 0.15s, border-color 0.15s;
+  cursor: pointer;
+  user-select: none;
 }
 
 .mission-item:hover {
-  background: var(--c-600);
+  background: var(--bg-elevated);
+  border-color: rgba(124, 92, 255, 0.3);
 }
 
 /* number badge */
 .mission-num {
-  background: var(--c-700);
+  background: var(--accent);
   color: #fff;
   font-size: 14px;
   font-weight: 700;
@@ -128,7 +138,7 @@
 .mission-title {
   font-size: 14px;
   font-weight: 600;
-  color: #fff;
+  color: var(--text-primary);
 }
 
 .mission-points {
@@ -137,13 +147,13 @@
   gap: 5px;
   font-size: 12px;
   font-weight: 500;
-  color: rgba(255,255,255,0.85);
+  color: var(--text-secondary);
 }
 
 .clock-icon {
   width: 13px;
   height: 13px;
-  color: rgba(255,255,255,0.85);
+  color: var(--text-muted);
   flex-shrink: 0;
 }
 
@@ -167,118 +177,39 @@
 .cp-label {
   font-size: 11px;
   font-weight: 700;
-  color: #fff;
+  color: var(--text-primary);
   position: relative;
   z-index: 1;
 }
 
 @media (min-width: 500px) {
-  .missoes-page {
-    padding: 32px 20px 56px;
-  }
-
-  .tab-btn {
-    font-size: 15px;
-    padding: 10px 24px;
-  }
-
-  .missions-card {
-    padding: 20px 20px 24px;
-    gap: 15px;
-  }
-
-  .mission-item {
-    padding: 13px 15px;
-    gap: 13px;
-    border-radius: 20px;
-  }
-
-  .mission-num {
-    width: 34px;
-    height: 34px;
-    font-size: 15px;
-    border-radius: 11px;
-  }
-
-  .mission-title {
-    font-size: 14px;
-  }
+  .missoes-page { padding: 32px 20px 56px; }
+  .tab-btn { font-size: 15px; padding: 10px 24px; }
+  .missions-card { padding: 20px 20px 24px; gap: 15px; }
+  .mission-item { padding: 13px 15px; gap: 13px; border-radius: 20px; }
+  .mission-num { width: 34px; height: 34px; font-size: 15px; border-radius: 11px; }
+  .mission-title { font-size: 14px; }
 }
 
 @media (min-width: 768px) {
-  .missoes-page {
-    padding: 40px 24px 60px;
-  }
-
-  .tabs {
-    margin-bottom: 28px;
-  }
-
-  .tab-btn {
-    font-size: 16px;
-    padding: 10px 32px;
-  }
-
-  .missions-card {
-    padding: 24px 24px 28px;
-    gap: 16px;
-    border-radius: 28px;
-  }
-
-  .mission-item {
-    padding: 14px 16px;
-    gap: 14px;
-  }
-
-  .mission-num {
-    width: 36px;
-    height: 36px;
-    font-size: 16px;
-    border-radius: 12px;
-  }
-
-  .mission-title {
-    font-size: 15px;
-  }
-
-  .mission-points {
-    font-size: 13px;
-  }
-
-  .clock-icon {
-    width: 14px;
-    height: 14px;
-  }
-
-  .cp-label {
-    font-size: 12px;
-  }
-
-  .tempo-label {
-    font-size: 15px;
-  }
-
-  .tempo-value {
-    font-size: 14px;
-    padding: 3px 14px;
-  }
+  .missoes-page { padding: 40px 24px 60px; }
+  .tabs { margin-bottom: 28px; }
+  .tab-btn { font-size: 16px; padding: 10px 32px; }
+  .missions-card { padding: 24px 24px 28px; gap: 16px; border-radius: 28px; }
+  .mission-item { padding: 14px 16px; gap: 14px; }
+  .mission-num { width: 36px; height: 36px; font-size: 16px; border-radius: 12px; }
+  .mission-title { font-size: 15px; }
+  .mission-points { font-size: 13px; }
+  .clock-icon { width: 14px; height: 14px; }
+  .cp-label { font-size: 12px; }
+  .tempo-label { font-size: 15px; }
+  .tempo-value { font-size: 14px; padding: 3px 14px; }
 }
 
-@media (min-width: 900px) {
-  .missoes-page {
-    padding: 48px 32px 72px;
-  }
-}
+@media (min-width: 900px)  { .missoes-page { padding: 48px 32px 72px; } }
+@media (min-width: 1200px) { .missoes-page { padding: 56px 40px 80px; } }
 
-@media (min-width: 1200px) {
-  .missoes-page {
-    padding: 56px 40px 80px;
-  }
-}
-
-.linear-progress-wrap {
-  padding: 4px 0;
-}
+.linear-progress-wrap { padding: 4px 0; }
 
 .linear-progress-header {
   display: flex;
@@ -290,37 +221,37 @@
 .linear-progress-label {
   font-size: 13px;
   font-weight: 600;
-  color: rgba(255,255,255,0.9);
+  color: var(--text-secondary);
 }
 
 .linear-progress-pct {
   font-size: 13px;
   font-weight: 800;
-  color: #fff;
+  color: var(--text-primary);
 }
 
 .linear-progress-track {
   width: 100%;
   height: 10px;
-  background: rgba(255,255,255,0.25);
+  background: var(--bg-elevated);
   border-radius: 99px;
   overflow: hidden;
 }
 
 .linear-progress-bar {
   height: 100%;
-  background: #fff;
+  background: var(--accent);
   border-radius: 99px;
   transition: width 0.4s ease;
 }
 
 .mission-done {
-  background: var(--c-700) !important;
-  opacity: 0.85;
+  background: var(--bg-elevated) !important;
+  opacity: 0.75;
 }
 
 .mission-check {
-  background: var(--c-700);
+  background: var(--accent);
   color: #fff;
   font-size: 14px;
   font-weight: 700;
@@ -335,13 +266,13 @@
 }
 
 .mission-done .mission-check {
-  background: #55F400;
-  color: #0F533E;
+  background: var(--green);
+  color: #fff;
 }
 
 .mission-title-done {
   text-decoration: line-through;
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 .mission-status-icon {
@@ -350,14 +281,10 @@
   margin-left: 4px;
 }
 
-.mission-item {
-  cursor: pointer;
-  user-select: none;
-}
-
 .mission-locked {
   cursor: default !important;
   pointer-events: none;
+  opacity: 0.5;
 }
 
 .caremood-icon {
@@ -371,16 +298,17 @@
   text-align: center;
   font-size: 13px;
   font-weight: 600;
-  color: rgba(255,255,255,0.85);
+  color: var(--text-secondary);
   padding-top: 4px;
-  border-top: 1px solid rgba(255,255,255,0.2);
+  border-top: 1px solid var(--border);
 }
 
 /* ─── POPUP PARABÉNS ────────────────────── */
 .missoes-popup-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
   z-index: 500;
   display: flex;
   align-items: center;
@@ -389,13 +317,14 @@
 }
 
 .missoes-popup {
-  background: #fff;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
   border-radius: 24px;
   padding: 36px 28px 28px;
   max-width: 340px;
   width: 100%;
   text-align: center;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.22);
+  box-shadow: var(--shadow-lg), 0 0 40px var(--accent-glow);
   animation: popup-in 0.22s ease;
 }
 
@@ -413,25 +342,25 @@
 .missoes-popup-titulo {
   font-size: 22px;
   font-weight: 800;
-  color: var(--c-900, #0C3F2F);
+  color: var(--text-primary);
   margin: 0 0 10px;
 }
 
 .missoes-popup-texto {
   font-size: 15px;
   font-weight: 600;
-  color: #222;
+  color: var(--text-secondary);
   margin: 0 0 6px;
 }
 
 .missoes-popup-sub {
   font-size: 13px;
-  color: #666;
+  color: var(--text-muted);
   margin: 0 0 24px;
 }
 
 .missoes-popup-btn {
-  background: var(--c-700, #1a6b4c);
+  background: var(--accent);
   color: #fff;
   border: none;
   border-radius: 50px;
@@ -439,9 +368,11 @@
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.15s;
+  box-shadow: 0 4px 14px var(--accent-glow);
+  transition: background 0.15s, transform 0.1s;
 }
 
 .missoes-popup-btn:hover {
-  background: var(--c-900, #0C3F2F);
+  background: var(--accent-hover);
+  transform: translateY(-1px);
 }

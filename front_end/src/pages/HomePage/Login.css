@@ -15,34 +15,34 @@
   font-family: var(--font-display);
   font-size: 2rem;
   font-weight: 900;
-  color: var(--green-dark);
+  color: var(--text-primary);
   margin: 0;
   letter-spacing: -0.5px;
 }
 
 .login-project-tagline {
   font-size: 13px;
-  color: var(--text-medium);
+  color: var(--text-secondary);
   font-weight: 500;
   margin: 0;
 }
 
 .login-divider {
   height: 1px;
-  background: #d4e8de;
+  background: var(--border);
   margin: 4px 0;
 }
 
 .login-welcome {
   font-size: 20px;
   font-weight: 800;
-  color: var(--green-dark);
+  color: var(--text-primary);
   margin: 0;
 }
 
 .login-subtitle {
   font-size: 13px;
-  color: var(--cor-texto-leve);
+  color: var(--text-secondary);
   margin: -8px 0 0;
 }
 

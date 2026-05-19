@@ -1,78 +1,101 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.65);
   z-index: 1000;
   padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
 }
 
 .modal {
-  background: #5bbf99;
-  border-radius: 28px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
   width: 100%;
   max-width: 520px;
-  padding: 28px 24px 22px;
+  padding: 32px 28px 26px;
   gap: 18px;
-  font-family: 'Nunito', sans-serif;
+  font-family: var(--font-body);
+  box-shadow: var(--shadow-lg), 0 0 60px var(--accent-glow);
+  display: flex;
+  flex-direction: column;
+  animation: modalIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.88) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
 }
 
 .titlePill {
-  background: #236b52;
+  background: var(--accent);
   color: #fff;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 800;
-  letter-spacing: 0.08em;
-  padding: 12px 32px;
-  border-radius: 20px;
+  letter-spacing: 0.07em;
+  padding: 10px 28px;
+  border-radius: var(--radius-md);
   text-align: center;
   width: fit-content;
   max-width: 90%;
+  align-self: center;
+  box-shadow: 0 4px 14px var(--accent-glow);
 }
 
 .card {
-  background: #e5f5ee;
-  border-radius: 18px;
-  padding: 22px 20px;
-  gap: 6px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 18px;
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
 }
 
 .greeting {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
-  color: #555;
+  color: var(--text-primary);
   margin: 0 0 4px;
 }
 
 .sectionTitle {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
-  color: #555;
+  color: var(--text-primary);
   margin: 0 0 4px;
 }
 
 .text {
-  font-size: 15px;
-  color: #666;
-  line-height: 1.5;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
   margin: 0;
 }
 
 .featureList {
   list-style: none;
   padding: 0;
-  margin: 12px 0 0;
+  margin: 10px 0 0;
   gap: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .featureItem {
-  font-size: 15px;
-  color: #555;
+  font-size: 14px;
+  color: var(--text-secondary);
   line-height: 1.4;
   gap: 10px;
+  display: flex;
+  align-items: flex-start;
 }
 
 .featureIcon {
-  color: #3d9a72;
+  color: var(--accent);
   flex-shrink: 0;
   margin-top: 2px;
 }
@@ -87,47 +110,53 @@
 }
 
 .bulletList li {
-  font-size: 15px;
-  color: #666;
+  font-size: 14px;
+  color: var(--text-secondary);
   line-height: 1.4;
 }
 
 .footer {
   gap: 12px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .btnPrimary {
-  background: #236b52;
+  background: var(--accent);
   color: #fff;
-  font-family: 'Nunito', sans-serif;
-  font-size: 15px;
+  font-family: var(--font-body);
+  font-size: 14px;
   font-weight: 800;
-  letter-spacing: 0.07em;
-  padding: 12px 36px;
-  border-radius: 20px;
+  letter-spacing: 0.06em;
+  padding: 12px 32px;
+  border-radius: var(--radius-md);
   border: none;
   cursor: pointer;
-  transition: background 0.15s;
+  transition: background 0.2s, transform 0.15s;
+  box-shadow: 0 4px 14px var(--accent-glow);
 }
 
 .btnPrimary:hover {
-  background: #1a5240;
+  background: var(--accent-hover);
+  transform: translateY(-1px);
 }
 
 .btnSecondary {
-  background: #a0d4bc;
-  color: #2e7a5e;
-  font-family: 'Nunito', sans-serif;
-  font-size: 15px;
-  font-weight: 800;
-  letter-spacing: 0.07em;
-  padding: 12px 36px;
-  border-radius: 20px;
-  border: none;
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 12px 32px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
   cursor: pointer;
-  transition: background 0.15s;
+  transition: background 0.2s, border-color 0.2s;
 }
 
 .btnSecondary:hover {
-  background: #8ec9b0;
+  background: var(--bg-tertiary);
+  border-color: var(--accent);
+  color: var(--text-primary);
 }

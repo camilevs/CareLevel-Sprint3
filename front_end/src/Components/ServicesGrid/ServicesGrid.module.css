@@ -5,7 +5,8 @@
 .container {
   max-width: 760px;
   margin: 0 auto;
-  background: #3aab6d;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   padding: 36px 32px 40px;
   box-shadow: var(--shadow-md);
@@ -15,7 +16,7 @@
   font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 800;
-  color: white;
+  color: var(--text-primary);
   letter-spacing: 4px;
   text-transform: uppercase;
   margin-bottom: 28px;
@@ -28,17 +29,10 @@
 }
 
 @media (max-width: 600px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .container {
-    padding: 24px 20px 28px;
-  }
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  .container { padding: 24px 20px 28px; }
 }
 
 @media (max-width: 380px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
+  .grid { grid-template-columns: 1fr; }
 }

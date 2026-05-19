@@ -1,21 +1,20 @@
 .hero {
   position: relative;
-  background: #d8ede2;
+  background: var(--bg-secondary);
   overflow: hidden;
-  /* Altura proporcional ao viewport — encolhe junto com a tela */
   min-height: min(520px, 47vw);
+  border-bottom: 1px solid var(--border);
 }
 
-/* Blob decorativo no canto superior direito */
 .blobTopRight {
   position: absolute;
   top: -60px;
   right: -60px;
   width: 220px;
   height: 220px;
-  background: var(--green-medium);
+  background: var(--accent);
   border-radius: 60% 40% 50% 70% / 50% 60% 40% 60%;
-  opacity: 0.25;
+  opacity: 0.12;
   pointer-events: none;
   z-index: 0;
 }
@@ -32,7 +31,6 @@
   width: 100%;
 }
 
-/* Layout interno de cada slide — proporcional ao viewport */
 .slideInner {
   position: relative;
   min-height: min(520px, 47vw);
@@ -48,15 +46,16 @@
   height: 100%;
   object-fit: cover;
   z-index: 0;
+  opacity: 0.3;
 }
 
 .overlay {
   position: absolute;
   inset: 0;
   z-index: 1;
+  background: linear-gradient(90deg, rgba(15,17,21,0.85) 0%, rgba(15,17,21,0.2) 100%);
 }
 
-/* ── Conteúdo esquerdo ── */
 .content {
   position: relative;
   z-index: 2;
@@ -79,36 +78,32 @@
   font-family: var(--font-display);
   font-size: clamp(0.9rem, 1.4vw, 1.5rem);
   font-weight: 900;
-  color: #1c9770;
-  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+  color: var(--accent);
   letter-spacing: -0.5px;
 }
 
 .headline {
   font-family: var(--font-display);
-  /* Escala suavemente com a largura da tela */
   font-size: clamp(1.5rem, 3.8vw, 3.6rem);
   font-weight: 900;
-  color: #304f3d;
+  color: var(--text-primary);
   line-height: 1.15;
   letter-spacing: -1px;
-  /* Largura máxima proporcional — força quebra de linha antes de sobrepor a imagem */
   max-width: min(500px, 40%);
   word-break: break-word;
   white-space: normal;
 }
 
 .highlight {
-  color: #1c9770;
+  color: var(--accent);
   font-weight: 900;
 }
 
-/* Placeholder — substitua por <img> real */
 .imagePlaceholder {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: linear-gradient(135deg, #b8d8ca 0%, #6fa78f 100%);
+  background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-elevated) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -117,21 +112,20 @@
 .imagePlaceholderText {
   font-family: var(--font-body);
   font-size: 0.85rem;
-  color: var(--green-dark);
-  opacity: 0.6;
+  color: var(--text-muted);
   text-align: center;
   padding: 16px;
 }
 
-/* ── Botões de navegação ── */
+/* Nav buttons */
 .navBtn {
   position: absolute !important;
   top: 50% !important;
   transform: translateY(-50%) !important;
   width: clamp(32px, 4vw, 48px) !important;
   height: clamp(32px, 4vw, 48px) !important;
-  border: none !important;
-  background: rgba(28, 151, 112, 0.85) !important;
+  border: 1px solid var(--border) !important;
+  background: rgba(26, 29, 36, 0.85) !important;
   border-radius: 50% !important;
   display: flex !important;
   align-items: center !important;
@@ -139,91 +133,50 @@
   z-index: 10 !important;
   transition: background 0.3s, transform 0.3s !important;
   cursor: pointer !important;
+  backdrop-filter: blur(8px) !important;
 }
 
 .navBtn:hover {
-  background: rgba(28, 151, 112, 1) !important;
+  background: var(--accent) !important;
   transform: translateY(-50%) scale(1.1) !important;
+  border-color: var(--accent) !important;
 }
 
-.navBtn:first-of-type {
-  left: clamp(6px, 4vw, 50px) !important;
-}
+.navBtn:first-of-type  { left:  clamp(6px, 4vw, 50px) !important; }
+.navBtn:last-of-type   { right: clamp(6px, 4vw, 50px) !important; }
+.navBtn::before, .navBtn::after { content: none !important; }
 
-.navBtn:last-of-type {
-  right: clamp(6px, 4vw, 50px) !important;
-}
-
-.navBtn::before,
-.navBtn::after {
-  content: none !important;
-}
-
-/* ── Indicadores Bootstrap customizados ── */
-.indicators {
-  bottom: 20px !important;
-  gap: 6px;
-}
+/* Indicators */
+.indicators { bottom: 20px !important; gap: 6px; }
 
 .indicators button {
   width: 32px !important;
   height: 6px !important;
   border-radius: 3px !important;
-  background-color: var(--green-pale) !important;
+  background-color: var(--bg-elevated) !important;
   opacity: 1 !important;
   border: none !important;
   transition: width 0.3s, background-color 0.3s;
 }
 
 .indicators button.active {
-  background-color: var(--green-primary) !important;
+  background-color: var(--accent) !important;
   width: 48px !important;
 }
 
-/* ── Mobile (≤768px) ── */
 @media (max-width: 768px) {
-  .hero,
-  .slideInner {
-    min-height: 380px;
-  }
-
-  .headline {
-    max-width: 80%;
-    font-size: clamp(1.5rem, 6.5vw, 2.2rem);
-  }
-
-  .brandName {
-    font-size: clamp(0.85rem, 2.5vw, 1.1rem);
-  }
+  .hero, .slideInner { min-height: 380px; }
+  .headline { max-width: 80%; font-size: clamp(1.5rem, 6.5vw, 2.2rem); }
+  .brandName { font-size: clamp(0.85rem, 2.5vw, 1.1rem); }
 }
 
-/* ── Telas pequenas (≤520px) ── */
 @media (max-width: 520px) {
-  .hero,
-  .slideInner {
-    min-height: 320px;
-  }
-
-  .headline {
-    max-width: 85%;
-    font-size: clamp(1.25rem, 6.5vw, 1.75rem);
-    letter-spacing: -0.5px;
-  }
+  .hero, .slideInner { min-height: 320px; }
+  .headline { max-width: 85%; font-size: clamp(1.25rem, 6.5vw, 1.75rem); letter-spacing: -0.5px; }
 }
 
-/* ── Mobile pequeno (≤360px) ── */
 @media (max-width: 360px) {
-  .hero,
-  .slideInner {
-    min-height: 280px;
-  }
-
-  .headline {
-    font-size: clamp(1.1rem, 6.5vw, 1.4rem);
-    max-width: 90%;
-  }
-
-  .brandName {
-    font-size: 0.8rem;
-  }
+  .hero, .slideInner { min-height: 280px; }
+  .headline { font-size: clamp(1.1rem, 6.5vw, 1.4rem); max-width: 90%; }
+  .brandName { font-size: 0.8rem; }
 }
