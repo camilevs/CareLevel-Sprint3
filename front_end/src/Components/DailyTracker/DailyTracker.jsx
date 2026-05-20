@@ -9,7 +9,6 @@ const STATUS_CONFIG = {
   Estressado:  { color: '#ef4444', label: 'Estressado',  emoji: '😤' },
 };
 
-// Dados de demonstração: seeded apenas na primeira visita (flag no localStorage)
 const DEMO_KEY = 'carelevel-tracker-demo-seeded';
 const DEMO_ENTRIES = [
   { dayOffset: -1, status: 'Normal',     score: 3.0 },
@@ -68,7 +67,6 @@ const PT_MONTHS = [
 export default function DailyTracker() {
   const realToday = new Date();
 
-  // Month navigation
   const [viewYear,  setViewYear]  = useState(realToday.getFullYear());
   const [viewMonth, setViewMonth] = useState(realToday.getMonth());
   const [history,   setHistory]   = useState([]);
@@ -103,7 +101,7 @@ export default function DailyTracker() {
     viewYear === realToday.getFullYear() && viewMonth === realToday.getMonth();
 
   function isPastDay(day) {
-    if (!isCurrentMonth) return true; // all days in past months are "past"
+    if (!isCurrentMonth) return true;
     return day < todayDay;
   }
   function isTodayDay(day) {
@@ -116,7 +114,6 @@ export default function DailyTracker() {
 
   const days = Array.from({ length: totalDays }, (_, i) => i + 1);
 
-  // Stats summary
   const statusCounts = {};
   history.forEach(e => { statusCounts[e.status] = (statusCounts[e.status] || 0) + 1; });
   const totalRegistered = history.length;
@@ -124,7 +121,6 @@ export default function DailyTracker() {
 
   return (
     <section className={styles.wrapper}>
-      {/* Header */}
       <div className={styles.header}>
         <h3 className={styles.title}>📅 Acompanhamento Diário</h3>
 
@@ -140,7 +136,6 @@ export default function DailyTracker() {
         </div>
       </div>
 
-      {/* Summary pills */}
       <div className={styles.summary}>
         <span className={styles.summaryItem}>
           <span className={styles.summaryCount}>{totalRegistered}</span>
@@ -163,7 +158,6 @@ export default function DailyTracker() {
         ))}
       </div>
 
-      {/* Legend */}
       <div className={styles.legend}>
         {Object.entries(STATUS_CONFIG).map(([key, cfg]) => (
           <span key={key} className={styles.legendItem}>
@@ -177,7 +171,6 @@ export default function DailyTracker() {
         </span>
       </div>
 
-      {/* Calendar grid */}
       <div className={styles.grid}>
         {days.map((day) => {
           const dateStr = toDateStr(viewYear, viewMonth, day);
@@ -214,7 +207,6 @@ export default function DailyTracker() {
         })}
       </div>
 
-      {/* Detail popup */}
       {tooltip && (
         <div className={styles.tooltipOverlay} onClick={() => setTooltip(null)}>
           <div className={styles.tooltipCard} onClick={e => e.stopPropagation()}>

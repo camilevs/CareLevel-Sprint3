@@ -5,7 +5,7 @@ import { fetchMissoes, fetchConquistas } from '../../services/api';
 import { useUser } from '../../Components/UserContext/UserContext';
 import styles from './JornadaPage.module.css';
 
-// ── helpers ────────────────────────────────────────────────────
+
 const CONCLUIDAS_KEY = 'caremissoes_concluidas';
 const HISTORY_KEY    = 'caremissions_history';
 
@@ -52,7 +52,6 @@ const ABAS_RANKING = [
   { id: 'equipe', label: 'Equipe' },
 ];
 
-// ── sub-components ─────────────────────────────────────────────
 
 function JornadaHeader({ user }) {
   const xpAtual = user.points ?? 0;
@@ -398,7 +397,6 @@ function RankingSection({ rankingData, abaAtual, setAbaAtual, loading, rankingAt
   );
 }
 
-// ── main component ──────────────────────────────────────────────
 const RANKING_ATIVO_KEY = 'jornada_ranking_ativo';
 
 export default function JornadaPage() {

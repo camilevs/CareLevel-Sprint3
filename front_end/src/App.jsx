@@ -14,7 +14,6 @@ import RecompensasPage from './pages/Recompensas/RecompensasPage.jsx';
 import CarePoints from './pages/CarePoints/CarePoints.jsx';
 import CarePointsHistorico from './pages/CarePoints/CarePointsHistorico.jsx';
 
-/* Legacy pages – still accessible via direct URL */
 import MissoesPage from './pages/Missoes/MissoesPage.jsx';
 import RankingPage from './pages/Ranking/RankingPage.jsx';
 import Conquistas from './pages/Conquistas/Conquistas.jsx';
@@ -61,7 +60,6 @@ export default function App() {
             element={<RoleGuard role="user"><CarePointsHistorico /></RoleGuard>}
           />
 
-          {/* Legacy routes preserved */}
           <Route
             path="/missoes"
             element={<RoleGuard role="user"><MissoesPage /></RoleGuard>}

@@ -2,7 +2,6 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Logo from '../Logo/Logo';
 import styles from './HeroBanner.module.css';
 
-// slides: adicione ou edite aqui o conteúdo de cada slide
 const slides = [
   {
     id: 'slide-1',
@@ -27,16 +26,13 @@ const slides = [
 export default function HeroBanner() {
   return (
     <section className={styles.hero}>
-      {/* Blob decorativo canto superior direito */}
       <div className={styles.blobTopRight} aria-hidden="true" />
 
-      {/* ── Bootstrap Carousel ── */}
       <div
         id="heroBannerCarousel"
         className={`carousel slide ${styles.carousel}`}
         data-bs-ride="carousel"
       >
-        {/* slides */}
         <div className="carousel-inner">
           {slides.map((slide, index) => (
             <div
@@ -80,7 +76,6 @@ export default function HeroBanner() {
           ))}
         </div>
 
-        {/* Botões de navegação */}
         <button
           className={`carousel-control-prev ${styles.navBtn}`}
           type="button"
@@ -100,7 +95,6 @@ export default function HeroBanner() {
           <ChevronRight size={32} color="#ffffff" />
         </button>
 
-        {/* Indicadores (dots) — Bootstrap gerencia automaticamente */}
         <div className={`carousel-indicators ${styles.indicators}`}>
           {slides.map((slide, index) => (
             <button

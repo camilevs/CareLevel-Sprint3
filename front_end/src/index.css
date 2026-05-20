@@ -8,7 +8,6 @@
 }
 
 :root {
-  /* ── Dark mode core palette ── */
   --bg-primary:    #0F1115;
   --bg-secondary:  #1A1D24;
   --bg-tertiary:   #20242E;
@@ -28,13 +27,11 @@
   --green:         #22C55E;
   --red:           #EF4444;
 
-  /* ── Shadows ── */
   --shadow-sm:  0 1px 4px rgba(0, 0, 0, 0.3);
   --shadow-md:  0 4px 20px rgba(0, 0, 0, 0.35);
   --shadow-lg:  0 16px 48px rgba(0, 0, 0, 0.4);
   --shadow:     0 4px 16px rgba(0, 0, 0, 0.4);
 
-  /* ── Radius ── */
   --radius-xs: 8px;
   --radius-sm: 10px;
   --radius-md: 14px;
@@ -42,7 +39,6 @@
   --radius-xl: 24px;
   --radius:    20px;
 
-  /* ── Legacy aliases kept for backward compat ── */
   --fundo:          var(--bg-primary);
   --bg:             var(--bg-secondary);
   --text:           var(--text-secondary);
@@ -53,17 +49,14 @@
   --code-bg:        var(--bg-tertiary);
   --social-bg:      var(--bg-elevated);
 
-  /* accent legacy */
   --accent-bg:     var(--accent-subtle);
   --accent-border: rgba(124, 92, 255, 0.5);
 
-  /* green legacy (for CareMood tokens) */
   --green-primary:   #7C5CFF;
   --green-dark:      #5E3FD9;
   --green-medium:    #9B84FF;
   --green-pale:      rgba(124, 92, 255, 0.1);
 
-  /* ranking / recompensas legacy */
   --cor-primaria:       var(--accent);
   --cor-primaria-escura: var(--accent-hover);
   --cor-fundo:          var(--bg-primary);
@@ -73,7 +66,6 @@
   --raio-card:          var(--radius-lg);
   --sombra:             var(--shadow-md);
 
-  /* caremood tokens */
   --c-50:  #20242E;
   --c-100: #2A2F3A;
   --c-200: #373D4D;
@@ -88,7 +80,6 @@
   --bg-page:          var(--bg-primary);
   --shadow-caremood:  0 4px 16px rgba(0, 0, 0, 0.4);
 
-  /* spacing */
   --espaco-sm: 8px;
   --espaco-md: 16px;
   --espaco-lg: 24px;
@@ -99,7 +90,6 @@
   --fonte-grande:  20px;
   --breakpoint-mobile: 768px;
 
-  /* fonts */
   --font-display: 'DM Sans', 'Nunito', system-ui, sans-serif;
   --font-body:    'DM Sans', 'Nunito', system-ui, sans-serif;
   --font:         'DM Sans', 'SF Pro', Arial, sans-serif;
@@ -163,7 +153,6 @@ h2 {
 
 p { margin: 0; }
 
-/* ── Login page ── */
 .login-page {
   position: fixed;
   inset: 0;
@@ -268,7 +257,6 @@ p { margin: 0; }
   font-size: 13px;
 }
 
-/* ── Extra radius vars (used by ServicesGrid/ServiceCard) ── */
 :root {
   --radius-2xl: 32px;
 }

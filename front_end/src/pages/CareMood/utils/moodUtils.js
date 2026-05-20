@@ -1,18 +1,5 @@
-/**
- * moodUtils.js
- * Utilitários de mapeamento de status, cores e cálculos de métricas.
- */
-
-/**
- * Todos os status possíveis.
- */
 export const STATUS_LIST = ['Estressado', 'Cansado', 'Normal', 'Excelente'];
 
-/**
- * Mapeia um status para sua cor hexadecimal correspondente.
- * @param {string|null} status
- * @returns {string} cor hex
- */
 export function statusToColor(status) {
   const map = {
     Estressado: '#FE0000',
@@ -23,11 +10,6 @@ export function statusToColor(status) {
   return map[status] || '#D9D9D9';
 }
 
-/**
- * Mapeia um status para um nome de classe CSS (para dot colorido).
- * @param {string|null} status
- * @returns {string}
- */
 export function statusToClass(status) {
   const map = {
     Estressado: 'dot-estressado',
@@ -38,10 +20,6 @@ export function statusToClass(status) {
   return map[status] || 'dot-vazio';
 }
 
-/**
- * Retorna os dias da semana como array de objetos {label, isoIndex}.
- * isoIndex: 0=Seg, 1=Ter, ..., 6=Dom
- */
 export const WEEK_DAYS = [
   { label: 'Seg', isoIndex: 0 },
   { label: 'Ter', isoIndex: 1 },
@@ -52,19 +30,11 @@ export const WEEK_DAYS = [
   { label: 'Dom', isoIndex: 6 },
 ];
 
-/**
- * Retorna o isoIndex (0=Seg..6=Dom) do dia de hoje.
- */
 export function getTodayIsoIndex() {
-  const d = new Date().getDay(); // 0=Dom..6=Sáb
+  const d = new Date().getDay();
   return d === 0 ? 6 : d - 1;
 }
 
-/**
- * Calcula as métricas do donut chart para um array de entradas do histórico.
- * @param {Array<{status: string}>} entries
- * @returns {Array<{status: string, count: number, pct: number, color: string}>}
- */
 export function calcDonutData(entries) {
   if (!entries.length) return [];
 
@@ -85,30 +55,18 @@ export function calcDonutData(entries) {
     }));
 }
 
-/**
- * Retorna o status predominante de um array de entradas.
- * @param {Array<{status: string}>} entries
- * @returns {string|null}
- */
 export function getPredominantStatus(entries) {
   if (!entries.length) return null;
   const data = calcDonutData(entries);
   return data.sort((a, b) => b.count - a.count)[0]?.status || null;
 }
 
-/**
- * Calcula a tendência mensal de exaustão.
- * Agrupa por mês e calcula a média do score (invertido: score alto = menos exaustão).
- * @param {Array<{date: string, score: number}>} history - histórico completo
- * @returns {Array<{label: string, exhaustionPct: number, trend: 'melhorando'|'piorando'|'estável'}>}
- */
 export function calcExhaustionData(history) {
   if (!history.length) return [];
 
-  // Agrupa por "YYYY-MM"
   const grouped = {};
   history.forEach(({ date, score }) => {
-    const key = date.slice(0, 7); // "YYYY-MM"
+    const key = date.slice(0, 7);
     if (!grouped[key]) grouped[key] = [];
     grouped[key].push(score);
   });
@@ -119,7 +77,6 @@ export function calcExhaustionData(history) {
   const result = months.map((key) => {
     const scores = grouped[key];
     const avg = scores.reduce((a, v) => a + v, 0) / scores.length;
-    // Score 1 = máximo estresse (100% exaustão), Score 5 = sem exaustão (0%)
     const exhaustionPct = parseFloat((((5 - avg) / 4) * 100).toFixed(1));
     const [year, month] = key.split('-');
     return {
@@ -130,7 +87,6 @@ export function calcExhaustionData(history) {
     };
   });
 
-  // Calcula tendência comparando último vs penúltimo mês
   const trend = (() => {
     if (result.length < 2) return 'estável';
     const diff = result[result.length - 1].exhaustionPct - result[result.length - 2].exhaustionPct;
@@ -145,11 +101,6 @@ export function calcExhaustionData(history) {
   }));
 }
 
-/**
- * Gera as recomendações de texto baseadas no status emocional.
- * @param {string} status
- * @returns {{ p1: string, p2: string }}
- */
 export function getRecommendationText(status) {
   const texts = {
     Estressado: {

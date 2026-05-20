@@ -196,7 +196,6 @@ export default function Conquistas() {
       <main className={styles.main}>
         <div className={styles.layout}>
 
-          {/* SIDEBAR */}
           <div className={styles.sidebar}>
             <div className={styles.trofeuWrapper}>
               <svg width="56" height="56" viewBox="0 0 64 64" fill="none">
@@ -233,10 +232,8 @@ export default function Conquistas() {
             </div>
           </div>
 
-          {/* CONTENT */}
           <div className={styles.content}>
 
-            {/* Alcançadas */}
             <div className={styles.medalhasSection}>
               <p className={styles.medalhasSectionTitulo}>Alcançadas</p>
               <div className={styles.medalhasRow}>
@@ -253,7 +250,6 @@ export default function Conquistas() {
               </div>
             </div>
 
-            {/* Grid conquistas */}
             <div className={styles.conquistasGrid}>
               {medalhas.map((c, i) => (
                 <div key={i} className={styles.conquistaCard}>

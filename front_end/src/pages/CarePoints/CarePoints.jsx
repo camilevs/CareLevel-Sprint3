@@ -128,10 +128,8 @@ export default function CarePoints() {
       <main className={styles.main}>
         <div className={styles.container}>
 
-          {/* TOP */}
           <div className={styles.topSection}>
             <div className={styles.cardGrafico}>
-              {/* Esquerda */}
               <div className={styles.cardLeft}>
                 <p className={styles.cardPontos}>
                   {user.points.toLocaleString("pt-BR")}
@@ -143,7 +141,6 @@ export default function CarePoints() {
                 <button className={styles.btnResgate} onClick={() => navigate('/recompensas')}>RESGATE AQUI</button>
               </div>
 
-              {/* Direita (gráfico) */}
               <div className={styles.cardRight}>
                 <p className={styles.graficoLabel}>ANÁLISE ÚLTIMOS MESES</p>
                 <div className={styles.graficoArea}>
@@ -155,7 +152,6 @@ export default function CarePoints() {
             </div>
           </div>
 
-          {/* HISTÓRICO */}
           <div className={styles.historicoSection}>
             <div className={styles.historicoHeader}>
               <h2 className={styles.historicoTitulo}>Histórico de CarePoints</h2>

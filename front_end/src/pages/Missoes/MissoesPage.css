@@ -7,7 +7,6 @@
   background: var(--bg-primary);
 }
 
-/* ─── TABS ─────────────────────────────── */
 .tabs {
   display: flex;
   background: var(--bg-elevated);
@@ -47,7 +46,6 @@
   color: var(--text-primary);
 }
 
-/* ─── MISSIONS CARD ─────────────────────── */
 .missions-card {
   background: var(--bg-secondary);
   border: 1px solid var(--border);
@@ -61,7 +59,6 @@
   gap: 14px;
 }
 
-/* ─── TEMPO RESTANTE ────────────────────── */
 .tempo-row {
   display: flex;
   align-items: center;
@@ -85,14 +82,12 @@
   font-weight: 700;
 }
 
-/* ─── MISSION LIST ──────────────────────── */
 .missions-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-/* ─── MISSION ITEM ──────────────────────── */
 .mission-item {
   background: var(--bg-tertiary);
   border: 1px solid var(--border);
@@ -111,7 +106,6 @@
   border-color: rgba(124, 92, 255, 0.3);
 }
 
-/* number badge */
 .mission-num {
   background: var(--accent);
   color: #fff;
@@ -126,7 +120,6 @@
   flex-shrink: 0;
 }
 
-/* text block */
 .mission-info {
   flex: 1;
   min-width: 0;
@@ -157,7 +150,6 @@
   flex-shrink: 0;
 }
 
-/* ─── CIRCULAR PROGRESS ─────────────────── */
 .cp-wrap {
   position: relative;
   width: 54px;
@@ -303,7 +295,6 @@
   border-top: 1px solid var(--border);
 }
 
-/* ─── POPUP PARABÉNS ────────────────────── */
 .missoes-popup-overlay {
   position: fixed;
   inset: 0;

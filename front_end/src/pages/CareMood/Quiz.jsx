@@ -2,10 +2,6 @@ import React, { useState, useCallback } from "react";
 import "./Quiz.css";
 import { saveResult } from "./services/moodStorage";
 
-// ─────────────────────────────────────────────────────────────
-// DADOS — 12 perguntas com opções ordenadas do pior ao melhor
-// (índice 0 = peso 1, índice 4 = peso 5)
-// ─────────────────────────────────────────────────────────────
 const PERGUNTAS = [
   {
     id: 1,
@@ -118,7 +114,6 @@ export default function Quiz({ onVoltar, onComplete }) {
           const resultado = calcularStatus(novosPesos);
           const media     = novosPesos.reduce((a, v) => a + v, 0) / novosPesos.length;
 
-          // ── Persiste no localStorage ──
           saveResult(resultado, media);
 
           setStatus(resultado);
@@ -139,12 +134,10 @@ export default function Quiz({ onVoltar, onComplete }) {
   }, []);
 
   const handleVoltar = useCallback(() => {
-    // Notifica o App para refresh antes de voltar
     if (onComplete) onComplete();
     else if (onVoltar) onVoltar();
   }, [onComplete, onVoltar]);
 
-  // ── Tela inicial ──
   if (!iniciado) {
     return (
       <div className="quiz-container">
@@ -165,7 +158,6 @@ export default function Quiz({ onVoltar, onComplete }) {
     );
   }
 
-  // ── Tela final ──
   if (indice >= TOTAL) {
     const media = pesos.length
       ? (pesos.reduce((a, v) => a + v, 0) / pesos.length).toFixed(1)
@@ -196,7 +188,6 @@ export default function Quiz({ onVoltar, onComplete }) {
     );
   }
 
-  // ── Tela de pergunta ──
   const perguntaAtual = PERGUNTAS[indice];
   const progresso     = (indice / TOTAL) * 100;
 

@@ -58,7 +58,6 @@ export default function MoodBoard({ weekData = [] }) {
         })}
       </div>
 
-      {/* Detail card */}
       {selected && (
         <div className="mood-detail-overlay" onClick={() => setSelected(null)}>
           <div className="mood-detail-card" onClick={e => e.stopPropagation()}>

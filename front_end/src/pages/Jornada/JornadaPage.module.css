@@ -1,4 +1,4 @@
-/* ── Page ── */
+
 .page {
   min-height: calc(100vh - 64px);
   background: var(--bg-primary);
@@ -12,7 +12,6 @@
   gap: 24px;
 }
 
-/* ── Header Card ── */
 .headerCard {
   position: relative;
   background: var(--bg-secondary);
@@ -119,7 +118,6 @@
 }
 .xpSub { font-size: 11px; color: var(--text-muted); }
 
-/* ── Grid ── */
 .grid {
   display: grid;
   grid-template-columns: 1fr 380px;
@@ -135,7 +133,6 @@
   gap: 24px;
 }
 
-/* ── Section ── */
 .section {
   background: var(--bg-secondary);
   border: 1px solid var(--border);
@@ -170,7 +167,6 @@
   border-radius: 999px;
 }
 
-/* ── Missoes ── */
 .abaToggle {
   display: flex;
   gap: 4px;
@@ -293,7 +289,6 @@
   white-space: nowrap;
 }
 
-/* ── Conquistas / Badges ── */
 .badgesGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -394,7 +389,6 @@
   text-align: right;
 }
 
-/* ── Ranking ── */
 .rankingAbas {
   display: flex;
   gap: 6px;
@@ -419,7 +413,6 @@
   color: #fff;
 }
 
-/* Podium */
 .podio {
   display: flex;
   align-items: flex-end;
@@ -480,7 +473,6 @@
 }
 .podioValor { font-size: 11px; color: var(--text-secondary); }
 
-/* Ranking list */
 .rankingList { display: flex; flex-direction: column; gap: 4px; }
 .rankingRow {
   display: flex;
@@ -563,7 +555,6 @@
 }
 .rankingToggleBtn:hover { background: var(--accent-hover); transform: translateY(-1px); }
 
-/* ── Popup ── */
 .popupOverlay {
   position: fixed;
   inset: 0;
@@ -616,7 +607,6 @@
 }
 .popupBtn:hover { background: var(--accent-hover); transform: translateY(-1px); }
 
-/* ── Skeletons ── */
 .loading      { display: flex; flex-direction: column; gap: 10px; }
 .skeleton {
   height: 64px;
@@ -635,7 +625,6 @@
   50%       { opacity: 1; }
 }
 
-/* ── Responsive ── */
 @media (max-width: 900px) {
   .grid { grid-template-columns: 1fr; }
   .colSide { position: static; }

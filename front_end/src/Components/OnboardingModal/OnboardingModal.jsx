@@ -80,16 +80,13 @@ export default function OnboardingModal({ onDone }) {
   }
 
   return (
-    // Bootstrap: posicionamento do overlay
     <div className={`${styles.overlay} d-flex align-items-center justify-content-center`}>
-      {/* Bootstrap: estrutura vertical do modal */}
       <div className={`${styles.modal} d-flex flex-column`}>
 
         {step === 1 && (
           <>
             <div className={`${styles.titlePill} align-self-center`}>BEM VINDO A CARELEVEL</div>
 
-            {/* Bootstrap: layout interno do card */}
             <div className={`${styles.card} d-flex flex-column`}>
               <p className={styles.greeting}>Bem-vindo(a)!</p>
               <p className={styles.text}>
@@ -102,10 +99,8 @@ export default function OnboardingModal({ onDone }) {
                 No sistema você encontrará as seguintes áreas:
               </p>
 
-              {/* Bootstrap: lista em coluna */}
               <ul className={`${styles.featureList} d-flex flex-column`}>
                 {features.map(({ Icon, label, desc }) => (
-                  // Bootstrap: item em linha
                   <li key={label} className={`${styles.featureItem} d-flex align-items-start`}>
                     <span className={styles.featureIcon}><Icon /></span>
                     <span><strong>{label}:</strong> {desc}</span>
@@ -114,7 +109,6 @@ export default function OnboardingModal({ onDone }) {
               </ul>
             </div>
 
-            {/* Bootstrap: botão alinhado à direita */}
             <div className={`${styles.footer} d-flex justify-content-end`}>
               <button className={styles.btnPrimary} onClick={() => setStep(2)}>
                 SEGUINTE

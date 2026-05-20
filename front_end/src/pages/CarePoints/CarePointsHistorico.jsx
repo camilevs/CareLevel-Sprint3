@@ -71,7 +71,6 @@ export default function CarePointsHistorico() {
       <main className={styles.main}>
         <div className={styles.container}>
 
-          {/* Header */}
           <div className={styles.header}>
             <div className={styles.headerLeft}>
               <button
@@ -94,7 +93,6 @@ export default function CarePointsHistorico() {
             </div>
           </div>
 
-          {/* Legenda */}
           <div className={styles.legenda}>
             <span className={styles.legendaItem}>
               <span className={`${styles.legendaDot} ${styles.legendaDotCredito}`} />
@@ -106,7 +104,6 @@ export default function CarePointsHistorico() {
             </span>
           </div>
 
-          {/* Tabela */}
           <div className={styles.tabelaWrapper}>
             <div className={styles.tabelaHeader}>
               <span>Data</span>

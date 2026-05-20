@@ -118,7 +118,6 @@ export default function HRDashboard() {
     <div style={{ fontFamily:"'DM Sans',sans-serif", background: C.bg, minHeight:"100vh" }}>
       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 
-      {/* NAV */}
       <nav style={{
         display:"flex", alignItems:"center", justifyContent:"space-between",
         padding:"12px 32px", background:"#fff", boxShadow:"0 1px 4px #0001"
@@ -138,7 +137,6 @@ export default function HRDashboard() {
 
       <div style={{ padding:"28px 32px", display:"flex", flexDirection:"column", gap:24 }}>
 
-        {/* FILTERS + STATS */}
         <div style={{ display:"flex", alignItems:"flex-end", gap:20, flexWrap:"wrap" }}>
           <Select label="Equipe" options={["Todas"]}/>
           <Select label="Período" options={["Qualquer"]}/>
@@ -165,7 +163,6 @@ export default function HRDashboard() {
           <StatCard label="Porcentagem de Estresse Global" value={`${stats.estresseGlobal}%`}/>
         </div>
 
-        {/* ENG ROW */}
         <div style={{ display:"flex", gap:20, flexWrap:"wrap" }}>
           <Card title="Engajamento por Equipe" style={{ flex:1, minWidth:280, background: C.cardLight }}>
             <ResponsiveContainer width="100%" height={220}>
@@ -193,7 +190,6 @@ export default function HRDashboard() {
           </Card>
         </div>
 
-        {/* PERF BAR */}
         <Card title="Desempenho por Departamento Mês Atual" style={{ background: C.cardLight }}>
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={perfDept}>
@@ -209,7 +205,6 @@ export default function HRDashboard() {
           {perfDept.map(d=><DeptCard key={d.dept} name={d.dept} val={d.val}/>)}
         </div>
 
-        {/* STRESS + RADAR */}
         <div style={{ display:"flex", gap:20, flexWrap:"wrap", alignItems:"flex-start" }}>
           <Card title="Nível de Estresse por Equipe (Quiz)" style={{ flex:1, minWidth:280, background: C.cardLight }}>
             <ResponsiveContainer width="100%" height={220}>
