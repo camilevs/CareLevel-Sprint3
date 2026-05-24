@@ -3,3 +3,148 @@
   display: flex;
   flex-direction: column;
 }
+
+.homeTopRow {
+  width: min(900px, calc(100% - 24px));
+  margin: 20px auto 10px;
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.missionsPanel {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 18px;
+  box-shadow: var(--shadow-md);
+}
+
+.missionsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.missionsTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.missionsAction {
+  border: 1px solid var(--border);
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.missionsAction:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-subtle);
+}
+
+.missionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.missionItem {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.missionTopRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.missionType {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.missionProgress {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.missionName {
+  margin: 6px 0 9px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.progressTrack {
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--bg-elevated);
+  overflow: hidden;
+}
+
+.progressFill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+}
+
+.missionPointsRow {
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.pointsIcon {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
+.missionPoints {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.missionsEmpty {
+  margin: 4px 0 2px;
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+}
+
+.streakPanel {
+  margin: 0;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .homeTopRow {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    width: min(900px, calc(100% - 20px));
+  }
+}

@@ -2,30 +2,49 @@
   background: rgba(15, 17, 21, 0.88);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  border-bottom: 1px solid rgba(42, 47, 58, 0.8);
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 280px;
   z-index: 100;
+  border-right: 1px solid rgba(42, 47, 58, 0.8);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
 .inner {
   width: 100%;
-  padding: 0 24px;
-  height: 64px;
+  height: 100%;
+  padding: 24px 18px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
   gap: 16px;
   position: relative;
 }
 
-.logoArea { flex-shrink: 0; display: flex; align-items: center; }
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+}
+
+.logoArea {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
 
 .nav {
   display: flex;
-  align-items: center;
-  gap: 2px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
   min-width: 0;
+  width: 100%;
   transition: all 0.3s ease;
 }
 
@@ -50,10 +69,12 @@
 
 .actions {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
   flex-shrink: 0;
-  margin-left: auto;
+  margin-top: auto;
+  width: 100%;
 }
 
 .badge {
@@ -108,8 +129,10 @@
 .logoutBtn {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   min-height: 34px;
+  width: 100%;
   padding: 0 12px;
   border-radius: 999px;
   border: 1px solid var(--border);
@@ -138,11 +161,33 @@
 }
 
 @media (max-width: 966px) {
+  .navbar {
+    width: 100%;
+    bottom: auto;
+    border-right: none;
+    border-bottom: 1px solid rgba(42, 47, 58, 0.8);
+  }
+
+  .inner {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding: 0 24px;
+    height: 64px;
+  }
+
   .burger { display: block; margin-left: auto; }
-  .actions { margin-left: 0; }
+
+  .actions { margin-top: 0; margin-left: 0; width: auto; flex-direction: row; align-items: center; gap: 8px; }
+
+  .badge { width: auto; }
+
+  .logoutBtn { width: auto; }
+
   .nav {
     position: absolute;
-    top: 64px; left: 0;
+    top: 64px;
+    left: 0;
     width: 100%;
     flex: unset;
     background: rgba(15, 17, 21, 0.97);

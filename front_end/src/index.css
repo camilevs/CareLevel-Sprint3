@@ -114,7 +114,28 @@ body {
   font-family: var(--font-body);
   background: var(--bg-primary);
   color: var(--text-primary);
-  padding-top: 64px;
+  padding-top: 0;
+}
+
+body.has-sidebar-nav {
+  padding-left: 280px;
+}
+
+@media (max-width: 966px) {
+  body.has-sidebar-nav {
+    padding-left: 0;
+  }
+}
+
+
+body.has-sidebar-nav {
+  padding-left: 280px;
+}
+
+@media (max-width: 966px) {
+  body.has-sidebar-nav {
+    padding-left: 0;
+  }
 }
 
 #root {

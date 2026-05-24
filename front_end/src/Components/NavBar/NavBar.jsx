@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { Flame, User, LogOut, Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useUser } from '../UserContext/UserContext';
 import { useAuth } from '../../context/AuthContext';
@@ -23,6 +23,14 @@ export default function Navbar() {
 
   const [menuOpen, setMenuOpen] = useState(false);
 
+  useEffect(() => {
+    document.body.classList.add('has-sidebar-nav');
+
+    return () => {
+      document.body.classList.remove('has-sidebar-nav');
+    };
+  }, []);
+
   const handleLogout = () => {
     userLogout();
     authLogout();
@@ -33,9 +41,33 @@ export default function Navbar() {
     <header className={styles.navbar}>
       <div className={styles.inner}>
 
-        <NavLink to="/" className={styles.logoArea}>
-          <Logo size={30} />
-        </NavLink>
+        <div className={styles.topRow}>
+          <NavLink to="/" className={styles.logoArea}>
+            <Logo size={30} />
+          </NavLink>
+
+          <div className={styles.badge} title="Sequência de dias">
+            <Flame size={16} color="#F97316" fill="#F97316" />
+            <span className={styles.badgeText}>{user.streak}</span>
+          </div>
+        </div>
+
+          <NavLink
+            to="/carepoints"
+            className={({ isActive }) =>
+              [styles.badge, styles.badgeLink, isActive ? styles.badgeActive : ''].join(' ')
+            }
+            title="CarePoints"
+          >
+            <img
+              src="/512x512bb%204.svg"
+              alt="CarePoints"
+              className={styles.pointsIconImage}
+            />
+            <span className={styles.badgeText}>
+              {user.points.toLocaleString('pt-BR')}
+            </span>
+          </NavLink>
 
         <button
           className={styles.burger}
@@ -62,27 +94,8 @@ export default function Navbar() {
 
         <div className={styles.actions}>
 
-          <div className={styles.badge} title="Sequência de dias">
-            <Flame size={16} color="#F97316" fill="#F97316" />
-            <span className={styles.badgeText}>{user.streak}</span>
-          </div>
 
-          <NavLink
-            to="/carepoints"
-            className={({ isActive }) =>
-              [styles.badge, styles.badgeLink, isActive ? styles.badgeActive : ''].join(' ')
-            }
-            title="CarePoints"
-          >
-            <img
-              src="/512x512bb%204.svg"
-              alt="CarePoints"
-              className={styles.pointsIconImage}
-            />
-            <span className={styles.badgeText}>
-              {user.points.toLocaleString('pt-BR')}
-            </span>
-          </NavLink>
+
 
           <NavLink
             to="/perfil"
