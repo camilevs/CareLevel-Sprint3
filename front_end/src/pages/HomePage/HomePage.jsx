@@ -105,20 +105,23 @@ export default function HomePage() {
             ) : (
               missionHighlights.map((mission) => (
                 <article key={mission.id} className={styles.missionItem}>
-                  <div className={styles.missionTopRow}>
-                    <span className={styles.missionType}>{mission.tipo}</span>
-                    <span className={styles.missionProgress}>{mission.progresso}%</span>
+                  <div className={styles.missionRing} style={{ '--progress': `${mission.progresso}%` }} aria-hidden="true">
+                    <div className={styles.missionRingInner}>
+                      <span className={styles.missionProgress}>{mission.progresso}%</span>
+                    </div>
                   </div>
 
-                  <h3 className={styles.missionName}>{mission.titulo}</h3>
+                  <div className={styles.missionContent}>
+                    <div className={styles.missionTopRow}>
+                      <span className={styles.missionType}>{mission.tipo}</span>
+                    </div>
 
-                  <div className={styles.progressTrack} aria-hidden="true">
-                    <span className={styles.progressFill} style={{ width: `${mission.progresso}%` }} />
-                  </div>
+                    <h3 className={styles.missionName}>{mission.titulo}</h3>
 
-                  <div className={styles.missionPointsRow}>
-                    <img src="/512x512bb%204.svg" alt="" className={styles.pointsIcon} />
-                    <span className={styles.missionPoints}>+{mission.pontos}</span>
+                    <div className={styles.missionPointsRow}>
+                      <img src="/512x512bb%204.svg" alt="" className={styles.pointsIcon} />
+                      <span className={styles.missionPoints}>+{mission.pontos}</span>
+                    </div>
                   </div>
                 </article>
               ))
