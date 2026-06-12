@@ -8,11 +8,13 @@ import ServicesGrid from '../../Components/ServicesGrid/ServicesGrid';
 import NavBar from '../../Components/NavBar/NavBar';
 import Footer from '../../Components/Footer/Footer';
 import StreakTracker from '../../Components/StreakTracker/StreakTracker';
+import RecompensasPreview from '../../Components/RecompensasPreview/RecompensasPreview';
 import OnboardingModal, { shouldShowOnboarding } from '../../Components/OnboardingModal/OnboardingModal';
 
 import styles from './HomePage.module.css';
 
 const CONCLUIDAS_KEY = 'caremissoes_concluidas';
+const MAX_HOME_MISSIONS = 3;
 
 function loadConcluidas() {
   try {
@@ -29,6 +31,7 @@ export default function HomePage() {
   const [showOnboarding, setShowOnboarding] = useState(() => shouldShowOnboarding(authUser?.id));
   const [missoes, setMissoes] = useState(null);
   const [concluidas] = useState(loadConcluidas);
+  const [tabMissoes, setTabMissoes] = useState('equipe');
 
   useEffect(() => {
     fetchMissoes().then(setMissoes).catch(() => setMissoes(null));
@@ -36,37 +39,20 @@ export default function HomePage() {
 
   const missionHighlights = useMemo(() => {
     if (!missoes) return [];
+    const itens = missoes?.[tabMissoes]?.itens ?? [];
+    return itens
+      .filter((item) => !concluidas[`${tabMissoes}_${item.id}`])
+      .slice(0, MAX_HOME_MISSIONS);
+  }, [missoes, concluidas, tabMissoes]);
 
-    const tipos = [
-      { key: 'individual', label: 'Individual' },
-      { key: 'equipe', label: 'Equipe' },
-    ];
-
-    return tipos
-      .flatMap(({ key, label }) => {
-        const itens = missoes?.[key]?.itens ?? [];
-        return itens.map((item, index) => {
-          const progress = Math.max(0, Math.min(100, Number(item.progresso) || 0));
-          const done = Boolean(concluidas[`${key}_${item.id}`] || progress >= 100);
-          return {
-            id: `${key}_${item.id}`,
-            key,
-            tipo: label,
-            titulo: item.titulo,
-            pontos: item.pontos,
-            progresso: progress,
-            done,
-            ordem: index,
-          };
-        });
-      })
-      .filter((item) => !item.done)
-      .sort((a, b) => {
-        if (b.progresso !== a.progresso) return b.progresso - a.progresso;
-        if (a.ordem !== b.ordem) return a.ordem - b.ordem;
-        return Number(b.pontos || 0) - Number(a.pontos || 0);
-      })
-      .slice(0, 3);
+  const tabCounts = useMemo(() => {
+    if (!missoes) return { equipe: null, individual: null };
+    const count = (tipo) => {
+      const itens = missoes?.[tipo]?.itens ?? [];
+      const done = itens.filter((m) => concluidas[`${tipo}_${m.id}`]).length;
+      return { done, total: itens.length };
+    };
+    return { equipe: count('equipe'), individual: count('individual') };
   }, [missoes, concluidas]);
 
   const handleNavigate = (serviceId) => {
@@ -87,41 +73,62 @@ export default function HomePage() {
       <HeroBanner />
 
       <section className={styles.homeTopRow}>
-        <section className={styles.missionsPanel} aria-label="Missoes proximas de concluir">
+        <section className={styles.missionsPanel} aria-label="Missões">
           <div className={styles.missionsHeader}>
-            <h2 className={styles.missionsTitle}>Missoes quase concluidas</h2>
+            <h2 className={styles.missionsTitle}>Missões</h2>
             <button
               type="button"
               className={styles.missionsAction}
-              onClick={() => navigate('/missoes')}
+              onClick={() => navigate('/missoes', { state: { aba: tabMissoes } })}
             >
               Ver todas
             </button>
           </div>
 
+          <div className={styles.missionsTabs}>
+            <button
+              type="button"
+              className={`${styles.missionTab} ${tabMissoes === 'equipe' ? styles.missionTabActive : ''}`}
+              onClick={() => setTabMissoes('equipe')}
+            >
+              Equipe
+              {tabCounts.equipe && (
+                <span className={styles.tabCount}>
+                  {tabCounts.equipe.done}/{tabCounts.equipe.total}
+                </span>
+              )}
+            </button>
+            <button
+              type="button"
+              className={`${styles.missionTab} ${tabMissoes === 'individual' ? styles.missionTabActive : ''}`}
+              onClick={() => setTabMissoes('individual')}
+            >
+              Individual
+              {tabCounts.individual && (
+                <span className={styles.tabCount}>
+                  {tabCounts.individual.done}/{tabCounts.individual.total}
+                </span>
+              )}
+            </button>
+          </div>
+
           <div className={styles.missionsList}>
             {missionHighlights.length === 0 ? (
-              <p className={styles.missionsEmpty}>Nenhuma missao pendente perto de concluir no momento.</p>
+              <p className={styles.missionsEmpty}>Nenhuma missão pendente no momento.</p>
             ) : (
               missionHighlights.map((mission) => (
-                <article key={mission.id} className={styles.missionItem}>
-                  <div className={styles.missionRing} style={{ '--progress': `${mission.progresso}%` }} aria-hidden="true">
-                    <div className={styles.missionRingInner}>
-                      <span className={styles.missionProgress}>{mission.progresso}%</span>
-                    </div>
-                  </div>
-
-                  <div className={styles.missionContent}>
-                    <div className={styles.missionTopRow}>
-                      <span className={styles.missionType}>{mission.tipo}</span>
-                    </div>
-
-                    <h3 className={styles.missionName}>{mission.titulo}</h3>
-
-                    <div className={styles.missionPointsRow}>
-                      <img src="/512x512bb%204.svg" alt="" className={styles.pointsIcon} />
-                      <span className={styles.missionPoints}>+{mission.pontos}</span>
-                    </div>
+                <article
+                  key={`${tabMissoes}_${mission.id}`}
+                  className={styles.missionItem}
+                  onClick={() => navigate('/missoes', { state: { aba: tabMissoes } })}
+                >
+                  <span className={styles.missionType}>
+                    {tabMissoes === 'equipe' ? 'Equipe' : 'Individual'}
+                  </span>
+                  <h3 className={styles.missionName}>{mission.titulo}</h3>
+                  <div className={styles.missionPointsRow}>
+                    <img src="/512x512bb%204.svg" alt="" className={styles.pointsIcon} />
+                    <span className={styles.missionPoints}>+{mission.pontos}</span>
                   </div>
                 </article>
               ))
@@ -130,8 +137,37 @@ export default function HomePage() {
         </section>
 
         <StreakTracker className={styles.streakPanel} streak={user?.streak ?? 0} />
+
+        {/* nível e XP — coluna direita, linha 2 */}
+        {(() => {
+          const xpAtual = user?.points ?? 0;
+          const nivel   = user?.nivel  ?? 1;
+          const xpMax   = nivel * 500;
+          const pct     = Math.min(100, Math.round((xpAtual % xpMax) / xpMax * 100));
+          return (
+            <div className={styles.levelCard}>
+              <div className={styles.nivelBadge}>
+                <span className={styles.nivelLabel}>NÍV</span>
+                <span className={styles.nivelNum}>{nivel}</span>
+              </div>
+              <div className={styles.xpBlock}>
+                <div className={styles.xpHeader}>
+                  <span className={styles.xpLabel}>Experiência</span>
+                  <span className={styles.xpPct}>{pct}%</span>
+                </div>
+                <div className={styles.xpTrack}>
+                  <div className={styles.xpBar} style={{ width: `${pct}%` }} />
+                </div>
+                <span className={styles.xpSub}>
+                  {xpAtual.toLocaleString('pt-BR')} / {xpMax.toLocaleString('pt-BR')} XP
+                </span>
+              </div>
+            </div>
+          );
+        })()}
       </section>
 
+      <RecompensasPreview />
       <ServicesGrid onNavigate={handleNavigate} />
       <Footer />
       {showOnboarding && (

@@ -26,7 +26,8 @@ const slides = [
 export default function HeroBanner() {
   return (
     <section className={styles.hero}>
-      <div className={styles.blobTopRight} aria-hidden="true" />
+      <div className={styles.blobTopRight}   aria-hidden="true" />
+      <div className={styles.blobBottomLeft} aria-hidden="true" />
 
       <div
         id="heroBannerCarousel"

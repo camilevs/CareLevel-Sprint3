@@ -11,20 +11,23 @@ import styles from './ServicesGrid.module.css';
 import ServiceCard from '../ServiceCard/ServiceCard';
 
 const services = [
-  { id: 'missoes',     label: 'Missões',     icon: Clock },
-  { id: 'caremood',   label: 'CareMood',    icon: SmilePlus },
-  { id: 'ranking',    label: 'Ranking',     icon: BarChart2 },
-  { id: 'recompensas',label: 'Recompensas', icon: Gift },
-  { id: 'conquistas', label: 'Conquistas',  icon: Medal },
-  { id: 'pontos',     label: 'CarePoints',  icon: Activity },
+  { id: 'missoes',      label: 'Missões',     icon: Clock },
+  { id: 'caremood',    label: 'CareMood',    icon: SmilePlus },
+  { id: 'ranking',     label: 'Ranking',     icon: BarChart2 },
+  { id: 'recompensas', label: 'Recompensas', icon: Gift },
+  { id: 'conquistas',  label: 'Conquistas',  icon: Medal },
+  { id: 'pontos',      label: 'CarePoints',  icon: Activity },
 ];
 
 export default function ServicesGrid({ onNavigate }) {
   return (
     <section className={styles.section}>
-      <div className={styles.container}>
+      <div className={styles.titleWrap}>
         <h2 className={styles.title}>Serviços</h2>
-        <div className={styles.grid}>
+      </div>
+
+      <div className={styles.listWrap}>
+        <div className={styles.list}>
           {services.map((service) => (
             <ServiceCard
               key={service.id}
@@ -34,6 +37,8 @@ export default function ServicesGrid({ onNavigate }) {
             />
           ))}
         </div>
+        <div className={styles.fadeLeft}  aria-hidden="true" />
+        <div className={styles.fadeRight} aria-hidden="true" />
       </div>
     </section>
   );

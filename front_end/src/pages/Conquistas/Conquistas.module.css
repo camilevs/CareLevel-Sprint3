@@ -95,7 +95,7 @@
 .nivelBadge {
   background: var(--accent-subtle);
   color: var(--accent);
-  border: 1px solid rgba(124, 92, 255, 0.4);
+  border: 1px solid rgba(103, 185, 159, 0.4);
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.06em;
@@ -322,7 +322,7 @@
 }
 
 .conquistaCard:hover {
-  border-color: rgba(124, 92, 255, 0.4);
+  border-color: rgba(103, 185, 159, 0.4);
   transform: translateY(-2px);
 }
 
@@ -332,7 +332,7 @@
 
 .conquistaCardLeft {
   background: var(--accent-subtle);
-  border-right: 1px solid rgba(124, 92, 255, 0.2);
+  border-right: 1px solid rgba(103, 185, 159, 0.2);
   width: 72px;
   min-width: 72px;
   display: flex;

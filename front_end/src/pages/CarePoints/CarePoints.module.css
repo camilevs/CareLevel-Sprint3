@@ -55,7 +55,7 @@
 
 /* Left (points) */
 .cardLeft {
-  background: linear-gradient(135deg, var(--accent) 0%, #5E3FD9 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, #4A9A82 100%);
   padding: 24px 20px;
   display: flex;
   flex-direction: column;
@@ -397,7 +397,7 @@
 
 .historicoIconNeutro {
   background: var(--accent-subtle);
-  border: 1.5px solid rgba(124, 92, 255, 0.3);
+  border: 1.5px solid rgba(103, 185, 159, 0.3);
   color: var(--accent);
 }
 
@@ -450,7 +450,7 @@
 .historicoPontosNeutro {
   background: var(--accent-subtle);
   color: var(--accent);
-  border: 1px solid rgba(124, 92, 255, 0.3);
+  border: 1px solid rgba(103, 185, 159, 0.3);
 }
 
 @media (min-width: 640px) {

@@ -5,10 +5,11 @@
 }
 
 .homeTopRow {
-  width: min(900px, calc(100% - 24px));
+  width: min(1100px, calc(100% - 48px));
   margin: 20px auto 10px;
   display: grid;
-  grid-template-columns: 1.35fr 1fr;
+  grid-template-columns: 1.3fr 1fr;
+  grid-template-rows: auto auto;
   gap: 16px;
   align-items: start;
 }
@@ -19,6 +20,10 @@
   border-radius: 22px;
   padding: 18px;
   box-shadow: var(--shadow-md);
+  grid-row: 1 / 3;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
 }
 
 .missionsHeader {
@@ -26,7 +31,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 
 .missionsTitle {
@@ -55,10 +60,61 @@
   background: var(--accent-subtle);
 }
 
+.missionsTabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.missionTab {
+  flex: 1;
+  border: 1px solid var(--border);
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.missionTab:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.missionTabActive {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.missionTabActive:hover {
+  color: #fff;
+}
+
+.tabCount {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: inherit;
+  opacity: 0.8;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 99px;
+  padding: 1px 5px;
+  margin-left: 5px;
+  line-height: 1.5;
+}
+
 .missionsList {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: 1fr;
   gap: 12px;
+  flex: 1;
+  align-items: stretch;
 }
 
 .missionItem {
@@ -69,8 +125,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   text-align: center;
-  gap: 10px;
+  gap: 8px;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.missionItem:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-subtle);
 }
 
 .missionType {
@@ -81,47 +145,12 @@
   text-transform: uppercase;
 }
 
-.missionProgress {
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: var(--text-primary);
-}
-
 .missionName {
   margin: 0;
   font-size: 0.9rem;
   font-weight: 700;
   color: var(--text-primary);
   line-height: 1.2;
-}
-
-.missionContent {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.missionRing {
-  --progress: 0%;
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: conic-gradient(#22c55e 0 var(--progress), var(--bg-elevated) var(--progress) 100%);
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-}
-
-.missionRingInner {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: var(--bg-secondary);
-  display: grid;
-  place-items: center;
-  box-shadow: inset 0 0 0 1px var(--border);
 }
 
 .missionPointsRow {
@@ -153,14 +182,111 @@
   width: 100%;
 }
 
+/* ── card de nível / XP ── */
+.levelCard {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 16px 20px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nivelBadge {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--accent-subtle);
+  border: 1.5px solid var(--accent);
+  border-radius: 12px;
+  padding: 8px 14px;
+}
+
+.nivelLabel {
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.nivelNum {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.xpBlock {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.xpHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.xpLabel {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.xpPct {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-highlight);
+}
+
+.xpTrack {
+  height: 6px;
+  background: var(--bg-elevated);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.xpBar {
+  height: 100%;
+  background: var(--color-highlight);
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+.xpSub {
+  font-size: 0.66rem;
+  color: var(--text-muted);
+}
+
 @media (max-width: 900px) {
   .homeTopRow {
     grid-template-columns: 1fr;
+    grid-template-rows: auto;
     gap: 12px;
-    width: min(900px, calc(100% - 20px));
+    width: min(1100px, calc(100% - 20px));
+  }
+
+  .missionsPanel {
+    grid-row: auto;
+    align-self: start;
   }
 
   .missionsList {
     grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    flex: none;
+  }
+
+  .missionItem {
+    justify-content: flex-start;
   }
 }

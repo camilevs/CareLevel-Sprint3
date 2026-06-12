@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import NavBar from '../../Components/NavBar/NavBar';
 import Footer from '../../Components/Footer/Footer';
 import { fetchMissoes } from '../../services/api';
@@ -97,7 +98,9 @@ function CongratulacoesPopup({ tipo, onFechar }) {
 }
 
 export default function MissoesPage() {
-  const [aba, setAba] = useState('equipe');
+  const location = useLocation();
+  const initialAba = location.state?.aba === 'individual' ? 'individual' : 'equipe';
+  const [aba, setAba] = useState(initialAba);
   const [missoes, setMissoes] = useState(null);
   const [concluidas, setConcluidas] = useState(loadConcluidas);
   const [popup, setPopup] = useState(false);

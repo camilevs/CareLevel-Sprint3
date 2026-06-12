@@ -16,26 +16,39 @@ const NAV_LINKS = [
   { label: 'CarePoints',  to: '/carepoints' },
 ];
 
+function getInitialDark() {
+  try {
+    const saved = localStorage.getItem('care-theme');
+    if (saved === 'light') return false;
+  } catch { /* ignore */ }
+  return true;
+}
+
 export default function Navbar() {
   const { user, logout: userLogout } = useUser();
   const { logout: authLogout } = useAuth();
   const navigate = useNavigate();
 
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isDark, setIsDark] = useState(getInitialDark);
 
   useEffect(() => {
     document.body.classList.add('has-sidebar-nav');
-
-    return () => {
-      document.body.classList.remove('has-sidebar-nav');
-    };
+    return () => document.body.classList.remove('has-sidebar-nav');
   }, []);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    try { localStorage.setItem('care-theme', isDark ? 'dark' : 'light'); } catch { /* ignore */ }
+  }, [isDark]);
 
   const handleLogout = () => {
     userLogout();
     authLogout();
     navigate('/login', { replace: true });
   };
+
+  const firstName = (user.name || 'Usuário').split(' ')[0];
 
   return (
     <header className={styles.navbar}>
@@ -93,20 +106,29 @@ export default function Navbar() {
         </nav>
 
         <div className={styles.actions}>
+          <div className={styles.profileRow}>
+            <NavLink
+              to="/perfil"
+              className={({ isActive }) =>
+                [styles.profileLink, isActive ? styles.profileLinkActive : ''].join(' ')
+              }
+              title="Meu perfil"
+              aria-label="Ir para o perfil"
+            >
+              <User size={15} />
+              <span className={styles.userName}>{firstName}</span>
+            </NavLink>
 
-
-
-
-          <NavLink
-            to="/perfil"
-            className={({ isActive }) =>
-              [styles.avatarBtn, isActive ? styles.avatarBtnActive : ''].join(' ')
-            }
-            title="Meu perfil"
-            aria-label="Ir para o perfil"
-          >
-            <User size={18} />
-          </NavLink>
+            <label className={styles.themeToggle} title={isDark ? 'Mudar para modo claro' : 'Mudar para modo escuro'}>
+              <input
+                type="checkbox"
+                className={styles.toggleInput}
+                checked={isDark}
+                onChange={() => setIsDark((d) => !d)}
+              />
+              <span className={styles.toggleSlider} />
+            </label>
+          </div>
 
           <button
             type="button"

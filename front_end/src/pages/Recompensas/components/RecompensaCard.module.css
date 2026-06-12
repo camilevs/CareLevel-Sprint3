@@ -11,7 +11,7 @@
 .card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
-  border-color: rgba(124, 92, 255, 0.3);
+  border-color: rgba(103, 185, 159, 0.3);
 }
 
 .imagemWrap {

@@ -25,8 +25,8 @@
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse at 80% 50%, rgba(124, 92, 255, 0.18) 0%, transparent 60%),
-    radial-gradient(ellipse at 20% 80%, rgba(124, 92, 255, 0.08) 0%, transparent 50%);
+    radial-gradient(ellipse at 80% 50%, rgba(103, 185, 159, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse at 20% 80%, rgba(103, 185, 159, 0.08) 0%, transparent 50%);
 }
 .headerContent {
   position: relative;
@@ -310,13 +310,13 @@
   cursor: default;
 }
 .badgeUnlocked {
-  border-color: rgba(124, 92, 255, 0.3);
-  background: linear-gradient(135deg, var(--bg-tertiary), rgba(124, 92, 255, 0.06));
+  border-color: rgba(103, 185, 159, 0.3);
+  background: linear-gradient(135deg, var(--bg-tertiary), rgba(103, 185, 159, 0.06));
 }
 .badgeUnlocked:hover {
   border-color: var(--accent);
   transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(124, 92, 255, 0.2);
+  box-shadow: 0 8px 24px rgba(103, 185, 159, 0.2);
 }
 .badgeLocked { opacity: 0.45; filter: grayscale(0.6); }
 
