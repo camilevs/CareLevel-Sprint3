@@ -62,14 +62,15 @@ export default function RecompensasPage() {
   return (
     <>
       <NavBar />
-      <div className="w-full max-w-[1200px] mx-auto my-6 md:my-7 lg:my-8 px-4 md:px-6 lg:px-10 box-border grid gap-6 md:gap-7 lg:gap-8">
+      <div className="w-full max-w-[1200px] mx-auto my-6 md:my-7 lg:my-8 px-4 md:px-6 lg:px-10 box-border grid gap-6 md:gap-7 lg:gap-8" style={{ paddingBottom: '48px', paddingTop: '48px' }}>
 
         {/* Header banner — verde */}
         <div
-          className="relative overflow-hidden rounded-[var(--radius-lg)] px-5 py-6 sm:px-7 sm:py-7 md:px-9 md:py-8 animate-fade-in-up"
+          className="relative overflow-hidden rounded-[var(--radius-lg)] px-5 py-10 sm:px-7 sm:py-12 md:px-9 md:py-14 animate-fade-in-up"
           style={{
             background: `linear-gradient(135deg, ${GREEN}, ${GREEN_DARK})`,
             boxShadow: `0 8px 28px ${GREEN_GLOW}`,
+            padding: '28px 36px',
           }}
         >
           <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-white/10 animate-float" />
