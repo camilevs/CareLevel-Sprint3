@@ -95,8 +95,62 @@ function Card({ title, children, style }) {
   );
 }
 
+const NAV_LINKS = ["Home", "Beneficiários", "Recompensas", "Missões"];
+
+function AdminSidebar({ active, onNav }) {
+  return (
+    <aside style={{
+      position: "fixed",
+      top: 0, left: 0, bottom: 0,
+      width: 260,
+      background: C.cardDark,
+      display: "flex",
+      flexDirection: "column",
+      padding: "24px 16px",
+      gap: 16,
+      zIndex: 100,
+      boxShadow: "2px 0 12px rgba(0,0,0,0.15)",
+    }}>
+      {/* Logo */}
+      <div style={{ display:"flex", alignItems:"center", gap:10, paddingBottom:8, borderBottom:"1px solid rgba(255,255,255,0.1)" }}>
+        <div style={{ width:32, height:32, background: C.accent, borderRadius:8, flexShrink:0 }}/>
+        <span style={{ fontWeight:800, fontSize:16, color:"#fff", letterSpacing:-0.5 }}>CareLevel</span>
+        <span style={{ marginLeft:"auto", fontSize:11, fontWeight:700, background:"rgba(255,255,255,0.12)", color:"#fff", borderRadius:6, padding:"2px 8px" }}>ADM</span>
+      </div>
+
+      {/* Nav links */}
+      <nav style={{ display:"flex", flexDirection:"column", gap:4 }}>
+        {NAV_LINKS.map(n => (
+          <button key={n} onClick={() => onNav(n)} style={{
+            display:"flex", alignItems:"center", gap:8,
+            padding:"9px 12px", borderRadius:8, border:"none", cursor:"pointer",
+            fontFamily:"'DM Sans',sans-serif", fontSize:14, fontWeight:600,
+            textAlign:"left", width:"100%",
+            background: active === n ? "rgba(255,255,255,0.18)" : "transparent",
+            color: active === n ? "#fff" : "rgba(255,255,255,0.65)",
+            transition:"background 0.2s, color 0.2s",
+          }}>{n}</button>
+        ))}
+      </nav>
+
+      {/* Bottom: account */}
+      <div style={{ marginTop:"auto", display:"flex", flexDirection:"column", gap:8 }}>
+        <div style={{ height:"1px", background:"rgba(255,255,255,0.1)" }}/>
+        <div style={{ display:"flex", alignItems:"center", gap:10, padding:"8px 12px" }}>
+          <div style={{ width:32, height:32, borderRadius:"50%", background:"rgba(255,255,255,0.15)", display:"flex", alignItems:"center", justifyContent:"center", color:"#fff", fontSize:14, fontWeight:700, flexShrink:0 }}>RH</div>
+          <div style={{ flex:1, minWidth:0 }}>
+            <div style={{ fontSize:13, fontWeight:700, color:"#fff", overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>Conta RH</div>
+            <div style={{ fontSize:11, color:"rgba(255,255,255,0.5)" }}>Administrador</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  );
+}
+
 export default function HRDashboard() {
   const [admin, setAdmin] = useState(null);
+  const [activeNav, setActiveNav] = useState("Home");
 
   useEffect(() => {
     fetchAdmin().then(setAdmin).catch(console.error);
@@ -115,27 +169,12 @@ export default function HRDashboard() {
     : Object.keys(lineColors);
 
   return (
-    <div style={{ fontFamily:"'DM Sans',sans-serif", background: C.bg, minHeight:"100vh" }}>
+    <div style={{ fontFamily:"'DM Sans',sans-serif", background: C.bg, minHeight:"100vh", display:"flex" }}>
       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 
-      <nav style={{
-        display:"flex", alignItems:"center", justifyContent:"space-between",
-        padding:"12px 32px", background:"#fff", boxShadow:"0 1px 4px #0001"
-      }}>
-        <div style={{ display:"flex", alignItems:"center", gap:28 }}>
-          <div style={{ width:28, height:28, background: C.card, borderRadius:6 }}/>
-          {["Home","Beneficiários","Recompensas","Missões"].map(n=>(
-            <span key={n} style={{ fontSize:14, color: C.textDark, cursor:"pointer" }}>{n}</span>
-          ))}
-        </div>
-        <div style={{ display:"flex", alignItems:"center", gap:12 }}>
-          <div style={{ width:28, height:28, borderRadius:"50%", border:"1.5px solid #b2d8c8", display:"flex", alignItems:"center", justifyContent:"center", fontSize:14, color: C.card }}>?</div>
-          <button style={{ background: C.card, color:"#fff", border:"none", borderRadius:8, padding:"8px 18px", fontWeight:700, fontSize:13, cursor:"pointer" }}>Conta RH</button>
-          <div style={{ width:28, height:28, borderRadius:"50%", border:"1.5px solid #b2d8c8" }}/>
-        </div>
-      </nav>
+      <AdminSidebar active={activeNav} onNav={setActiveNav} />
 
-      <div style={{ padding:"28px 32px", display:"flex", flexDirection:"column", gap:24 }}>
+      <div style={{ marginLeft:260, flex:1, padding:"28px 32px", display:"flex", flexDirection:"column", gap:24 }}>
 
         <div style={{ display:"flex", alignItems:"flex-end", gap:20, flexWrap:"wrap" }}>
           <Select label="Equipe" options={["Todas"]}/>

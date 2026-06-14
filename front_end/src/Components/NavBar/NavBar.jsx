@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import { Flame, User, LogOut, Menu, X } from 'lucide-react';
+import { Flame, User, LogOut, Menu, X, Moon, Sun } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 import { useUser } from '../UserContext/UserContext';
@@ -120,13 +120,17 @@ export default function Navbar() {
             </NavLink>
 
             <label className={styles.themeToggle} title={isDark ? 'Mudar para modo claro' : 'Mudar para modo escuro'}>
-              <input
-                type="checkbox"
-                className={styles.toggleInput}
-                checked={isDark}
-                onChange={() => setIsDark((d) => !d)}
-              />
-              <span className={styles.toggleSlider} />
+              <Moon size={13} className={`${styles.themeIcon} ${isDark ? styles.themeIconActive : ''}`} />
+              <span className={styles.toggleTrack}>
+                <input
+                  type="checkbox"
+                  className={styles.toggleInput}
+                  checked={isDark}
+                  onChange={() => setIsDark((d) => !d)}
+                />
+                <span className={styles.toggleSlider} />
+              </span>
+              <Sun size={13} className={`${styles.themeIcon} ${!isDark ? styles.themeIconActive : ''}`} />
             </label>
           </div>
 
