@@ -15,7 +15,6 @@ const C = {
   text: "#fff",
   textDark: "#1a3a2a",
   accent: "#6fcf97",
-  nav: "#fff",
 };
 
 const lineColors = {
@@ -84,12 +83,12 @@ function Select({ label, options }) {
 
 function Card({ title, children, style }) {
   return (
-    <div style={{
-      background: C.cardLight, borderRadius:14, padding:20, ...style
-    }}>
-      {title && <div style={{
-        fontWeight:700, fontSize:14, color: C.text, marginBottom:14, textAlign:"center"
-      }}>{title}</div>}
+    <div style={{ background: C.cardLight, borderRadius:14, padding:20, ...style }}>
+      {title && (
+        <div style={{ fontWeight:700, fontSize:14, color: C.text, marginBottom:14, textAlign:"center" }}>
+          {title}
+        </div>
+      )}
       {children}
     </div>
   );
@@ -99,48 +98,42 @@ const NAV_LINKS = ["Home", "Beneficiários", "Recompensas", "Missões"];
 
 function AdminSidebar({ active, onNav }) {
   return (
-    <aside style={{
-      position: "fixed",
-      top: 0, left: 0, bottom: 0,
-      width: 260,
-      background: C.cardDark,
-      display: "flex",
-      flexDirection: "column",
-      padding: "24px 16px",
-      gap: 16,
-      zIndex: 100,
-      boxShadow: "2px 0 12px rgba(0,0,0,0.15)",
-    }}>
-      {/* Logo */}
-      <div style={{ display:"flex", alignItems:"center", gap:10, paddingBottom:8, borderBottom:"1px solid rgba(255,255,255,0.1)" }}>
-        <div style={{ width:32, height:32, background: C.accent, borderRadius:8, flexShrink:0 }}/>
-        <span style={{ fontWeight:800, fontSize:16, color:"#fff", letterSpacing:-0.5 }}>CareLevel</span>
-        <span style={{ marginLeft:"auto", fontSize:11, fontWeight:700, background:"rgba(255,255,255,0.12)", color:"#fff", borderRadius:6, padding:"2px 8px" }}>ADM</span>
+    <aside className="fixed top-0 left-0 bottom-0 w-64 flex flex-col p-6 gap-4 z-[100] shadow-[2px_0_12px_rgba(0,0,0,0.15)]"
+      style={{ background: C.cardDark }}>
+
+      <div className="flex items-center gap-2.5 pb-2 border-b border-white/10">
+        <div className="w-8 h-8 rounded-lg flex-shrink-0" style={{ background: C.accent }} />
+        <span className="font-extrabold text-base text-white tracking-[-0.5px]">CareLevel</span>
+        <span className="ml-auto text-[11px] font-bold bg-white/[0.12] text-white rounded-md px-2 py-0.5">ADM</span>
       </div>
 
-      {/* Nav links */}
-      <nav style={{ display:"flex", flexDirection:"column", gap:4 }}>
+      <nav className="flex flex-col gap-1">
         {NAV_LINKS.map(n => (
-          <button key={n} onClick={() => onNav(n)} style={{
-            display:"flex", alignItems:"center", gap:8,
-            padding:"9px 12px", borderRadius:8, border:"none", cursor:"pointer",
-            fontFamily:"'DM Sans',sans-serif", fontSize:14, fontWeight:600,
-            textAlign:"left", width:"100%",
-            background: active === n ? "rgba(255,255,255,0.18)" : "transparent",
-            color: active === n ? "#fff" : "rgba(255,255,255,0.65)",
-            transition:"background 0.2s, color 0.2s",
-          }}>{n}</button>
+          <button
+            key={n}
+            onClick={() => onNav(n)}
+            className={[
+              "flex items-center gap-2 px-3 py-2.5 rounded-lg border-0 cursor-pointer text-sm font-semibold text-left w-full transition-[background,color] duration-200",
+              active === n
+                ? "bg-white/[0.18] text-white"
+                : "bg-transparent text-white/65 hover:bg-white/10 hover:text-white",
+            ].join(" ")}
+            style={{ fontFamily: "'DM Sans',sans-serif" }}
+          >
+            {n}
+          </button>
         ))}
       </nav>
 
-      {/* Bottom: account */}
-      <div style={{ marginTop:"auto", display:"flex", flexDirection:"column", gap:8 }}>
-        <div style={{ height:"1px", background:"rgba(255,255,255,0.1)" }}/>
-        <div style={{ display:"flex", alignItems:"center", gap:10, padding:"8px 12px" }}>
-          <div style={{ width:32, height:32, borderRadius:"50%", background:"rgba(255,255,255,0.15)", display:"flex", alignItems:"center", justifyContent:"center", color:"#fff", fontSize:14, fontWeight:700, flexShrink:0 }}>RH</div>
-          <div style={{ flex:1, minWidth:0 }}>
-            <div style={{ fontSize:13, fontWeight:700, color:"#fff", overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>Conta RH</div>
-            <div style={{ fontSize:11, color:"rgba(255,255,255,0.5)" }}>Administrador</div>
+      <div className="mt-auto flex flex-col gap-2">
+        <div className="h-px bg-white/10" />
+        <div className="flex items-center gap-2.5 px-3 py-2">
+          <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0 bg-white/15">
+            RH
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="text-[13px] font-bold text-white overflow-hidden text-ellipsis whitespace-nowrap">Conta RH</div>
+            <div className="text-[11px] text-white/50">Administrador</div>
           </div>
         </div>
       </div>
@@ -174,7 +167,7 @@ export default function HRDashboard() {
 
       <AdminSidebar active={activeNav} onNav={setActiveNav} />
 
-      <div style={{ marginLeft:260, flex:1, padding:"28px 32px", display:"flex", flexDirection:"column", gap:24 }}>
+      <div style={{ marginLeft:256, flex:1, padding:"28px 32px", display:"flex", flexDirection:"column", gap:24 }}>
 
         <div style={{ display:"flex", alignItems:"flex-end", gap:20, flexWrap:"wrap" }}>
           <Select label="Equipe" options={["Todas"]}/>

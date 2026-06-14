@@ -1,4 +1,4 @@
-import {
+﻿import {
   Clock,
   SmilePlus,
   BarChart2,
@@ -7,7 +7,6 @@ import {
   Activity,
 } from 'lucide-react';
 
-import styles from './ServicesGrid.module.css';
 import ServiceCard from '../ServiceCard/ServiceCard';
 
 const services = [
@@ -21,13 +20,13 @@ const services = [
 
 export default function ServicesGrid({ onNavigate }) {
   return (
-    <section className={styles.section}>
-      <div className={styles.titleWrap}>
-        <h2 className={styles.title}>Serviços</h2>
+    <section className="py-2 pb-8">
+      <div className="w-[min(1100px,calc(100%-48px))] mx-auto mb-4">
+        <h2 className="font-[var(--font-display)] text-2xl font-extrabold text-[var(--text-primary)] tracking-[4px] uppercase m-0">Serviços</h2>
       </div>
 
-      <div className={styles.listWrap}>
-        <div className={styles.list}>
+      <div className="relative overflow-hidden">
+        <div className="flex gap-3 px-6 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-1 pb-4">
           {services.map((service) => (
             <ServiceCard
               key={service.id}
@@ -37,8 +36,8 @@ export default function ServicesGrid({ onNavigate }) {
             />
           ))}
         </div>
-        <div className={styles.fadeLeft}  aria-hidden="true" />
-        <div className={styles.fadeRight} aria-hidden="true" />
+        <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[var(--fade-bg)] to-transparent pointer-events-none z-[2]" aria-hidden="true" />
+        <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[var(--fade-bg)] to-transparent pointer-events-none z-[2]" aria-hidden="true" />
       </div>
     </section>
   );

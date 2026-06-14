@@ -1,6 +1,5 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import styles from './OnboardingModal.module.css';
 
 const STORAGE_KEY = 'carelevel-onboarding';
 
@@ -68,6 +67,12 @@ const features = [
   { Icon: PointsIcon,     label: 'CarePoints',  desc: 'Acumulados ao completar missões e desafios.' },
 ];
 
+const pillCls = "self-center bg-[var(--accent)] text-white text-[11px] font-black tracking-[2px] px-4 py-2 rounded-full mt-6";
+const cardCls = "bg-[var(--bg-tertiary)] border border-[var(--border)] rounded-[var(--radius-lg)] mx-5 mt-4 p-5 flex flex-col gap-3";
+const textCls = "text-sm text-[var(--text-secondary)] leading-relaxed m-0";
+const btnPrimary = "bg-[var(--accent)] text-white border-0 rounded-[var(--radius-sm)] py-2.5 px-6 text-sm font-bold cursor-pointer hover:bg-[var(--accent-hover)] transition-colors";
+const btnSecondary = "bg-transparent text-[var(--text-secondary)] border border-[var(--border)] rounded-[var(--radius-sm)] py-2.5 px-6 text-sm font-bold cursor-pointer hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors";
+
 export default function OnboardingModal({ onDone }) {
   const { user } = useAuth();
   const [step, setStep] = useState(1);
@@ -80,37 +85,37 @@ export default function OnboardingModal({ onDone }) {
   }
 
   return (
-    <div className={`${styles.overlay} d-flex align-items-center justify-content-center`}>
-      <div className={`${styles.modal} d-flex flex-column`}>
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 [backdrop-filter:blur(4px)] p-4">
+      <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-[var(--radius-xl)] shadow-[var(--shadow-lg)] w-full max-w-[520px] flex flex-col overflow-hidden pb-2">
 
         {step === 1 && (
           <>
-            <div className={`${styles.titlePill} align-self-center`}>BEM VINDO A CARELEVEL</div>
+            <div className={pillCls}>BEM VINDO A CARELEVEL</div>
 
-            <div className={`${styles.card} d-flex flex-column`}>
-              <p className={styles.greeting}>Bem-vindo(a)!</p>
-              <p className={styles.text}>
+            <div className={cardCls}>
+              <p className="text-lg font-bold text-[var(--text-primary)] m-0">Bem-vindo(a)!</p>
+              <p className={textCls}>
                 A plataforma CareLevel foi desenvolvida para ajudá-lo a melhorar
                 seu bem-estar através do acompanhamento das suas atividades diárias e humor.
               </p>
-              <p className={styles.text} style={{ marginTop: 12 }}>
+              <p className={textCls}>
                 Os dados serão coletados de forma anônima para personalizar sua
                 experiência e oferecer recompensas.<br />
                 No sistema você encontrará as seguintes áreas:
               </p>
 
-              <ul className={`${styles.featureList} d-flex flex-column`}>
+              <ul className="flex flex-col gap-2 mt-1 list-none p-0 m-0">
                 {features.map(({ Icon, label, desc }) => (
-                  <li key={label} className={`${styles.featureItem} d-flex align-items-start`}>
-                    <span className={styles.featureIcon}><Icon /></span>
-                    <span><strong>{label}:</strong> {desc}</span>
+                  <li key={label} className="flex items-start gap-3">
+                    <span className="mt-0.5 text-[var(--accent)] flex-shrink-0"><Icon /></span>
+                    <span className="text-sm text-[var(--text-secondary)]"><strong className="text-[var(--text-primary)]">{label}:</strong> {desc}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className={`${styles.footer} d-flex justify-content-end`}>
-              <button className={styles.btnPrimary} onClick={() => setStep(2)}>
+            <div className="flex justify-end px-5 py-4">
+              <button className={btnPrimary} onClick={() => setStep(2)}>
                 SEGUINTE
               </button>
             </div>
@@ -119,35 +124,35 @@ export default function OnboardingModal({ onDone }) {
 
         {step === 2 && (
           <>
-            <div className={`${styles.titlePill} align-self-center`}>TERMOS E CONDIÇÕES</div>
+            <div className={pillCls}>TERMOS E CONDIÇÕES</div>
 
-            <div className={`${styles.card} d-flex flex-column`}>
-              <p className={styles.sectionTitle}>Consentimento LGPD</p>
-              <p className={styles.text}>
+            <div className={cardCls}>
+              <p className="text-sm font-bold text-[var(--text-primary)] m-0">Consentimento LGPD</p>
+              <p className={textCls}>
                 Para continuar, precisamos do seu consentimento para tratar apenas
                 os dados necessários à sua jornada de bem-estar.
               </p>
-              <p className={styles.text}>Por que pedimos isso?</p>
-              <ul className={styles.bulletList}>
-                <li>Personalizar suas missões e recompensas</li>
-                <li>Registrar seu progresso</li>
-                <li>(Opcional) Sincronizar dados de saúde como passos, sono e atividade física</li>
+              <p className={textCls}>Por que pedimos isso?</p>
+              <ul className="list-disc list-inside flex flex-col gap-1 pl-1">
+                <li className="text-sm text-[var(--text-secondary)]">Personalizar suas missões e recompensas</li>
+                <li className="text-sm text-[var(--text-secondary)]">Registrar seu progresso</li>
+                <li className="text-sm text-[var(--text-secondary)]">(Opcional) Sincronizar dados de saúde como passos, sono e atividade física</li>
               </ul>
-              <p className={styles.text}>Você decide o que compartilhar.</p>
-              <p className={styles.text}>
+              <p className={textCls}>Você decide o que compartilhar.</p>
+              <p className={textCls}>
                 Tudo é opcional, transparente e pode ser alterado a qualquer momento.
               </p>
-              <p className={styles.text}><strong>Seus direitos:</strong></p>
-              <p className={styles.text}>
+              <p className={textCls}><strong>Seus direitos:</strong></p>
+              <p className={textCls}>
                 Acessar, corrigir, excluir ou revogar consentimentos quando quiser.
               </p>
             </div>
 
-            <div className={`${styles.footer} d-flex justify-content-end`}>
-              <button className={styles.btnSecondary} onClick={() => setStep(2)}>
+            <div className="flex justify-end gap-3 px-5 py-4">
+              <button className={btnSecondary} onClick={() => setStep(2)}>
                 RECUSAR
               </button>
-              <button className={styles.btnPrimary} onClick={handleAceitar}>
+              <button className={btnPrimary} onClick={handleAceitar}>
                 ACEITAR
               </button>
             </div>
