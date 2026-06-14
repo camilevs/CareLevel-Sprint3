@@ -171,6 +171,62 @@ export async function resgatarCaremoodPoints() {
   }
 }
 
+// ── Admin: Missões ────────────────────────────────────────────────────────────
+
+export async function fetchAdminMissoes() {
+  const { data } = await api.get('/api/admin/missoes')
+  return data
+}
+
+export async function createAdminMissao(tipo, dados) {
+  const { data } = await api.post('/api/admin/missoes', { tipo, dados })
+  return data
+}
+
+export async function updateAdminMissao(id, tipo, dados) {
+  const { data } = await api.put(`/api/admin/missoes/${id}`, { tipo, dados })
+  return data
+}
+
+export async function deleteAdminMissao(id) {
+  const { data } = await api.delete(`/api/admin/missoes/${id}`)
+  return data
+}
+
+// ── Admin: Recompensas ────────────────────────────────────────────────────────
+
+export async function fetchAdminRecompensas() {
+  const { data } = await api.get('/api/admin/recompensas')
+  return data
+}
+
+export async function createAdminRecompensa(payload) {
+  const { data } = await api.post('/api/admin/recompensas', payload)
+  return data
+}
+
+export async function updateAdminRecompensa(id, payload) {
+  const { data } = await api.put(`/api/admin/recompensas/${id}`, payload)
+  return data
+}
+
+export async function deleteAdminRecompensa(id) {
+  const { data } = await api.delete(`/api/admin/recompensas/${id}`)
+  return data
+}
+
+// ── Admin: Beneficiários ──────────────────────────────────────────────────────
+
+export async function fetchAdminBeneficiarios(search = '') {
+  const { data } = await api.get('/api/admin/beneficiarios', { params: { search } })
+  return data
+}
+
+export async function fetchAdminBeneficiarioById(id) {
+  const { data } = await api.get(`/api/admin/beneficiarios/${id}`)
+  return data
+}
+
 export async function fetchAdmin() {
   const { data } = await api.get('/api/admin')
   return data

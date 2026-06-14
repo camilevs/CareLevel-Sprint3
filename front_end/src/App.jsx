@@ -13,10 +13,12 @@ import JornadaPage from './pages/Jornada/JornadaPage.jsx';
 import RecompensasPage from './pages/Recompensas/RecompensasPage.jsx';
 import CarePoints from './pages/CarePoints/CarePoints.jsx';
 import CarePointsHistorico from './pages/CarePoints/CarePointsHistorico.jsx';
-
 import MissoesPage from './pages/Missoes/MissoesPage.jsx';
 import RankingPage from './pages/Ranking/RankingPage.jsx';
 import Conquistas from './pages/Conquistas/Conquistas.jsx';
+import MissoesAdmin from './pages/Admin/MissoesAdmin.jsx';
+import RecompensasAdmin from './pages/Admin/RecompensasAdmin.jsx';
+import BeneficiariosAdmin from './pages/Admin/BeneficiariosAdmin.jsx';
 
 export default function App() {
   return (
@@ -30,6 +32,18 @@ export default function App() {
           <Route
             path="/admin/home"
             element={<RoleGuard role="admin"><AdminHome /></RoleGuard>}
+          />
+          <Route
+            path="/admin/missoes"
+            element={<RoleGuard role="admin"><MissoesAdmin /></RoleGuard>}
+          />
+          <Route
+            path="/admin/recompensas"
+            element={<RoleGuard role="admin"><RecompensasAdmin /></RoleGuard>}
+          />
+          <Route
+            path="/admin/beneficiarios"
+            element={<RoleGuard role="admin"><BeneficiariosAdmin /></RoleGuard>}
           />
           <Route
             path="/home"
