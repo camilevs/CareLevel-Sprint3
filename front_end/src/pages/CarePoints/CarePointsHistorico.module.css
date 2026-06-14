@@ -1,0 +1,321 @@
+/* CarePointsHistorico.module.css — dark mode */
+
+.page {
+  background: var(--bg-primary);
+  min-height: 100vh;
+  font-family: var(--font-body);
+  padding-bottom: 40px;
+}
+
+.main {
+  padding: 28px 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 860px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ===== HEADER ===== */
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (min-width: 640px) {
+  .header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btnVoltar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 16px;
+  font-family: inherit;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  flex-shrink: 0;
+}
+
+.btnVoltar:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-subtle);
+}
+
+.titulo {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* ===== BUSCA ===== */
+.buscaWrapper {
+  position: relative;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .buscaWrapper { width: 256px; }
+}
+
+.buscaInput {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 8px 40px 8px 16px;
+  font-size: 13px;
+  color: var(--text-primary);
+  width: 100%;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.buscaInput::placeholder { color: var(--text-muted); }
+.buscaInput:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-subtle); }
+
+.buscaIcon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+/* ===== LEGENDA ===== */
+.legenda {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.legendaItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.legendaDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legendaDotCredito { background: #4ade80; }
+.legendaDotDebito  { background: #fca5a5; }
+
+/* ===== TABELA ===== */
+.tabelaWrapper {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 20px;
+}
+
+@media (min-width: 500px) {
+  .tabelaWrapper { padding: 24px 28px; }
+}
+
+.tabelaHeader {
+  display: none;
+  padding: 0 20px;
+  margin-bottom: 10px;
+  color: var(--text-muted);
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  grid-template-columns: 116px 1fr 120px;
+}
+
+@media (min-width: 640px) {
+  .tabelaHeader {
+    display: grid;
+  }
+}
+
+.tabelaHeaderRight { text-align: right; }
+
+.tabelaLinhas {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.semResultados {
+  text-align: center;
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 24px 0;
+}
+
+/* ===== ROW (base) ===== */
+.historicoRow {
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid transparent;
+  transition: border-color 0.2s, background 0.2s;
+  min-width: 0;
+}
+
+@media (min-width: 500px) {
+  .historicoRow { padding: 12px 18px; gap: 14px; }
+}
+
+@media (min-width: 640px) {
+  .historicoRow { padding: 13px 20px; grid-template-columns: 116px 1fr 120px; }
+}
+
+/* ── Crédito (ganho de pontos) ── */
+.historicoRowCredito {
+  background: rgba(34, 197, 94, 0.06);
+  border-color: rgba(34, 197, 94, 0.18);
+}
+.historicoRowCredito:hover {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: rgba(34, 197, 94, 0.32);
+}
+
+/* ── Débito (gasto de pontos) ── */
+.historicoRowDebito {
+  background: rgba(239, 68, 68, 0.06);
+  border-color: rgba(239, 68, 68, 0.18);
+}
+.historicoRowDebito:hover {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.32);
+}
+
+/* ── Neutro ── */
+.historicoRowNeutro {
+  background: var(--bg-tertiary);
+  border-color: transparent;
+}
+.historicoRowNeutro:hover { border-color: var(--border); }
+
+/* ===== ÍCONE ===== */
+.historicoDate {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.historicoIcon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 900;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.historicoIconCredito {
+  background: rgba(34, 197, 94, 0.15);
+  border: 1.5px solid rgba(34, 197, 94, 0.4);
+  color: #4ade80;
+}
+
+.historicoIconDebito {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1.5px solid rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+}
+
+.historicoIconNeutro {
+  background: var(--accent-subtle);
+  border: 1.5px solid rgba(124, 92, 255, 0.3);
+  color: var(--accent);
+}
+
+.historicoDateText {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ===== ATIVIDADE ===== */
+.historicoAtividade {
+  font-size: 13px;
+  color: var(--text-primary);
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+/* ===== PONTOS PILL ===== */
+.historicoPontosWrapper { text-align: right; flex-shrink: 0; }
+
+.historicoPontos {
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  display: inline-block;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.historicoPontosCredito {
+  background: rgba(34, 197, 94, 0.12);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.historicoPontosDebito {
+  background: rgba(239, 68, 68, 0.12);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.historicoPontosNeutro {
+  background: var(--accent-subtle);
+  color: var(--accent);
+  border: 1px solid rgba(124, 92, 255, 0.3);
+}
+
+@media (min-width: 640px) {
+  .historicoPontos { padding: 5px 18px; font-size: 13px; }
+}

@@ -1,0 +1,213 @@
+/* ═══════════════════════════════════════
+   QUIZ — CareMood — dark mode
+═══════════════════════════════════════ */
+
+.quiz-container {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+  background: var(--bg-primary);
+}
+
+/* ── Card externo ── */
+.quiz-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 460px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 28px;
+}
+
+/* ── Barra de título ── */
+.quiz-title-bar {
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font);
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  padding: 14px 24px;
+  border-radius: 28px 28px 0 0;
+  letter-spacing: 0.5px;
+}
+
+/* ── Barra de progresso ── */
+.quiz-progress-track {
+  height: 4px;
+  background: var(--bg-elevated);
+}
+
+.quiz-progress-fill {
+  height: 100%;
+  background: var(--accent-hover);
+  border-radius: 0 2px 2px 0;
+  transition: width 0.3s ease;
+}
+
+.quiz-progress-label {
+  display: block;
+  text-align: right;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding: 6px 20px 0;
+}
+
+/* ── Corpo ── */
+.quiz-body {
+  margin: 16px 20px 0;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 24px 20px 20px;
+}
+
+.intro-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 32px 24px;
+  text-align: center;
+}
+
+/* ── Texto introdutório ── */
+.intro-text {
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ── Botão INICIAR / Voltar ── */
+.quiz-btn-iniciar {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 12px 48px;
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px var(--accent-glow);
+  transition: background 0.15s, transform 0.1s;
+}
+
+.quiz-btn-iniciar:hover  { background: var(--accent-hover); }
+.quiz-btn-iniciar:active { transform: scale(0.97); }
+
+/* ── Box da pergunta ── */
+.pergunta-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+/* ── Badge "Pergunta N" ── */
+.badge {
+  background: var(--accent-subtle);
+  color: var(--accent);
+  border: 1px solid rgba(124, 92, 255, 0.3);
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 20px;
+  padding: 6px 22px;
+  letter-spacing: 0.3px;
+}
+
+/* ── Texto da pergunta ── */
+.pergunta-texto {
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── Grid de opções ── */
+.opcoes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+/* ── Botão de opção ── */
+.opcao-btn {
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 7px 14px;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.1s;
+}
+
+.opcao-btn:hover {
+  background: var(--accent-subtle);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.opcao-btn:active,
+.opcao-btn.opcao-selecionada {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  transform: scale(0.96);
+}
+
+.fim-botoes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.quiz-btn-voltar {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  padding: 10px 40px;
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.quiz-btn-voltar:hover {
+  background: var(--bg-elevated);
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+
+/* ── Responsividade ── */
+@media (max-width: 480px) {
+  .quiz-card        { border-radius: 20px; }
+  .quiz-body        { margin: 12px 12px 0; padding: 20px 14px 16px; }
+  .pergunta-texto   { font-size: 14px; }
+  .opcao-btn        { font-size: 11px; padding: 6px 11px; }
+}

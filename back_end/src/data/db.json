@@ -1,0 +1,796 @@
+{
+  "usuario": {
+    "userId": "usr_logado",
+    "nome": "Você",
+    "email": "usuario@carelevel.com",
+    "equipeId": "eq_009",
+    "nivel": 10,
+    "streak": 5,
+    "carepoints": 1490,
+    "validadePoints": "01/2027",
+    "rankingAtivo": true,
+    "avatar": "https://i.pravatar.cc/200?img=68"
+  },
+  "usuarios": [
+    {
+      "userId": "usr_001",
+      "nome": "Lina M.",
+      "nivel": 40,
+      "streak": 38,
+      "carepoints": 18740,
+      "pontosVitalicio": 21500,
+      "equipeId": "eq_003"
+    },
+    {
+      "userId": "usr_002",
+      "nome": "Maicon K.",
+      "nivel": 33,
+      "streak": 35,
+      "carepoints": 15230,
+      "pontosVitalicio": 18200,
+      "equipeId": "eq_001"
+    },
+    {
+      "userId": "usr_003",
+      "nome": "Lana J.",
+      "nivel": 32,
+      "streak": 29,
+      "carepoints": 12580,
+      "pontosVitalicio": 15800,
+      "equipeId": "eq_002"
+    },
+    {
+      "userId": "usr_004",
+      "nome": "Arthur Costa",
+      "nivel": 30,
+      "streak": 28,
+      "carepoints": 10320,
+      "pontosVitalicio": 12400,
+      "equipeId": "eq_001"
+    },
+    {
+      "userId": "usr_005",
+      "nome": "Linus Torvalds",
+      "nivel": 28,
+      "streak": 28,
+      "carepoints": 9870,
+      "pontosVitalicio": 11200,
+      "equipeId": "eq_005"
+    },
+    {
+      "userId": "usr_006",
+      "nome": "Giovanna Bezerra",
+      "nivel": 27,
+      "streak": 27,
+      "carepoints": 8640,
+      "pontosVitalicio": 9800,
+      "equipeId": "eq_004"
+    },
+    {
+      "userId": "usr_007",
+      "nome": "Eduarda Costa",
+      "nivel": 25,
+      "streak": 26,
+      "carepoints": 7410,
+      "pontosVitalicio": 8600,
+      "equipeId": "eq_002"
+    },
+    {
+      "userId": "usr_008",
+      "nome": "Deyverson Sanches",
+      "nivel": 20,
+      "streak": 20,
+      "carepoints": 6990,
+      "pontosVitalicio": 7800,
+      "equipeId": "eq_006"
+    },
+    {
+      "userId": "usr_009",
+      "nome": "Felipe Duarte",
+      "nivel": 8,
+      "streak": 18,
+      "carepoints": 890,
+      "pontosVitalicio": 1200,
+      "equipeId": "eq_007"
+    },
+    {
+      "userId": "usr_010",
+      "nome": "Carla Nunes",
+      "nivel": 6,
+      "streak": 14,
+      "carepoints": 620,
+      "pontosVitalicio": 950,
+      "equipeId": "eq_008"
+    },
+    {
+      "userId": "usr_logado",
+      "nome": "Você",
+      "nivel": 10,
+      "streak": 5,
+      "carepoints": 1490,
+      "equipeId": "eq_009"
+    }
+  ],
+  "equipes": [
+    {
+      "equipeId": "eq_001",
+      "nome": "Logística",
+      "emoji": "🌐",
+      "carepoints": 61500
+    },
+    {
+      "equipeId": "eq_002",
+      "nome": "Recursos Humanos",
+      "emoji": "👥",
+      "carepoints": 48200
+    },
+    {
+      "equipeId": "eq_003",
+      "nome": "Produção",
+      "emoji": "⚙️",
+      "carepoints": 44780
+    },
+    {
+      "equipeId": "eq_004",
+      "nome": "Vendas",
+      "emoji": "💼",
+      "carepoints": 38900
+    },
+    {
+      "equipeId": "eq_005",
+      "nome": "Financeiro",
+      "emoji": "💰",
+      "carepoints": 32150
+    },
+    {
+      "equipeId": "eq_006",
+      "nome": "Atendimento",
+      "emoji": "🎧",
+      "carepoints": 29340
+    },
+    {
+      "equipeId": "eq_007",
+      "nome": "Jurídico",
+      "emoji": "⚖️",
+      "carepoints": 21700
+    },
+    {
+      "equipeId": "eq_008",
+      "nome": "Marketing",
+      "emoji": "📣",
+      "carepoints": 18420
+    },
+    {
+      "equipeId": "eq_009",
+      "nome": "TI (Você)",
+      "emoji": "💻",
+      "carepoints": 14230
+    }
+  ],
+  "historico": [
+    {
+      "id": 16,
+      "data": "28/04/2026",
+      "atividade": "MISSÃO DIÁRIA: BEBER 2L DE ÁGUA",
+      "pontos": 15,
+      "tipo": "credito"
+    },
+    {
+      "id": 15,
+      "data": "27/04/2026",
+      "atividade": "MISSÃO DIÁRIA: ANDAR 2KM",
+      "pontos": 20,
+      "tipo": "credito"
+    },
+    {
+      "id": 14,
+      "data": "26/04/2026",
+      "atividade": "MISSÃO DIÁRIA: DORMIR 8H",
+      "pontos": 15,
+      "tipo": "credito"
+    },
+    {
+      "id": 13,
+      "data": "25/04/2026",
+      "atividade": "MISSÃO DIÁRIA: COMER 3 FRUTAS",
+      "pontos": 25,
+      "tipo": "credito"
+    },
+    {
+      "id": 12,
+      "data": "24/04/2026",
+      "atividade": "MISSÃO DIÁRIA: ALONGAR POR 5 MINUTOS",
+      "pontos": 20,
+      "tipo": "credito"
+    },
+    {
+      "id": 11,
+      "data": "21/04/2026",
+      "atividade": "RESGATE: SNACKS SAUDÁVEIS",
+      "pontos": -300,
+      "tipo": "debito"
+    },
+    {
+      "id": 10,
+      "data": "21/04/2026",
+      "atividade": "DESAFIO: SEMANA SEM ESTRESSE",
+      "pontos": 200,
+      "tipo": "badge"
+    },
+    {
+      "id": 9,
+      "data": "14/04/2026",
+      "atividade": "MISSÃO SEMANAL: HIDRATAÇÃO COMPLETA",
+      "pontos": 35,
+      "tipo": "credito"
+    },
+    {
+      "id": 8,
+      "data": "07/04/2026",
+      "atividade": "MISSÃO SEMANAL: MEDITAÇÃO DIÁRIA",
+      "pontos": 150,
+      "tipo": "credito"
+    },
+    {
+      "id": 7,
+      "data": "05/04/2026",
+      "atividade": "RESGATE: VALE-REFEIÇÃO",
+      "pontos": -400,
+      "tipo": "debito"
+    },
+    {
+      "id": 6,
+      "data": "01/04/2026",
+      "atividade": "MISSÃO SEMANAL: 10.000 PASSOS EM 3 DIAS",
+      "pontos": 200,
+      "tipo": "credito"
+    },
+    {
+      "id": 5,
+      "data": "31/03/2026",
+      "atividade": "CONQUISTA: 7 DIAS SEGUIDOS DE ATIVIDADE",
+      "pontos": 500,
+      "tipo": "badge"
+    },
+    {
+      "id": 4,
+      "data": "28/03/2026",
+      "atividade": "PAUSA ATIVA NO TRABALHO",
+      "pontos": 10,
+      "tipo": "credito"
+    },
+    {
+      "id": 3,
+      "data": "15/03/2026",
+      "atividade": "MISSÃO SEMANAL: ALIMENTAÇÃO SAUDÁVEL",
+      "pontos": 300,
+      "tipo": "credito"
+    },
+    {
+      "id": 2,
+      "data": "08/03/2026",
+      "atividade": "MISSÃO SEMANAL: ATIVIDADE FÍSICA COMPLETA",
+      "pontos": 300,
+      "tipo": "credito"
+    },
+    {
+      "id": 1,
+      "data": "01/03/2026",
+      "atividade": "CONQUISTA: PRIMEIRA SEMANA PERFEITA",
+      "pontos": 400,
+      "tipo": "badge"
+    }
+  ],
+  "carepoints": {
+    "saldo": 1490,
+    "validadePoints": "01/2027",
+    "analise": [
+      {
+        "mes": "Jan",
+        "valor": 320,
+        "destaque": false
+      },
+      {
+        "mes": "Fev",
+        "valor": 680,
+        "destaque": false
+      },
+      {
+        "mes": "Mar",
+        "valor": 1010,
+        "destaque": false
+      },
+      {
+        "mes": "Abr",
+        "valor": 1490,
+        "destaque": true
+      }
+    ]
+  },
+  "missoes": {
+    "equipe": {
+      "tempo": "7 dias",
+      "itens": [
+        {
+          "id": 1,
+          "titulo": "Hidratação Completa",
+          "pontos": 35,
+          "progresso": 57
+        },
+        {
+          "id": 2,
+          "titulo": "Meditação Diária",
+          "pontos": 150,
+          "progresso": 43
+        },
+        {
+          "id": 3,
+          "titulo": "Acumule 10.000 Passos",
+          "pontos": 200,
+          "progresso": 67
+        },
+        {
+          "id": 4,
+          "titulo": "Alimentação Saudável",
+          "pontos": 300,
+          "progresso": 43
+        }
+      ]
+    },
+    "individual": {
+      "tempo": "16 horas",
+      "itens": [
+        {
+          "id": 1,
+          "titulo": "Ande 2km",
+          "pontos": 20,
+          "progresso": 40
+        },
+        {
+          "id": 2,
+          "titulo": "Beba 2 Litros de Água",
+          "pontos": 15,
+          "progresso": 75
+        },
+        {
+          "id": 3,
+          "titulo": "Coma 3 frutas",
+          "pontos": 25,
+          "progresso": 33
+        },
+        {
+          "id": 4,
+          "titulo": "Durma 8 horas",
+          "pontos": 15,
+          "progresso": 100
+        }
+      ]
+    }
+  },
+  "conquistas": {
+    "destaqueAtual": "7 DIAS SEGUIDOS DE ATIVIDADE",
+    "emblemas": [
+      "Primeira Semana Perfeita",
+      "7 Dias Seguidos de Atividade",
+      "Desafio: Semana Sem Estresse",
+      "Mestre da Hidratação",
+      "Nível 10 Desbloqueado"
+    ],
+    "medalhas": [
+      {
+        "nome": "Hidratação",
+        "sub": "Beba 2L por 7 dias",
+        "pct": 100
+      },
+      {
+        "nome": "Corpo em Movimento",
+        "sub": "Ande 2km por 5 dias",
+        "pct": 80
+      },
+      {
+        "nome": "Alimentação",
+        "sub": "3 missões de nutrição",
+        "pct": 67
+      },
+      {
+        "nome": "Mente Tranquila",
+        "sub": "Complete meditação semanal",
+        "pct": 43
+      }
+    ],
+    "detalhes": [
+      {
+        "titulo": "Primeira Semana Perfeita",
+        "descricao": "Você completou todas as missões diárias por 7 dias seguidos. Um começo incrível!",
+        "rodape": "Alcançada por 34,5% dos colaboradores"
+      },
+      {
+        "titulo": "7 Dias Seguidos de Atividade",
+        "descricao": "Mantenha uma sequência de 7 dias praticando atividades físicas sem interrupção.",
+        "rodape": "Alcançada por 28,1% dos colaboradores"
+      },
+      {
+        "titulo": "Campeão do Bem-Estar",
+        "descricao": "Alcance o nível 15 e demonstre comprometimento duradouro com a sua saúde.",
+        "rodape": "Alcançada por 19,3% dos colaboradores"
+      }
+    ],
+    "opcoesDestaque": [
+      {
+        "grupo": null,
+        "itens": [
+          "Sem Título"
+        ]
+      },
+      {
+        "grupo": "Conquistados",
+        "itens": [
+          "Primeira Semana Perfeita",
+          "7 Dias Seguidos de Atividade",
+          "Desafio: Semana Sem Estresse"
+        ]
+      },
+      {
+        "grupo": "Destaques de Nível",
+        "itens": [
+          "Nível 10 Desbloqueado",
+          "Mestre da Hidratação"
+        ]
+      }
+    ]
+  },
+  "recompensas": [
+    {
+      "id": 1,
+      "nome": "Ingressos para cinema",
+      "custo": 500,
+      "imagem": "cinema.jpg"
+    },
+    {
+      "id": 2,
+      "nome": "Snacks saudáveis",
+      "custo": 300,
+      "imagem": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop"
+    },
+    {
+      "id": 3,
+      "nome": "Cesta de frutas frescas",
+      "custo": 800,
+      "imagem": "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=400&h=300&fit=crop"
+    },
+    {
+      "id": 4,
+      "nome": "Vale-refeição",
+      "custo": 400,
+      "imagem": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop"
+    },
+    {
+      "id": 5,
+      "nome": "Day off adicional",
+      "custo": 1000,
+      "imagem": "https://images.unsplash.com/photo-1506784365847-bbad939e9335?w=400&h=300&fit=crop"
+    },
+    {
+      "id": 6,
+      "nome": "Sessão de massagem",
+      "custo": 700,
+      "imagem": "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=400&h=300&fit=crop"
+    }
+  ],
+  "caremood": {
+    "historico": [],
+    "perguntas": [
+      {
+        "id": 1,
+        "texto": "Como você acordou hoje?",
+        "opcoes": [
+          "Muito cansado(a)",
+          "Cansado(a)",
+          "Normal",
+          "Bem",
+          "Muito bem"
+        ]
+      },
+      {
+        "id": 2,
+        "texto": "Ao longo do dia, como esteve sua capacidade de concentração?",
+        "opcoes": [
+          "Muito baixa",
+          "Baixa",
+          "Regular",
+          "Boa",
+          "Muito boa"
+        ]
+      },
+      {
+        "id": 3,
+        "texto": "Em algum momento do dia você se sentiu sobrecarregado(a)?",
+        "opcoes": [
+          "Extremamente",
+          "Bastante",
+          "Moderadamente",
+          "Levemente",
+          "Não"
+        ]
+      },
+      {
+        "id": 4,
+        "texto": "Como foi o seu nível de paciência hoje ao lidar com pessoas ou tarefas?",
+        "opcoes": [
+          "Muito baixa",
+          "Baixa",
+          "Normal",
+          "Alta",
+          "Muito alta"
+        ]
+      },
+      {
+        "id": 5,
+        "texto": "Você conseguiu fazer pausas ao longo do dia?",
+        "opcoes": [
+          "Não consegui",
+          "Quase não consegui",
+          "Poucas vezes",
+          "Sim, algumas vezes",
+          "Sim, várias vezes"
+        ]
+      },
+      {
+        "id": 6,
+        "texto": "Como esteve o seu humor durante o dia?",
+        "opcoes": [
+          "Muito negativo",
+          "Negativo",
+          "Neutro",
+          "Positivo",
+          "Muito positivo"
+        ]
+      },
+      {
+        "id": 7,
+        "texto": "Como foi seu nível de produtividade hoje?",
+        "opcoes": [
+          "Nada produtivo",
+          "Pouco produtivo",
+          "Moderadamente produtivo",
+          "Produtivo",
+          "Muito produtivo"
+        ]
+      },
+      {
+        "id": 8,
+        "texto": "Você sentiu algum cansaço físico incomum ao realizar tarefas normais?",
+        "opcoes": [
+          "Sempre",
+          "Frequentemente",
+          "Às vezes",
+          "Raramente",
+          "Nunca"
+        ]
+      },
+      {
+        "id": 9,
+        "texto": "Hoje você conseguiu se desconectar mentalmente do trabalho em algum momento?",
+        "opcoes": [
+          "Não",
+          "Quase nunca",
+          "Pouco",
+          "Parcialmente",
+          "Sim"
+        ]
+      },
+      {
+        "id": 10,
+        "texto": "Sentiu que pequenas tarefas do dia pareceram mais difíceis do que o normal?",
+        "opcoes": [
+          "Muito",
+          "Frequentemente",
+          "Às vezes",
+          "Raramente",
+          "Não"
+        ]
+      },
+      {
+        "id": 11,
+        "texto": "Como você avaliaria seu nível de estresse hoje?",
+        "opcoes": [
+          "Muito alto",
+          "Alto",
+          "Moderado",
+          "Baixo",
+          "Muito baixo"
+        ]
+      },
+      {
+        "id": 12,
+        "texto": "Ao final do dia, como você se sente emocionalmente?",
+        "opcoes": [
+          "Muito mal",
+          "Mal",
+          "Neutro",
+          "Bem",
+          "Muito bem"
+        ]
+      }
+    ]
+  },
+  "admin": {
+    "stats": {
+      "totalAtivos": 1250,
+      "totalDesistentes": 320,
+      "estresseGlobal": 74
+    },
+    "engTeam": [
+      {
+        "nome": "TI",
+        "engajamento": 78
+      },
+      {
+        "nome": "RH",
+        "engajamento": 82
+      },
+      {
+        "nome": "Financeiro",
+        "engajamento": 65
+      },
+      {
+        "nome": "Marketing",
+        "engajamento": 88
+      },
+      {
+        "nome": "Operações",
+        "engajamento": 70
+      },
+      {
+        "nome": "Vendas",
+        "engajamento": 76
+      }
+    ],
+    "engMensal": [
+      {
+        "mes": "Jan",
+        "Financeiro": 70,
+        "Marketing": 68,
+        "Operações": 63,
+        "RH": 72,
+        "TI": 75,
+        "Vendas": 69
+      },
+      {
+        "mes": "Fev",
+        "Financeiro": 72,
+        "Marketing": 65,
+        "Operações": 61,
+        "RH": 74,
+        "TI": 73,
+        "Vendas": 71
+      },
+      {
+        "mes": "Mar",
+        "Financeiro": 74,
+        "Marketing": 70,
+        "Operações": 62,
+        "RH": 76,
+        "TI": 76,
+        "Vendas": 73
+      },
+      {
+        "mes": "Abr",
+        "Financeiro": 73,
+        "Marketing": 72,
+        "Operações": 64,
+        "RH": 75,
+        "TI": 77,
+        "Vendas": 72
+      },
+      {
+        "mes": "Mai",
+        "Financeiro": 75,
+        "Marketing": 74,
+        "Operações": 60,
+        "RH": 78,
+        "TI": 79,
+        "Vendas": 75
+      },
+      {
+        "mes": "Jun",
+        "Financeiro": 77,
+        "Marketing": 76,
+        "Operações": 59,
+        "RH": 80,
+        "TI": 81,
+        "Vendas": 80
+      }
+    ],
+    "perfDept": [
+      {
+        "dept": "TI",
+        "val": 45
+      },
+      {
+        "dept": "RH",
+        "val": 28
+      },
+      {
+        "dept": "Financeiro",
+        "val": 52
+      },
+      {
+        "dept": "Marketing",
+        "val": 38
+      },
+      {
+        "dept": "Operações",
+        "val": 65
+      },
+      {
+        "dept": "Vendas",
+        "val": 72
+      }
+    ],
+    "stressDept": [
+      {
+        "dept": "TI",
+        "val": 72
+      },
+      {
+        "dept": "RH",
+        "val": 50
+      },
+      {
+        "dept": "Financeiro",
+        "val": 45
+      },
+      {
+        "dept": "Marketing",
+        "val": 20
+      },
+      {
+        "dept": "Operações",
+        "val": 68
+      },
+      {
+        "dept": "Vendas",
+        "val": 70
+      }
+    ],
+    "radar": [
+      {
+        "dim": "Produtividade",
+        "Financeiro": 80,
+        "RH": 60,
+        "TI": 70
+      },
+      {
+        "dim": "Colaboração",
+        "Financeiro": 70,
+        "RH": 75,
+        "TI": 65
+      },
+      {
+        "dim": "Inovação",
+        "Financeiro": 55,
+        "RH": 50,
+        "TI": 80
+      },
+      {
+        "dim": "Satisfação",
+        "Financeiro": 65,
+        "RH": 70,
+        "TI": 60
+      },
+      {
+        "dim": "Qualidade",
+        "Financeiro": 75,
+        "RH": 65,
+        "TI": 72
+      },
+      {
+        "dim": "Comunicação",
+        "Financeiro": 60,
+        "RH": 80,
+        "TI": 55
+      }
+    ]
+  }
+}

@@ -1,0 +1,122 @@
+/* CareMoodColumn — dark mode */
+
+.cm-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+}
+
+/* ── Title bar ── */
+.cm-title-bar {
+  background: var(--accent);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 14px var(--accent-glow);
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+
+@media (min-width: 640px) {
+  .cm-title-bar { height: 58px; font-size: 24px; }
+}
+
+/* ── Main card ── */
+.cm-card {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .cm-card { padding: 28px 32px; gap: 24px; }
+}
+
+.cm-subtitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+  line-height: 24px;
+}
+
+@media (min-width: 640px)  { .cm-subtitle { font-size: 20px; line-height: 29px; } }
+@media (min-width: 900px)  { .cm-subtitle { font-size: 24px; } }
+
+.btn-quest {
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius-sm);
+  width: 100%;
+  height: 44px;
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 14px var(--accent-glow);
+  transition: background 0.2s, transform 0.15s;
+}
+
+@media (min-width: 640px) { .btn-quest { height: 48px; font-size: 18px; } }
+@media (min-width: 900px)  { .btn-quest { font-size: 20px; } }
+
+.btn-quest:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+/* ── Mental help card ── */
+.cm-mental-card {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 640px) { .cm-mental-card { height: 120px; } }
+
+.mental-help-text {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 2px;
+}
+
+@media (min-width: 640px)  { .mental-help-text { font-size: 28px; } }
+@media (min-width: 900px)  { .mental-help-text { font-size: 32px; } }
+
+.cm-mental-link {
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background 0.2s, transform 0.15s;
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+}
+
+.cm-mental-link:hover {
+  background: var(--accent-subtle);
+  transform: translateY(-2px);
+}
+
+.mental-help-icon { font-size: 24px; }
+
+.mental-help-arrow {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-muted);
+}

@@ -1,0 +1,182 @@
+.hero {
+  position: relative;
+  background: var(--bg-secondary);
+  overflow: hidden;
+  min-height: min(520px, 47vw);
+  border-bottom: 1px solid var(--border);
+}
+
+.blobTopRight {
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 220px;
+  height: 220px;
+  background: var(--accent);
+  border-radius: 60% 40% 50% 70% / 50% 60% 40% 60%;
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.carousel {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+:global(.carousel-inner),
+:global(.carousel-item),
+:global(.carousel-item.active) {
+  width: 100%;
+}
+
+.slideInner {
+  position: relative;
+  min-height: min(520px, 47vw);
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.slideBackground {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.3;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, rgba(15,17,21,0.85) 0%, rgba(15,17,21,0.2) 100%);
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0;
+  padding: clamp(24px, 4vw, 56px) clamp(20px, 3.5vw, 40px) clamp(48px, 7vw, 88px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.8vw, 22px);
+}
+
+.logoBlock {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brandName {
+  font-family: var(--font-display);
+  font-size: clamp(0.9rem, 1.4vw, 1.5rem);
+  font-weight: 900;
+  color: var(--accent);
+  letter-spacing: -0.5px;
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.8vw, 3.6rem);
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1.15;
+  letter-spacing: -1px;
+  max-width: min(500px, 40%);
+  word-break: break-word;
+  white-space: normal;
+}
+
+.highlight {
+  color: var(--accent);
+  font-weight: 900;
+}
+
+.imagePlaceholder {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-elevated) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imagePlaceholderText {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 16px;
+}
+
+/* Nav buttons */
+.navBtn {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: clamp(32px, 4vw, 48px) !important;
+  height: clamp(32px, 4vw, 48px) !important;
+  border: 1px solid var(--border) !important;
+  background: rgba(26, 29, 36, 0.85) !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 10 !important;
+  transition: background 0.3s, transform 0.3s !important;
+  cursor: pointer !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.navBtn:hover {
+  background: var(--accent) !important;
+  transform: translateY(-50%) scale(1.1) !important;
+  border-color: var(--accent) !important;
+}
+
+.navBtn:first-of-type  { left:  clamp(6px, 4vw, 50px) !important; }
+.navBtn:last-of-type   { right: clamp(6px, 4vw, 50px) !important; }
+.navBtn::before, .navBtn::after { content: none !important; }
+
+/* Indicators */
+.indicators { bottom: 20px !important; gap: 6px; }
+
+.indicators button {
+  width: 32px !important;
+  height: 6px !important;
+  border-radius: 3px !important;
+  background-color: var(--bg-elevated) !important;
+  opacity: 1 !important;
+  border: none !important;
+  transition: width 0.3s, background-color 0.3s;
+}
+
+.indicators button.active {
+  background-color: var(--accent) !important;
+  width: 48px !important;
+}
+
+@media (max-width: 768px) {
+  .hero, .slideInner { min-height: 380px; }
+  .headline { max-width: 80%; font-size: clamp(1.5rem, 6.5vw, 2.2rem); }
+  .brandName { font-size: clamp(0.85rem, 2.5vw, 1.1rem); }
+}
+
+@media (max-width: 520px) {
+  .hero, .slideInner { min-height: 320px; }
+  .headline { max-width: 85%; font-size: clamp(1.25rem, 6.5vw, 1.75rem); letter-spacing: -0.5px; }
+}
+
+@media (max-width: 360px) {
+  .hero, .slideInner { min-height: 280px; }
+  .headline { font-size: clamp(1.1rem, 6.5vw, 1.4rem); max-width: 90%; }
+  .brandName { font-size: 0.8rem; }
+}

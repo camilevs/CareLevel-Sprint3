@@ -1,0 +1,25 @@
+{
+  "usuarios": [
+    {"userId": "1","nome":"Lina M.","nivel": 40, "streak": 38, "pontos": 18740, "equipeId": "3"},
+    {"userId": "2","nome": "Maicon K.","nivel": 33,"streak": 35,"pontos":15230, "equipeId": "1"},
+    {"userId": "3","nome": "Lana J.","nivel": 32, "streak": 29, "pontos": 12580, "equipeId": "2"},
+    {"userId": "4","nome": "Arthur Costa","nivel": 30, "streak": 28, "pontos": 10320, "equipeId": "1"},
+    {"userId": "5",    "nome": "Linus Torvalds","nivel": 28, "streak": 28, "pontos":  9870, "equipeId": "5"},
+    {"userId": "6",    "nome": "Giovanna Bezerra","nivel": 27, "streak": 27, "pontos":  8640, "equipeId": "4"},
+    {"userId": "7",    "nome": "Eduarda Costa","nivel": 25, "streak": 26, "pontos":  7410, "equipeId": "2"},
+    {"userId": "8",    "nome": "Deyverson Sanches","nivel": 20, "streak": 20, "pontos":  6990, "equipeId": "6"},
+    {"userId": "9", "nome": "Carlos Felino","nivel": 10, "streak": 5, "pontos":  1490, "equipeId": "9"}
+  ],
+
+  "equipes": [
+    {"equipeId": "1", "nome": "Recursos Humanos","emoji": "👥", "pontos": 48200},
+    {"equipeId": "2", "nome": "Produção","emoji": "⚙️", "pontos": 44780},
+    {"equipeId": "3", "nome": "Vendas","emoji": "💼", "pontos": 38900},
+    {"equipeId": "4", "nome": "Financeiro","emoji": "💰", "pontos": 32150},
+    {"equipeId": "5", "nome": "Logística","emoji": "🌐", "pontos": 61500},
+    {"equipeId": "6", "nome": "Jurídico","emoji": "⚖️", "pontos": 21700},
+    {"equipeId": "7", "nome": "Marketing","emoji": "📣", "pontos": 18420},
+    {"equipeId": "8", "nome": "Atendimento","emoji": "🎧", "pontos": 29340},
+    {"equipeId": "9", "nome": "TI (Você)","emoji": "💻", "pontos": 14230}
+  ]
+}
