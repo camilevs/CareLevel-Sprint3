@@ -1,7 +1,18 @@
 import React, { useState, useCallback, useEffect } from "react";
 import "./Quiz.css";
 import { saveResult, getTodayString, getHistory } from "./services/moodStorage";
-import { resgatarCaremoodPoints } from "../../services/api";
+import { useUser } from "../../Components/UserContext/UserContext";
+
+const HISTORY_KEY = 'caremissions_history';
+function addCaremoodHistory() {
+  try {
+    const history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+    const d = new Date();
+    const date = `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}/${d.getFullYear()}`;
+    history.unshift({ data: date, atividade: 'CareMood: Jornada do Equilíbrio', pontos: '+500', tipo: 'credito' });
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+  } catch {}
+}
 
 /* ─── Constants ──────────────────────────────────────────────── */
 const CAREMOOD_POINTS_KEY = "caremood_points_claimed";
@@ -876,6 +887,7 @@ function ResultadoScreen({ status, media, pesos, jaResgatado, onVoltar }) {
 
 /* ─── Main Component ─────────────────────────────────────────── */
 export default function Quiz({ onVoltar, onComplete }) {
+  const { updatePoints } = useUser();
   const [fase,        setFase]        = useState("modal");
   const [indice,      setIndice]      = useState(0);
   const [pesos,       setPesos]       = useState([]);
@@ -917,7 +929,8 @@ export default function Quiz({ onVoltar, onComplete }) {
       const foiResgatado = jaResgatouHoje();
       if (!foiResgatado) {
         marcarResgateHoje();
-        try { await resgatarCaremoodPoints(); } catch {}
+        updatePoints(500);
+        addCaremoodHistory();
       }
 
       setStatus(resultado);
