@@ -259,7 +259,7 @@ function TargetInteraction({ local, onSelect, selected }) {
     <div className="ms-target-container">
       <svg width={W} height={W} viewBox={`0 0 ${W} ${W}`} className="ms-target-svg">
         {radii.map((r, i) => {
-          const peso = 5 - i;
+          const peso = i + 1;
           const isSel = selected === peso;
           const fills = ["#0f1115","#12141c","#141620","#161825","#18192a"];
           return (
