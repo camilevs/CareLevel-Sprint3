@@ -1,5 +1,35 @@
 import pool from '../config/db.js'
 
+// ── DASHBOARD ─────────────────────────────────────────────────────────────────
+
+export async function getAdminDashboard(req, res) {
+  try {
+    const [{ rows: dadosRows }, { rows: countRows }] = await Promise.all([
+      pool.query('SELECT * FROM admin_dados WHERE id = 1'),
+      pool.query("SELECT COUNT(*)::int AS total FROM users WHERE role = 'user'"),
+    ])
+
+    if (!dadosRows.length)
+      return res.status(404).json({ erro: 'Dashboard não configurado' })
+
+    const d = dadosRows[0]
+    res.json({
+      stats: {
+        ...d.stats,
+        totalAtivos: countRows[0].total,
+      },
+      engTeam:    d.eng_team,
+      engMensal:  d.eng_mensal,
+      perfDept:   d.perf_dept,
+      stressDept: d.stress_dept,
+      radar:      d.radar,
+    })
+  } catch (err) {
+    console.error('[admin] getAdminDashboard:', err.message)
+    res.status(500).json({ erro: 'Erro ao buscar dashboard' })
+  }
+}
+
 // ── MISSÕES ──────────────────────────────────────────────────────────────────
 
 export async function getAdminMissoes(req, res) {

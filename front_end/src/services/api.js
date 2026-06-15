@@ -214,7 +214,7 @@ export async function fetchAdminBeneficiarioById(id) {
 }
 
 export async function fetchAdmin() {
-  const { data } = await api.get('/api/admin')
+  const { data } = await api.get('/api/admin/dashboard')
   return data
 }
 
