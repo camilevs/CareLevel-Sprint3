@@ -2,12 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 :root {
   --bg-primary:    #0F1115;
   --bg-secondary:  #1A1D24;
@@ -121,70 +115,61 @@
   :root { font-size: 16px; }
 }
 
-body {
-  margin: 0;
-  font-family: var(--font-body);
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  padding-top: 0;
-}
-
-body.has-sidebar-nav {
-  padding-left: 280px;
-}
-
-@media (max-width: 966px) {
-  body.has-sidebar-nav {
-    padding-left: 0;
+@layer base {
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    padding-top: 0;
   }
-}
 
-
-body.has-sidebar-nav {
-  padding-left: 280px;
-}
-
-@media (max-width: 966px) {
   body.has-sidebar-nav {
-    padding-left: 0;
+    padding-left: 280px;
   }
+
+  @media (max-width: 966px) {
+    body.has-sidebar-nav {
+      padding-left: 0;
+    }
+  }
+
+  #root {
+    max-width: 100%;
+    margin: 0 auto;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  a { text-decoration: none; }
+
+  h1, h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  h1 {
+    font-size: 56px;
+    letter-spacing: -1.68px;
+    margin: 32px 0;
+  }
+
+  h2 {
+    font-size: 24px;
+    line-height: 118%;
+    letter-spacing: -0.24px;
+    margin: 0 0 8px;
+  }
+
+  @media (max-width: 1024px) {
+    h1 { font-size: 36px; margin: 20px 0; }
+    h2 { font-size: 20px; }
+  }
+
+  p { margin: 0; }
 }
-
-#root {
-  max-width: 100%;
-  margin: 0 auto;
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-}
-
-a { text-decoration: none; }
-
-h1, h2 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-}
-
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-}
-
-@media (max-width: 1024px) {
-  h1 { font-size: 36px; margin: 20px 0; }
-  h2 { font-size: 20px; }
-}
-
-p { margin: 0; }
 
 .login-page {
   position: fixed;
