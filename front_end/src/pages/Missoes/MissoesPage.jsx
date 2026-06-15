@@ -1,20 +1,10 @@
 import { useState, useEffect } from 'react';
 import NavBar from '../../Components/NavBar/NavBar';
 import Footer from '../../Components/Footer/Footer';
-import { fetchMissoes } from '../../services/api';
+import { fetchMissoes, fetchMissaoProgresso, concluirMissaoItem } from '../../services/api';
 import { useUser } from '../../Components/UserContext/UserContext';
 
-const CONCLUIDAS_KEY = 'caremissoes_concluidas';
 const HISTORY_KEY = 'caremissions_history';
-
-function loadConcluidas() {
-  try { return JSON.parse(localStorage.getItem(CONCLUIDAS_KEY) || '{}'); }
-  catch { return {}; }
-}
-
-function saveConcluidas(c) {
-  try { localStorage.setItem(CONCLUIDAS_KEY, JSON.stringify(c)); } catch {}
-}
 
 function addMissionHistory(missao, pts) {
   try {
@@ -114,7 +104,7 @@ function MissionItem({ missao, concluida, onToggle, locked, index }) {
         </span>
         <span className="flex items-center gap-1.5 text-xs md:text-[13px] font-medium text-[var(--text-secondary)]">
           <img src="/512x512bb%204.svg" alt="" className="w-3.5 h-3.5 object-contain flex-shrink-0" />
-          {missao.pontos}
+          +{missao.pontos}
         </span>
       </div>
 
@@ -164,29 +154,34 @@ function CongratulacoesPopup({ tipo, onFechar }) {
 export default function MissoesPage() {
   const [aba, setAba] = useState('equipe');
   const [missoes, setMissoes] = useState(null);
-  const [concluidas, setConcluidas] = useState(loadConcluidas);
+  const [concluidas, setConcluidas] = useState({});
   const [popup, setPopup] = useState(false);
   const [popupVisto, setPopupVisto] = useState({ equipe: false, individual: false });
   const { updatePoints } = useUser();
 
   useEffect(() => {
     fetchMissoes().then(setMissoes).catch(console.error);
+    fetchMissaoProgresso().then(setConcluidas).catch(console.error);
   }, []);
 
   const dados = missoes?.[aba];
   const itens = dados?.itens ?? [];
 
-  const completarMissao = (missao) => {
+  const completarMissao = async (missao) => {
     const key = `${aba}_${missao.id}`;
     if (concluidas[key]) return;
     const pts = parsePontos(missao.pontos);
     const novas = { ...concluidas, [key]: true };
     setConcluidas(novas);
-    saveConcluidas(novas);
     updatePoints(pts);
     addMissionHistory(missao, pts);
     const todasConcluidas = itens.length > 0 && itens.every(m => novas[`${aba}_${m.id}`]);
     if (todasConcluidas && !popupVisto[aba]) setPopup(true);
+    try {
+      await concluirMissaoItem(aba, missao.id);
+    } catch (err) {
+      console.error('[missoes] Erro ao salvar progresso:', err.message);
+    }
   };
 
   const fecharPopup = () => {

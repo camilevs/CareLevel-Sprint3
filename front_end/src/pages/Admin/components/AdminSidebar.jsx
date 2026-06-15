@@ -35,7 +35,7 @@ export default function AdminSidebar() {
     >
       {/* Logo */}
       <div className="flex items-center gap-2.5 pb-2 border-b border-white/10">
-        <div className="w-8 h-8 rounded-lg flex-shrink-0" style={{ background: C.accent }} />
+        <img src="/Logo.svg" alt="CareLevel" className="w-8 h-8 flex-shrink-0" />
         <span className="font-extrabold text-base text-white tracking-[-0.5px]">CareLevel</span>
         <span className="ml-auto text-[11px] font-bold bg-white/[0.12] text-white rounded-md px-2 py-0.5">ADM</span>
       </div>

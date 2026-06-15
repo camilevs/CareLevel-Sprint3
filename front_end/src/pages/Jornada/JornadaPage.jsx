@@ -1,19 +1,11 @@
 import { useState, useEffect } from 'react';
 import NavBar from '../../Components/NavBar/NavBar';
 import Footer from '../../Components/Footer/Footer';
-import { fetchMissoes, fetchConquistas } from '../../services/api';
+import { fetchMissoes, fetchConquistas, fetchMissaoProgresso, concluirMissaoItem } from '../../services/api';
 import { useUser } from '../../Components/UserContext/UserContext';
 
-const CONCLUIDAS_KEY = 'caremissoes_concluidas';
-const HISTORY_KEY    = 'caremissions_history';
+const HISTORY_KEY = 'caremissions_history';
 
-function loadConcluidas() {
-  try { return JSON.parse(localStorage.getItem(CONCLUIDAS_KEY) || '{}'); }
-  catch { return {}; }
-}
-function saveConcluidas(c) {
-  try { localStorage.setItem(CONCLUIDAS_KEY, JSON.stringify(c)); } catch {}
-}
 function addMissionHistory(missao, pts) {
   try {
     const raw     = localStorage.getItem(HISTORY_KEY);
@@ -199,7 +191,7 @@ function MissaoCard({ missao, done, onConcluir }) {
         {missao.descricao && <span className="text-xs text-[var(--text-secondary)]">{missao.descricao}</span>}
         <span className="text-xs text-[var(--accent)] font-semibold flex items-center gap-1 mt-0.5">
           <img src="/512x512bb%204.svg" alt="" width={12} height={12} />
-          {missao.pontos}
+          +{missao.pontos}
         </span>
       </div>
       {!done ? (
@@ -434,7 +426,7 @@ const RANKING_ATIVO_KEY = 'jornada_ranking_ativo';
 export default function JornadaPage() {
   const { user, updatePoints } = useUser();
   const [missoes,        setMissoes]        = useState(null);
-  const [concluidas,     setConcluidas]     = useState(loadConcluidas);
+  const [concluidas,     setConcluidas]     = useState({});
   const [conquistas,     setConquistas]     = useState(null);
   const [rankingData,    setRankingData]    = useState({});
   const [abaRanking,     setAbaRanking]     = useState('nivel');
@@ -445,6 +437,7 @@ export default function JornadaPage() {
   const [popup, setPopup] = useState(null);
 
   useEffect(() => { fetchMissoes().then(setMissoes).catch(console.error); }, []);
+  useEffect(() => { fetchMissaoProgresso().then(setConcluidas).catch(console.error); }, []);
   useEffect(() => { fetchConquistas().then(setConquistas).catch(console.error); }, []);
 
   useEffect(() => {
@@ -457,18 +450,22 @@ export default function JornadaPage() {
       .finally(() => setRankingLoading(false));
   }, [abaRanking, rankingAtivo]);
 
-  const handleConcluir = (aba, missao) => {
+  const handleConcluir = async (aba, missao) => {
     const key = `${aba}_${missao.id}`;
     if (concluidas[key]) return;
     const pts   = parsePontos(missao.pontos);
     const novas = { ...concluidas, [key]: true };
     setConcluidas(novas);
-    saveConcluidas(novas);
     updatePoints(pts);
     addMissionHistory(missao, pts);
     const itens = missoes?.[aba]?.itens ?? [];
     if (itens.length && itens.every(m => novas[`${aba}_${m.id}`])) {
       setPopup({ tipo: aba });
+    }
+    try {
+      await concluirMissaoItem(aba, missao.id);
+    } catch (err) {
+      console.error('[jornada] Erro ao salvar progresso:', err.message);
     }
   };
 

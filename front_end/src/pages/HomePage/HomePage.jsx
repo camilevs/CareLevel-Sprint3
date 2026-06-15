@@ -2,7 +2,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useUser } from '../../Components/UserContext/UserContext';
-import { fetchMissoes } from '../../services/api';
+import { fetchMissoes, fetchMissaoProgresso } from '../../services/api';
 import HeroBanner from '../../Components/HeroBanner/HeroBanner';
 import ServicesGrid from '../../Components/ServicesGrid/ServicesGrid';
 import NavBar from '../../Components/NavBar/NavBar';
@@ -11,16 +11,7 @@ import StreakTracker from '../../Components/StreakTracker/StreakTracker';
 import RecompensasPreview from '../../Components/RecompensasPreview/RecompensasPreview';
 import OnboardingModal, { shouldShowOnboarding } from '../../Components/OnboardingModal/OnboardingModal';
 
-const CONCLUIDAS_KEY = 'caremissoes_concluidas';
 const MAX_HOME_MISSIONS = 3;
-
-function loadConcluidas() {
-  try {
-    return JSON.parse(localStorage.getItem(CONCLUIDAS_KEY) || '{}');
-  } catch {
-    return {};
-  }
-}
 
 const missionItemCls = "bg-[var(--bg-tertiary)] border border-[var(--border)] rounded-[18px] p-3.5 py-3 flex flex-col items-center text-center gap-2.5 cursor-pointer transition-[border-color,box-shadow] duration-200 hover:border-[var(--accent)] hover:shadow-[0_0_0_2px_var(--accent-subtle)] max-[900px]:justify-start";
 
@@ -30,11 +21,12 @@ export default function HomePage() {
   const { user } = useUser();
   const [showOnboarding, setShowOnboarding] = useState(() => shouldShowOnboarding(authUser?.id));
   const [missoes, setMissoes] = useState(null);
-  const [concluidas] = useState(loadConcluidas);
+  const [concluidas, setConcluidas] = useState({});
   const [tabMissoes, setTabMissoes] = useState('equipe');
 
   useEffect(() => {
     fetchMissoes().then(setMissoes).catch(() => setMissoes(null));
+    fetchMissaoProgresso().then(setConcluidas).catch(() => {});
   }, []);
 
   const missionHighlights = useMemo(() => {

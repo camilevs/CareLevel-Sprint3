@@ -2,7 +2,7 @@ import axios from 'axios'
 import { jwtDecode } from 'jwt-decode'
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL ?? 'http://localhost:3005',
+  baseURL: import.meta.env.VITE_API_URL ?? '',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -41,26 +41,6 @@ export async function updateProfile(payload) {
 }
 
 // ── Dados do app ────────────────────────────────────────────────
-
-const MOCK_MISSOES = {
-  equipe: {
-    tempo: '2d 14h',
-    itens: [
-      { id: 1, titulo: 'Completar 3 check-ins de bem-estar', pontos: '+50' },
-      { id: 2, titulo: 'Participar de uma atividade em grupo', pontos: '+80' },
-      { id: 3, titulo: 'Compartilhar uma dica de saúde', pontos: '+30' },
-    ],
-  },
-  individual: {
-    tempo: '18h 32m',
-    itens: [
-      { id: 1, titulo: 'Registrar seu humor hoje', pontos: '+20' },
-      { id: 2, titulo: 'Fazer 15 minutos de exercício', pontos: '+40' },
-      { id: 3, titulo: 'Beber 2 litros de água', pontos: '+15' },
-      { id: 4, titulo: 'Meditar por 5 minutos', pontos: '+25' },
-    ],
-  },
-}
 
 const MOCK_CONQUISTAS = {
   destaqueAtual: 'GUARDIÃO DO BEM-ESTAR',
@@ -107,12 +87,18 @@ export async function fetchRanking() {
 }
 
 export async function fetchMissoes() {
-  try {
-    const { data } = await api.get('/api/missoes')
-    return data
-  } catch {
-    return MOCK_MISSOES
-  }
+  const { data } = await api.get('/api/missoes')
+  return data
+}
+
+export async function fetchMissaoProgresso() {
+  const { data } = await api.get('/api/missoes/progresso')
+  return data
+}
+
+export async function concluirMissaoItem(tipo, item_id) {
+  const { data } = await api.post('/api/missoes/concluir', { tipo, item_id })
+  return data
 }
 
 export async function fetchRecompensas() {

@@ -109,6 +109,15 @@ export default function Navbar() {
               {label}
             </NavLink>
           ))}
+          <button
+            type="button"
+            className="min-[967px]:hidden flex items-center gap-2 px-3 py-2.5 rounded-[var(--radius-sm)] text-sm font-semibold text-[var(--text-muted)] bg-transparent border-0 cursor-pointer transition-[background,color] duration-150 hover:bg-[rgba(239,68,68,0.1)] hover:text-[#fca5a5] w-full mt-1"
+            onClick={() => { setMenuOpen(false); handleLogout(); }}
+            title="Sair"
+          >
+            <LogOut size={16} />
+            <span>Sair</span>
+          </button>
         </nav>
 
         {/* User + theme + logout */}

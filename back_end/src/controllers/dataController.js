@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs'
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
+import pool from '../config/db.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const DB_PATH = join(__dirname, '../data/db.json')
@@ -31,8 +32,73 @@ export function getRanking(req, res) {
   res.json({ usuarios, equipes: db.equipes })
 }
 
-export function getMissoes(req, res) {
-  res.json(db.missoes)
+export async function getMissoes(req, res) {
+  try {
+    // Retorna a missão mais recente por tipo (equipe / individual)
+    const { rows } = await pool.query(
+      'SELECT DISTINCT ON (tipo) id, tipo, dados FROM missoes ORDER BY tipo, id DESC'
+    )
+    const result = {}
+    for (const row of rows) {
+      result[row.tipo] = { missao_id: row.id, ...row.dados }
+    }
+    res.json(result)
+  } catch (err) {
+    console.error('[data] getMissoes:', err.message)
+    res.status(500).json({ erro: 'Erro ao buscar missões' })
+  }
+}
+
+export async function getMissaoProgresso(req, res) {
+  try {
+    const { rows } = await pool.query(
+      `SELECT m.tipo, mp.item_id
+         FROM missao_progresso mp
+         JOIN missoes m ON m.id = mp.missao_id
+        WHERE mp.user_id = $1`,
+      [req.user.id]
+    )
+    const progresso = {}
+    for (const row of rows) {
+      progresso[`${row.tipo}_${row.item_id}`] = true
+    }
+    res.json(progresso)
+  } catch (err) {
+    console.error('[data] getMissaoProgresso:', err.message)
+    res.status(500).json({ erro: 'Erro ao buscar progresso' })
+  }
+}
+
+export async function concluirMissaoItem(req, res) {
+  const { tipo, item_id } = req.body
+  if (!tipo || item_id == null)
+    return res.status(400).json({ erro: 'tipo e item_id são obrigatórios' })
+  if (!['equipe', 'individual'].includes(tipo))
+    return res.status(400).json({ erro: 'tipo inválido' })
+
+  try {
+    const { rows } = await pool.query(
+      'SELECT id, dados FROM missoes WHERE tipo = $1 ORDER BY id DESC LIMIT 1',
+      [tipo]
+    )
+    if (!rows.length)
+      return res.status(404).json({ erro: 'Missão não encontrada' })
+
+    const missaoId = rows[0].id
+    const item = rows[0].dados?.itens?.find(i => i.id === Number(item_id))
+
+    await pool.query(
+      `INSERT INTO missao_progresso (user_id, missao_id, item_id)
+       VALUES ($1, $2, $3)
+       ON CONFLICT DO NOTHING`,
+      [req.user.id, missaoId, Number(item_id)]
+    )
+
+    res.json({ ok: true, pontos: item?.pontos ?? 0 })
+  } catch (err) {
+    console.error('[data] concluirMissaoItem:', err.message)
+    res.status(500).json({ erro: 'Erro ao registrar conclusão' })
+  }
 }
 
 export function getRecompensas(req, res) {
