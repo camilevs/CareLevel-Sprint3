@@ -14,8 +14,8 @@ function marcarResgateHoje() {
 }
 
 function statusColor(status) {
-  const map = { Estressado: "#ef4444", Cansado: "#f59e0b", Normal: "#7c5cff", Excelente: "#22c55e" };
-  return map[status] || "#7c5cff";
+  const map = { Estressado: "#ef4444", Cansado: "#f59e0b", Normal: "#67B99F", Excelente: "#22c55e" };
+  return map[status] || "#67B99F";
 }
 function formatDate(dateStr) {
   if (!dateStr) return "";
@@ -172,7 +172,7 @@ function calcularStatus(pesos) {
 function statusConfig(status) {
   const map = {
     Excelente: { emoji:"🌟", cor:"#22c55e", msg:"Você está radiante! Continue cultivando esse bem-estar." },
-    Normal:    { emoji:"😊", cor:"#7c5cff", msg:"Dia equilibrado. Você está bem no seu ritmo!" },
+    Normal:    { emoji:"😊", cor:"#67B99F", msg:"Dia equilibrado. Você está bem no seu ritmo!" },
     Cansado:   { emoji:"😴", cor:"#f59e0b", msg:"Cuide-se! Um bom descanso pode fazer maravilhas." },
     Estressado:{ emoji:"💛", cor:"#ef4444", msg:"Respira fundo. Busque apoio — você não está sozinho(a)." },
   };
@@ -588,13 +588,13 @@ function RadarChart({ pesos }) {
             stroke="rgba(255,255,255,0.07)" strokeWidth="1" />;
         })}
         <polygon points={dataPolygon}
-          fill="rgba(124,92,255,0.18)"
-          stroke="#7c5cff" strokeWidth="2" strokeLinejoin="round" />
+          fill="rgba(103,185,159,0.18)"
+          stroke="#67B99F" strokeWidth="2" strokeLinejoin="round" />
         {pesos.map((p, i) => {
           const pt = pos((p / 5) * maxR, i);
           return (
             <circle key={i} cx={pt.x} cy={pt.y} r="4.5"
-              fill="#7c5cff" stroke="white" strokeWidth="1.5" />
+              fill="#67B99F" stroke="white" strokeWidth="1.5" />
           );
         })}
         {LOCAIS.map((local, i) => {
@@ -698,7 +698,7 @@ function CompletionScreen({ pesos, status, media, jaResgatado, onVerResultados }
               "--cx": `${10 + (i * 3.7) % 80}%`,
               "--cy": `${20 + (i * 7.3) % 60}%`,
               "--cd": `${i * 0.18}s`,
-              "--cc": ["#7c5cff","#22c55e","#f59e0b","#0ea5e9","#ec4899","#ef4444"][i % 6],
+              "--cc": ["#67B99F","#22c55e","#f59e0b","#0ea5e9","#ec4899","#ef4444"][i % 6],
             }} />
         ))}
       </div>
