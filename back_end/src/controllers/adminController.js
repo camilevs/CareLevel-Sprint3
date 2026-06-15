@@ -30,6 +30,16 @@ export async function getAdminDashboard(req, res) {
   }
 }
 
+export async function getAdminEquipes(req, res) {
+  try {
+    const { rows } = await pool.query('SELECT equipe_id, nome, emoji FROM equipes ORDER BY nome')
+    res.json(rows)
+  } catch (err) {
+    console.error('[admin] getAdminEquipes:', err.message)
+    res.status(500).json({ erro: 'Erro ao buscar equipes' })
+  }
+}
+
 // ── MISSÕES ──────────────────────────────────────────────────────────────────
 
 export async function getAdminMissoes(req, res) {

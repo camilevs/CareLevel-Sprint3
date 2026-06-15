@@ -3,6 +3,7 @@ import { authMiddleware } from '../middlewares/authMiddleware.js'
 import { requireRole } from '../middlewares/roleMiddleware.js'
 import {
   getAdminDashboard,
+  getAdminEquipes,
   getAdminMissoes,
   createAdminMissao,
   updateAdminMissao,
@@ -20,6 +21,7 @@ const guard = [authMiddleware, requireRole('admin')]
 
 // ── Dashboard ────────────────────────────────────────────────────
 router.get('/dashboard', ...guard, getAdminDashboard)
+router.get('/equipes',   ...guard, getAdminEquipes)
 
 // ── Missões ──────────────────────────────────────────────────────
 router.get('/missoes',        ...guard, getAdminMissoes)

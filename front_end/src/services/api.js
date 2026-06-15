@@ -218,4 +218,9 @@ export async function fetchAdmin() {
   return data
 }
 
+export async function fetchAdminEquipes() {
+  const { data } = await api.get('/api/admin/equipes')
+  return data
+}
+
 export default api
