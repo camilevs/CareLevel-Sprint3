@@ -36,10 +36,10 @@ export default function Modal({
     fontWeight: 700,
     border: 'none',
     cursor: 'pointer',
-    background: '#22c55e',
+    background: 'var(--accent)',
     color: '#fff',
     fontFamily: 'inherit',
-    boxShadow: '0 4px 12px rgba(34,197,94,0.35)',
+    boxShadow: '0 4px 12px var(--accent-glow)',
     transition: 'background 0.15s, transform 0.15s',
   }
 
@@ -57,7 +57,7 @@ export default function Modal({
         {/* ── CONFIRMAÇÃO ─────────────────────────────────────────── */}
         {tipo === 'confirmacao' && (
           <>
-            <div className="px-5 py-4 bg-linear-to-br from-green-500 to-green-700">
+            <div className="px-5 py-4 bg-[linear-gradient(to_bottom_right,var(--green-medium),var(--green-dark))]">
               <h2 className="text-[11px] font-black text-white tracking-[0.08em] text-center m-0">
                 RESGATE DE RECOMPENSAS
               </h2>
@@ -162,7 +162,7 @@ export default function Modal({
         {/* ── SUCESSO ──────────────────────────────────────────────── */}
         {tipo === 'sucesso' && (
           <div style={{ padding: '32px', display: 'grid', justifyItems: 'center', gap: '20px', textAlign: 'center' }}>
-            <div className="w-16 h-16 rounded-full grid place-items-center shrink-0 animate-pop-in bg-green-500/10 border border-green-500/45 text-green-500 shadow-[0_0_20px_rgba(34,197,94,0.35)]">
+            <div className="w-16 h-16 rounded-full grid place-items-center shrink-0 animate-pop-in bg-[var(--accent-subtle)] border border-[var(--accent-border)] text-[var(--accent)] shadow-[0_0_20px_var(--accent-glow)]">
               <Check size={26} strokeWidth={3} />
             </div>
             <div className="grid gap-2">

@@ -6,9 +6,9 @@ import Modal from './components/Modal'
 import { fetchRecompensas, resgatarRecompensa } from '../../services/api'
 import { useUser } from '../../Components/UserContext/UserContext'
 
-const GREEN      = '#22c55e'
-const GREEN_DARK = '#15803d'
-const GREEN_GLOW = 'rgba(34,197,94,0.35)'
+const GREEN      = 'var(--accent)'
+const GREEN_DARK = 'var(--green-dark)'
+const GREEN_GLOW = 'var(--accent-glow)'
 
 export default function RecompensasPage() {
   const { user, setServerPoints } = useUser()

@@ -36,7 +36,7 @@ export default function RecompensaCard({ recompensa, onResgatar, index = 0 }) {
         />
 
         {/* Banner inferior sobreposto */}
-        <div className="absolute bottom-0 left-0 right-0 flex flex-col gap-2 px-4 py-3 bg-green-600/90 backdrop-blur-sm">
+        <div className="absolute bottom-0 left-0 right-0 flex flex-col gap-2 px-4 py-3 bg-[var(--accent)]/90 backdrop-blur-sm">
           <p className="text-[13px] font-bold text-white leading-snug m-0">{recompensa.nome}</p>
 
           <div className="flex items-center gap-1.5">
