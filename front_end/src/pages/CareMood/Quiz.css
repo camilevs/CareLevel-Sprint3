@@ -241,7 +241,7 @@
   border-left: none;
 }
 .ms-battery-body {
-  display: flex; flex-direction: column-reverse; gap: 3px;
+  display: flex; flex-direction: column; gap: 3px;
   padding: 5px; background: var(--bg-elevated);
   border: 2px solid var(--border); border-radius: 8px;
   width: 52px;

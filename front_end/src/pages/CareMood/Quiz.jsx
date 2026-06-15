@@ -193,10 +193,6 @@ function SliderInteraction({ local, onSelect, selected }) {
   return (
     <div className="ms-slider-container">
       <div className="ms-slider-track">
-        <div className="ms-slider-fill" style={{
-          width: selected ? `${((selected - 1) / 4) * 100}%` : "0%",
-          background: local.cor,
-        }} />
         {local.opcoes.map((op) => (
           <button
             key={op.peso}
