@@ -141,60 +141,82 @@ export default function ProfileCard() {
     }))
   }
 
+  const inputCls = "w-full bg-[var(--bg-tertiary)] border border-[var(--border)] rounded-[var(--radius-sm)] px-3.5 py-2.5 text-sm text-[var(--text-primary)] outline-none transition-[border-color,box-shadow] duration-150 placeholder:text-[var(--text-muted)] focus:border-[var(--accent)] focus:shadow-[0_0_0_3px_var(--accent-subtle)] disabled:opacity-60 disabled:cursor-not-allowed disabled:bg-[var(--bg-secondary)]"
+  const btnSaveCls = "bg-[var(--accent)] text-white font-bold text-sm rounded-[var(--radius-sm)] px-5 py-2.5 cursor-pointer border-0 transition-colors duration-150 hover:bg-[var(--accent-hover)] disabled:opacity-60 disabled:cursor-not-allowed"
+  const btnSecondaryCls = "bg-transparent border border-[var(--border)] text-[var(--text-secondary)] font-bold text-sm rounded-[var(--radius-sm)] px-5 py-2.5 cursor-pointer transition-colors duration-150 hover:bg-[var(--bg-elevated)] hover:text-[var(--text-primary)] disabled:opacity-60 disabled:cursor-not-allowed"
+
   if (loading) {
-    return <section className="profile-card">Carregando perfil...</section>
+    return (
+      <div className="w-[min(900px,calc(100%-48px))] mx-auto mt-6 mb-8 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-[var(--radius-lg)] shadow-[var(--shadow-md)] p-8 text-center text-sm font-semibold text-[var(--text-secondary)]">
+        Carregando perfil...
+      </div>
+    )
   }
 
   return (
-    <div className="profile-card">
-      <div className="profile-card__left">
-        <div className="profile-card__avatar">
-          <img src="https://i.pravatar.cc/200?img=68" alt={avatarName} />
+    <div className="w-[min(900px,calc(100%-48px))] mx-auto mt-6 mb-8 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-[var(--radius-lg)] shadow-[var(--shadow-md)] p-6 sm:p-8 flex flex-col md:flex-row gap-8">
+      <div className="flex flex-row md:flex-col items-center text-center gap-3 md:w-[200px] md:flex-shrink-0 md:border-r md:border-[var(--border)] md:pr-8">
+        <div className="w-20 h-20 md:w-28 md:h-28 rounded-full overflow-hidden border-2 border-[var(--accent)] shadow-[var(--shadow-sm)] flex-shrink-0">
+          <img src="https://i.pravatar.cc/200?img=68" alt={avatarName} className="w-full h-full object-cover" />
         </div>
-        <p className="profile-card__name">{form.name || 'Beneficiario'}</p>
-        <span className="profile-card__role">{user?.role || 'user'}</span>
+        <div className="flex flex-col items-start md:items-center gap-2 min-w-0">
+          <p className="text-base font-bold text-[var(--text-primary)] m-0 truncate max-w-full">{form.name || 'Beneficiario'}</p>
+          <span className="text-xs font-semibold uppercase tracking-[0.06em] text-[var(--accent)] bg-[var(--accent-subtle)] border border-[var(--accent-border)] rounded-full px-3 py-1">
+            {user?.role || 'user'}
+          </span>
+        </div>
       </div>
 
-      <div className="profile-card__right">
-        {error && <p className="profile-card__feedback profile-card__feedback--error">{error}</p>}
-        {success && <p className="profile-card__feedback profile-card__feedback--ok">{success}</p>}
+      <div className="flex-1 flex flex-col gap-4 min-w-0">
+        {error && (
+          <p className="bg-[rgba(239,68,68,0.1)] border border-[rgba(239,68,68,0.35)] text-[#fca5a5] text-sm rounded-[var(--radius-sm)] px-4 py-2.5 m-0">
+            {error}
+          </p>
+        )}
+        {success && (
+          <p className="bg-[var(--accent-subtle)] border border-[var(--accent-border)] text-[var(--accent)] text-sm rounded-[var(--radius-sm)] px-4 py-2.5 m-0">
+            {success}
+          </p>
+        )}
 
-        <FormField label="Nome Completo">
-          <input
-            className="field__input"
-            value={form.name}
-            onChange={set('name')}
-            disabled={!editing}
-          />
-        </FormField>
-
-        <FormField label="CPF">
-          <input className="field__input" value={form.cpf} disabled readOnly />
-        </FormField>
-
-        <FormField label="Telefone Celular">
-          <input
-            className="field__input"
-            value={form.telefone}
-            onChange={set('telefone')}
-            disabled={!editing}
-          />
-        </FormField>
-
-        <FormField label="E-mail">
-          <input
-            className="field__input"
-            type="email"
-            value={form.email}
-            onChange={set('email')}
-            disabled={!editing}
-          />
-        </FormField>
-
-        <FormField label="Senha" className="field--password">
-          <div className="field__inputs-row">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <FormField label="Nome Completo">
             <input
-              className="field__input"
+              className={inputCls}
+              value={form.name}
+              onChange={set('name')}
+              disabled={!editing}
+            />
+          </FormField>
+
+          <FormField label="CPF">
+            <input className={inputCls} value={form.cpf} disabled readOnly />
+          </FormField>
+
+          <FormField label="Telefone Celular">
+            <input
+              className={inputCls}
+              value={form.telefone}
+              onChange={set('telefone')}
+              disabled={!editing}
+            />
+          </FormField>
+
+          <FormField label="E-mail">
+            <input
+              className={inputCls}
+              type="email"
+              value={form.email}
+              onChange={set('email')}
+              disabled={!editing}
+            />
+          </FormField>
+        </div>
+
+        <FormField label="Senha">
+          <div className="flex flex-col sm:flex-row gap-3">
+            <input
+              className={inputCls}
               type="password"
               placeholder="Senha Atual"
               value={form.currentPassword}
@@ -202,7 +224,7 @@ export default function ProfileCard() {
               disabled={!editing}
             />
             <input
-              className="field__input"
+              className={inputCls}
               type="password"
               placeholder="Nova Senha"
               value={form.newPassword}
@@ -210,7 +232,7 @@ export default function ProfileCard() {
               disabled={!editing}
             />
             <input
-              className="field__input"
+              className={inputCls}
               type="password"
               placeholder="Confirmar Nova Senha"
               value={form.confirmPassword}
@@ -220,19 +242,19 @@ export default function ProfileCard() {
           </div>
         </FormField>
 
-        <div className="profile-card__actions">
+        <div className="flex items-center justify-end gap-3 flex-wrap pt-4 mt-2 border-t border-[var(--border)]">
           {!editing && (
-            <button className="btn-save" onClick={() => setEditing(true)}>
+            <button className={btnSaveCls} onClick={() => setEditing(true)}>
               Editar Perfil
             </button>
           )}
 
           {editing && (
             <>
-              <button className="btn-secondary" onClick={handleCancel} disabled={saving}>
+              <button className={btnSecondaryCls} onClick={handleCancel} disabled={saving}>
                 Cancelar
               </button>
-              <button className="btn-save" onClick={handleSave} disabled={saving}>
+              <button className={btnSaveCls} onClick={handleSave} disabled={saving}>
                 {saving ? 'Salvando...' : 'Salvar Alteracoes'}
               </button>
             </>

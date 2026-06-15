@@ -4,19 +4,6 @@ import Footer from '../../Components/Footer/Footer';
 import { fetchMissoes, fetchMissaoProgresso, concluirMissaoItem } from '../../services/api';
 import { useUser } from '../../Components/UserContext/UserContext';
 
-const HISTORY_KEY = 'caremissions_history';
-
-function addMissionHistory(missao, pts) {
-  try {
-    const raw = localStorage.getItem(HISTORY_KEY);
-    const history = raw ? JSON.parse(raw) : [];
-    const d = new Date();
-    const date = `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}/${d.getFullYear()}`;
-    history.unshift({ data: date, atividade: `Missão: ${missao.titulo}`, pontos: `+${pts}`, tipo: 'credito' });
-    localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
-  } catch {}
-}
-
 function parsePontos(pontos) {
   if (typeof pontos === 'number') return pontos;
   return parseInt(String(pontos).replace(/[^0-9]/g, ''), 10) || 0;
@@ -174,7 +161,6 @@ export default function MissoesPage() {
     const novas = { ...concluidas, [key]: true };
     setConcluidas(novas);
     updatePoints(pts);
-    addMissionHistory(missao, pts);
     const todasConcluidas = itens.length > 0 && itens.every(m => novas[`${aba}_${m.id}`]);
     if (todasConcluidas && !popupVisto[aba]) setPopup(true);
     try {

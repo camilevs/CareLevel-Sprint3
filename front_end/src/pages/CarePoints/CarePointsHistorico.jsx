@@ -29,13 +29,7 @@ export default function CarePointsHistorico() {
 
   useEffect(() => {
     fetchCarepoints()
-      .then((dados) => {
-        const local = (() => {
-          try { return JSON.parse(localStorage.getItem('caremissions_history') || '[]'); }
-          catch { return []; }
-        })();
-        setHistorico([...local, ...(dados.historico ?? [])]);
-      })
+      .then((dados) => setHistorico(dados.historico ?? []))
       .catch(console.error);
   }, []);
 
