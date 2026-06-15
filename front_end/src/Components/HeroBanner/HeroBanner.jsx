@@ -2,34 +2,40 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Logo from '../Logo/Logo';
 
-const slides = [
-  {
-    id: 'slide-1',
-    headlineParts: ['Eleve seu ', 'bem-estar', ' todos os dias'],
-    imageSrc: '/banner_idea.png',
-    imageAlt: 'Pessoa praticando yoga',
-  },
-  {
-    id: 'slide-2',
-    headlineParts: ['', 'Conquiste', ' suas metas de saúde'],
-    imageSrc: '/banner_idea2.png',
-    imageAlt: 'Pessoa se exercitando',
-  },
-  {
-    id: 'slide-3',
-    headlineParts: ['', 'Cuide', ' de você com propósito'],
-    imageSrc: '/banner_idea3.png',
-    imageAlt: 'Pessoa meditando',
-  },
+const SLIDES_DARK = [
+  { id: 'slide-1', headlineParts: ['Eleve seu ', 'bem-estar', ' todos os dias'],   imageSrc: '/banner_ideia_darkmode.png',  imageAlt: 'Pessoa praticando yoga' },
+  { id: 'slide-2', headlineParts: ['', 'Conquiste', ' suas metas de saúde'],        imageSrc: '/banner_ideia_darkmode2.png', imageAlt: 'Pessoa se exercitando' },
+  { id: 'slide-3', headlineParts: ['', 'Cuide', ' de você com propósito'],          imageSrc: '/banner_ideia_darkmode3.png', imageAlt: 'Pessoa meditando' },
+];
+
+const SLIDES_LIGHT = [
+  { id: 'slide-1', headlineParts: ['Eleve seu ', 'bem-estar', ' todos os dias'],   imageSrc: '/banner_idea.png',  imageAlt: 'Pessoa praticando yoga' },
+  { id: 'slide-2', headlineParts: ['', 'Conquiste', ' suas metas de saúde'],        imageSrc: '/banner_idea2.png', imageAlt: 'Pessoa se exercitando' },
+  { id: 'slide-3', headlineParts: ['', 'Cuide', ' de você com propósito'],          imageSrc: '/banner_idea3.png', imageAlt: 'Pessoa meditando' },
 ];
 
 const NAV_BTN = "absolute top-1/2 -translate-y-1/2 z-10 flex items-center justify-center border border-[var(--border)] bg-[rgba(26,29,36,0.85)] rounded-full [backdrop-filter:blur(8px)] cursor-pointer transition-[background,transform,border-color] duration-300 hover:bg-[var(--accent)] hover:border-[var(--accent)] hover:scale-110";
 
+function getIsDark() {
+  try { return localStorage.getItem('care-theme') !== 'light'; } catch { return true; }
+}
+
 export default function HeroBanner() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isDark, setIsDark] = useState(getIsDark);
 
-  const prev = useCallback(() => setActiveIndex((i) => (i - 1 + slides.length) % slides.length), []);
-  const next = useCallback(() => setActiveIndex((i) => (i + 1) % slides.length), []);
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDark(document.documentElement.getAttribute('data-theme') !== 'light');
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    return () => observer.disconnect();
+  }, []);
+
+  const slides = isDark ? SLIDES_DARK : SLIDES_LIGHT;
+
+  const prev = useCallback(() => setActiveIndex((i) => (i - 1 + slides.length) % slides.length), [slides.length]);
+  const next = useCallback(() => setActiveIndex((i) => (i + 1) % slides.length), [slides.length]);
 
   useEffect(() => {
     const id = setInterval(next, 5000);
@@ -41,7 +47,7 @@ export default function HeroBanner() {
   return (
     <section
       className="relative overflow-hidden border-b border-[var(--border)]"
-      style={{ background: 'linear-gradient(135deg,#0d1a18 0%,#0F1115 45%,#0d1a0f 100%)', minHeight: 'min(520px,47vw)' }}
+      style={{ background: isDark ? 'linear-gradient(135deg,#0d1a18 0%,#0F1115 45%,#0d1a0f 100%)' : 'transparent', minHeight: 'min(520px,47vw)' }}
     >
       <div
         className="absolute -top-[60px] -right-[60px] w-[260px] h-[260px] bg-[var(--accent)] opacity-[0.18] pointer-events-none z-0"
@@ -72,11 +78,13 @@ export default function HeroBanner() {
             </div>
           )}
 
-          <div
-            className="absolute inset-0 z-[1]"
-            aria-hidden="true"
-            style={{ background: 'linear-gradient(100deg,rgba(15,17,21,0.94) 0%,rgba(15,17,21,0.60) 45%,rgba(15,17,21,0.12) 100%)' }}
-          />
+          {isDark && (
+            <div
+              className="absolute inset-0 z-[1]"
+              aria-hidden="true"
+              style={{ background: 'linear-gradient(100deg,rgba(15,17,21,0.94) 0%,rgba(15,17,21,0.60) 45%,rgba(15,17,21,0.12) 100%)' }}
+            />
+          )}
 
           <div
             className="relative z-[2] w-full max-w-[1200px] flex flex-col"

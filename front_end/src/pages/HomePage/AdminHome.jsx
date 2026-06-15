@@ -4,7 +4,7 @@ import {
   PolarAngleAxis, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
   ResponsiveContainer,
 } from "recharts";
-import { fetchAdmin, fetchAdminEquipes } from "../../services/api";
+import { fetchAdmin } from "../../services/api";
 import Footer from "../../Components/Footer/Footer";
 import AdminSidebar, { C } from "../Admin/components/AdminSidebar";
 
@@ -80,7 +80,7 @@ const selectStyle = {
   backgroundRepeat:"no-repeat",
   backgroundPosition:"right 12px center",
   cursor:"pointer",
-  minWidth:160,
+  width:190,
 };
 
 function FilterSelect({ label, value, onChange, options }) {
@@ -97,21 +97,17 @@ function FilterSelect({ label, value, onChange, options }) {
 // ── Dashboard Principal ───────────────────────────────────────────────────────
 
 export default function HRDashboard() {
-  const [admin,    setAdmin]    = useState(null);
-  const [equipes,  setEquipes]  = useState([]);
-  const [loading,  setLoading]  = useState(true);
+  const [admin,   setAdmin]   = useState(null);
+  const [loading, setLoading] = useState(true);
 
   // Estados dos filtros
   const [selectedEquipe,  setSelectedEquipe]  = useState("Todas");
   const [selectedPeriodo, setSelectedPeriodo] = useState("Todos");
-  const [selectedUnidade, setSelectedUnidade] = useState("Todas");
+  const [selectedUnidade, setSelectedUnidade] = useState("Matriz");
 
   useEffect(() => {
-    Promise.all([fetchAdmin(), fetchAdminEquipes()])
-      .then(([adminData, equipesData]) => {
-        setAdmin(adminData);
-        setEquipes(equipesData);
-      })
+    fetchAdmin()
+      .then(setAdmin)
       .catch(console.error)
       .finally(() => setLoading(false));
   }, []);
@@ -137,11 +133,8 @@ export default function HRDashboard() {
     [engMonthRaw]
   );
 
-  // Unidade: lista de equipes do banco (via /api/admin/equipes)
-  const unidadeOptions = useMemo(
-    () => ["Todas", ...equipes.map(e => e.nome)],
-    [equipes]
-  );
+  // Unidade: apenas Matriz (única unidade do sistema)
+  const unidadeOptions = ["Matriz"];
 
   // Chaves de dept nos dados mensais (dinâmicas)
   const deptKeys = useMemo(
