@@ -11,6 +11,7 @@
 - [Pré-requisitos](#pré-requisitos)
 - [Instalação e Execução](#instalação-e-execução)
 - [Estrutura do Projeto](#estrutura-do-projeto)
+- [Deploy (Vercel)](#deploy-vercel)
 - [Rotas da Aplicação](#rotas-da-aplicação)
 - [Usuários de Teste](#usuários-de-teste)
 - [Funcionalidades](#funcionalidades)
@@ -20,6 +21,9 @@
 ## Sobre o Projeto
  
 O **CareLevel** é uma aplicação web full-stack que incentiva hábitos saudáveis no ambiente corporativo por meio de gamificação. Beneficiários podem acompanhar seu humor diário, completar missões, acumular pontos, ganhar conquistas e resgatar recompensas. Administradores têm acesso a um painel gerencial completo (dashboard, equipes, missões, recompensas e beneficiários).
+ 
+🔗 Repositório: https://github.com/camilevs/CareLevel-Sprint3
+🚀 Deploy: https://care-level-sprint3.vercel.app
  
 ---
  
@@ -53,8 +57,8 @@ Antes de começar, certifique-se de ter instalado em sua máquina:
 ### 1. Clone o repositório
  
 ```bash
-git clone https://github.com/seu-usuario/carelevel.git
-cd carelevel
+git clone https://github.com/camilevs/CareLevel-Sprint3.git
+cd CareLevel-Sprint3
 ```
  
 ### 2. Configure as variáveis de ambiente
@@ -123,9 +127,13 @@ npm run frontend
 ## Estrutura do Projeto
  
 ```
-carelevel/
+CareLevel-Sprint3/
+├── api/
+│   └── index.js          # Entrypoint serverless (Vercel) — exporta o app do back_end
+│
 ├── back_end/
-│   ├── server.js
+│   ├── app.js             # Express app (rotas, CORS, JSON) — usado local e na Vercel
+│   ├── server.js          # Sobe o app com app.listen() (uso local/dev)
 │   └── src/
 │       ├── config/          # Conexão com o PostgreSQL (db.js) e seed
 │       ├── controllers/     # authController, dataController, adminController
@@ -133,25 +141,39 @@ carelevel/
 │       ├── migrations/      # Scripts SQL de criação/ajuste de tabelas
 │       └── routes/          # authRoutes, dataRoutes, adminRoutes
 │
-└── front_end/
-    ├── index.html
-    ├── vite.config.js
-    └── src/
-        ├── App.jsx
-        ├── context/         # AuthContext (estado global de autenticação)
-        ├── pages/
-        │   ├── Admin/        # Dashboard, missões, recompensas e beneficiários (admin)
-        │   ├── CareMood/     # Rastreador de humor
-        │   ├── CarePoints/   # Sistema de pontos
-        │   ├── Conquistas/   # Badges e conquistas
-        │   ├── HomePage/     # Home, Login, Perfil
-        │   ├── Jornada/      # Linha do tempo de progresso
-        │   ├── Missoes/      # Missões diárias
-        │   ├── Ranking/      # Ranking entre usuários
-        │   └── Recompensas/  # Catálogo de recompensas
-        ├── Components/      # Componentes reutilizáveis (NavBar, Footer, RoleGuard, etc.)
-        └── services/        # Camada de comunicação com a API
+├── front_end/
+│   ├── index.html
+│   ├── vite.config.js
+│   └── src/
+│       ├── App.jsx
+│       ├── context/         # AuthContext (estado global de autenticação)
+│       ├── pages/
+│       │   ├── Admin/        # Dashboard, missões, recompensas e beneficiários (admin)
+│       │   ├── CareMood/     # Rastreador de humor
+│       │   ├── CarePoints/   # Sistema de pontos
+│       │   ├── Conquistas/   # Badges e conquistas
+│       │   ├── HomePage/     # Home, Login, Perfil
+│       │   ├── Jornada/      # Linha do tempo de progresso
+│       │   ├── Missoes/      # Missões diárias
+│       │   ├── Ranking/      # Ranking entre usuários
+│       │   └── Recompensas/  # Catálogo de recompensas
+│       ├── Components/      # Componentes reutilizáveis (NavBar, Footer, RoleGuard, etc.)
+│       └── services/        # Camada de comunicação com a API
+│
+└── vercel.json            # Build do front-end + rewrites de /auth e /api para a função serverless
 ```
+ 
+---
+ 
+## Deploy (Vercel)
+ 
+A aplicação está publicada na Vercel: **https://care-level-sprint3.vercel.app**
+ 
+- O **front-end** é buildado via Vite (`vite build front_end/`) e servido como estático.
+- O **back-end** roda como uma única Serverless Function em [`api/index.js`](api/index.js), que reaproveita o mesmo app Express de [`back_end/app.js`](back_end/app.js).
+- O [`vercel.json`](vercel.json) reescreve as rotas `/auth/*`, `/api/*` e `/health` para essa função.
+- As variáveis de ambiente (`DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASS`, `DB_NAME`, `JWT_SECRET`, `FRONTEND_URL`) precisam estar cadastradas em **Project Settings → Environment Variables** no painel da Vercel — elas não são lidas do `.env` local em produção.
+- Após alterar qualquer variável de ambiente, é necessário fazer um novo **Redeploy** para que o valor entre em vigor.
  
 ---
  
