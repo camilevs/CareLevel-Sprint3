@@ -12,27 +12,31 @@
 - [Instalação e Execução](#instalação-e-execução)
 - [Estrutura do Projeto](#estrutura-do-projeto)
 - [Rotas da Aplicação](#rotas-da-aplicação)
-- [Usuário de Teste](#usuário-de-teste)
+- [Usuários de Teste](#usuários-de-teste)
 - [Funcionalidades](#funcionalidades)
+- [Equipe](#equipe)
 ---
  
 ## Sobre o Projeto
  
-O **CareLevel** é uma aplicação web full-stack que incentiva hábitos saudáveis no ambiente corporativo por meio de gamificação. Beneficiários podem acompanhar seu humor diário, completar missões, acumular pontos, ganhar conquistas e resgatar recompensas. Administradores têm acesso a uma visão gerencial dos dados da plataforma.
+O **CareLevel** é uma aplicação web full-stack que incentiva hábitos saudáveis no ambiente corporativo por meio de gamificação. Beneficiários podem acompanhar seu humor diário, completar missões, acumular pontos, ganhar conquistas e resgatar recompensas. Administradores têm acesso a um painel gerencial completo (dashboard, equipes, missões, recompensas e beneficiários).
  
 ---
  
 ## Tecnologias
  
 **Front-end**
-- React 18 + Vite
+- React 19 + Vite
 - React Router DOM
-- CSS Modules
+- Tailwind CSS / CSS Modules
+- Recharts (gráficos)
+ 
 **Back-end**
-- Node.js + Express
-- JSON como banco de dados (`db.json`)
-- JWT para autenticação
-- Controle de acesso por papéis (RBAC)
+- Node.js + Express 5
+- PostgreSQL (`pg`)
+- JWT (`jsonwebtoken`) para autenticação
+- `bcryptjs` para hash de senhas
+- Controle de acesso por papéis (RBAC) via middleware
 ---
  
 ## Pré-requisitos
@@ -41,6 +45,7 @@ Antes de começar, certifique-se de ter instalado em sua máquina:
  
 - [Node.js](https://nodejs.org/) v18 ou superior
 - npm v9 ou superior
+- PostgreSQL (instância local ou remota com um banco criado para o projeto)
 ---
  
 ## Instalação e Execução
@@ -54,12 +59,23 @@ cd carelevel
  
 ### 2. Configure as variáveis de ambiente
  
-
+Crie um arquivo `.env` na raiz do projeto com as seguintes chaves:
  
 ```env
-
 PORT=3005
+FRONTEND_URL=http://localhost:5173
+JWT_SECRET=
+
+DB_HOST=
+DB_PORT=
+DB_USER=
+DB_PASS=
+DB_NAME=
+
+VITE_API_URL=http://localhost:3005
 ```
+ 
+> Preencha `JWT_SECRET` e as credenciais `DB_*` de acordo com sua instância PostgreSQL local. As migrations em `back_end/src/migrations/` e o seed em `back_end/src/config/seed.js` populam o banco com os dados iniciais.
  
 ### 3. Instale as dependências
  
@@ -111,11 +127,11 @@ carelevel/
 ├── back_end/
 │   ├── server.js
 │   └── src/
-│       ├── config/          # Configuração do banco e seed
-│       ├── controllers/     # Lógica de autenticação e dados
-│       ├── data/            # db.json (banco de dados JSON)
-│       ├── middlewares/     # Auth e controle de papéis (RBAC)
-│       └── routes/          # Rotas da API
+│       ├── config/          # Conexão com o PostgreSQL (db.js) e seed
+│       ├── controllers/     # authController, dataController, adminController
+│       ├── middlewares/     # authMiddleware (JWT) e roleMiddleware (RBAC)
+│       ├── migrations/      # Scripts SQL de criação/ajuste de tabelas
+│       └── routes/          # authRoutes, dataRoutes, adminRoutes
 │
 └── front_end/
     ├── index.html
@@ -124,14 +140,16 @@ carelevel/
         ├── App.jsx
         ├── context/         # AuthContext (estado global de autenticação)
         ├── pages/
-        │   ├── CareMood/    # Rastreador de humor
-        │   ├── CarePoints/  # Sistema de pontos
-        │   ├── Conquistas/  # Badges e conquistas
-        │   ├── HomePage/    # Home, Login, Perfil
-        │   ├── Missoes/     # Missões diárias
-        │   ├── Ranking/     # Ranking entre usuários
-        │   └── Recompensas/ # Catálogo de recompensas
-        ├── Components/      # Componentes reutilizáveis (NavBar, Footer, etc.)
+        │   ├── Admin/        # Dashboard, missões, recompensas e beneficiários (admin)
+        │   ├── CareMood/     # Rastreador de humor
+        │   ├── CarePoints/   # Sistema de pontos
+        │   ├── Conquistas/   # Badges e conquistas
+        │   ├── HomePage/     # Home, Login, Perfil
+        │   ├── Jornada/      # Linha do tempo de progresso
+        │   ├── Missoes/      # Missões diárias
+        │   ├── Ranking/      # Ranking entre usuários
+        │   └── Recompensas/  # Catálogo de recompensas
+        ├── Components/      # Componentes reutilizáveis (NavBar, Footer, RoleGuard, etc.)
         └── services/        # Camada de comunicação com a API
 ```
  
@@ -142,23 +160,38 @@ carelevel/
 | Rota | Componente | Acesso |
 |------|-----------|--------|
 | `/login` | Login | Público |
-| `/home` | HomePage | Autenticado |
-| `/perfil` | PerfilBeneficiario | Autenticado |
-| `/caremood` | CareMoodPage | Autenticado |
-| `/missoes` | MissoesPage | Autenticado |
-| `/ranking` | RankingPage | Autenticado |
-| `/recompensas` | RecompensasPage | Autenticado |
-
+| `/unauthorized` | Unauthorized | Público |
+| `/home` | HomePage | Beneficiário |
+| `/perfil` | PerfilBeneficiario | Beneficiário |
+| `/caremood` | CareMoodPage | Beneficiário |
+| `/jornada` | JornadaPage | Beneficiário |
+| `/missoes` | MissoesPage | Beneficiário |
+| `/ranking` | RankingPage | Beneficiário |
+| `/conquistas` | Conquistas | Beneficiário |
+| `/recompensas` | RecompensasPage | Beneficiário |
+| `/carepoints` | CarePoints | Beneficiário |
+| `/carepoints/historico` | CarePointsHistorico | Beneficiário |
+| `/admin/home` | AdminHome | Admin |
+| `/admin/missoes` | MissoesAdmin | Admin |
+| `/admin/recompensas` | RecompensasAdmin | Admin |
+| `/admin/beneficiarios` | BeneficiariosAdmin | Admin |
  
 ---
  
-## Usuário de Teste
+## Usuários de Teste
  
 Para acessar a aplicação sem precisar criar uma conta, use as credenciais abaixo:
  
+**Beneficiário**
 ```
 E-mail: user@carelevel.com.br
 Senha:  usuario123@
+```
+ 
+**Administrador**
+```
+E-mail: admin@carelevel.com
+Senha:  admin123@
 ```
  
 ---
@@ -172,3 +205,14 @@ Senha:  usuario123@
 - **Ranking** — Pódio e classificação geral entre os beneficiários
 - **Recompensas** — Catálogo de prêmios resgatáveis com os pontos acumulados
 - **Perfil** — Resumo do usuário com conquistas em destaque e histórico de atividades
+- **Painel Admin** — Dashboard com indicadores das equipes, CRUD de missões e recompensas, e visão detalhada dos beneficiários
+ 
+---
+ 
+## Equipe
+ 
+- Camile Vitoria Silva — RM566649
+- Gustavo Almeida Ferreira — RM566980
+- Lucas de Oliveira Miranda Caetano — RM568036
+- Marco Túlio Longo Conte — RM568373
+- Sofia Souza Rodrigues — RM566708
